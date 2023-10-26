@@ -19,7 +19,7 @@ export default class AdminDefaultLayout extends Component {
         <Grid item md={2}>
           <Sidebar />
         </Grid>
-        <Grid item md={10}>
+        <Grid item md={10} className={clsx(styles.container)}>
           <Header />
           <div className={clsx(styles.content)}>{this.props.children}</div>
           <Footer />

@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Header.module.scss";
-import images from "../../../../assets/images";
+// import images from "../../../../assets/images";
 // console.log(images);
 const cx = classNames.bind(styles);
 

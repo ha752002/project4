@@ -32,10 +32,10 @@ const publicRoutes = [
 const privateRoutes = [
   {
     path: "admin",
-    element: AdminDefaultLayout,
+    element: <AdminDefaultLayout />,
     children: [
-      { path: "dashboard", element: Dashboard },
-      { path: "product-management", element: ProductManagement },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "product-management", element: <ProductManagement /> },
     ],
   },
 ];

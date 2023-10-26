@@ -9,8 +9,11 @@ import clsx from "clsx";
 import React, { Component } from "react";
 
 export default class AdminDefaultLayout extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    console.log(this.props);
     return (
       <Grid container className={clsx(styles.container)}>
         <Grid item md={2}>
@@ -19,7 +22,6 @@ export default class AdminDefaultLayout extends Component {
         <Grid item md={10}>
           <Header />
           <div className={clsx(styles.content)}>{this.props.children}</div>
-
           <Footer />
         </Grid>
       </Grid>

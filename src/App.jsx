@@ -54,31 +54,22 @@ function App() {
                     <Page />
                   </Layout>
                 }
-                // <Layout>
-                //   <Page />
-                // </Layout>
               />
             );
           })} */}
+          {/* Admin Routes */}
           {privateRoutes.map((route, index) => {
             const { path, element, children } = route;
-            const Layout = element;
-
             return (
               <Route key={index} path={path}>
                 {children.map((childRoute, childIndex) => {
-                  const Page = childRoute.element;
-
-                  // console.log(childRoute.element);
+                  let Layout = AdminDefaultLayout;
+                  // console.log(childRoute.element),
                   return (
                     <Route
                       key={childIndex}
                       path={childRoute.path}
-                      element={
-                        <Layout>
-                          <Page></Page>
-                        </Layout>
-                      }
+                      element={<Layout>{childRoute.element}</Layout>}
                     />
                   );
                 })}

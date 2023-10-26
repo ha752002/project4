@@ -1,22 +1,14 @@
 import classNames from "classnames/bind";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleXmark,
-  faMagnifyingGlass,
-  faSpinner,
-} from "@fortawesome/free-solid-svg-icons";
-
 import styles from "./Header.module.scss";
-import images from "@/assets/images";
-
 const cx = classNames.bind(styles);
+import React, { Component } from "react";
 
-function Header() {
-  return (
-    <>
-      <h1>header</h1>
-    </>
-  );
+export default class Header extends Component {
+  render() {
+    return (
+      <>
+        <h1>header</h1>
+      </>
+    );
+  }
 }
-
-export default Header;

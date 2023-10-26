@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-export default class ProductManagement extends Component {
+export default class Footer extends Component {
   render() {
     return (
       <>
-        <div>ProductManagement</div>
+        <div>Footer</div>
       </>
     );
   }

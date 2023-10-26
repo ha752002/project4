@@ -1,22 +1,28 @@
-import React from "react";
-import classNames from "classnames";
-
-import Header from "../AdminComponents/Header";
+import ReactDOM from "react-dom";
+import { Grid } from "@mui/material";
 import styles from "./DefaultLayout.module.scss";
+import Header from "../AdminComponents/Header";
+import Footer from "../AdminComponents/Footer";
 import Sidebar from "./Sidebar";
+import clsx from "clsx";
 
-const cx = classNames.bind(styles);
+import React, { Component } from "react";
 
-function AdminDefaultLayout({ children }) {
-  return (
-    <div className={cx("wrapper")}>
-      <Header />
-      <div className={cx("container")}>
-        <Sidebar />
-        <div className={cx("content")}>{children}</div>
-      </div>
-    </div>
-  );
+export default class AdminDefaultLayout extends Component {
+  render() {
+    console.log(this.props);
+    return (
+      <Grid container className={clsx(styles.container)}>
+        <Grid item md={2}>
+          <Sidebar />
+        </Grid>
+        <Grid item md={10}>
+          <Header />
+          <div className={clsx(styles.content)}>{this.props.children}</div>
+
+          <Footer />
+        </Grid>
+      </Grid>
+    );
+  }
 }
-
-export default AdminDefaultLayout;

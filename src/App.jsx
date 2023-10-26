@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminDefaultLayout from "./components/Layout/AdminDefaultLayout";
 import WebDefaultLayout from "./components/Layout/WebDefaultLayout";
 import { privateRoutes, publicRoutes } from "./routes";
+import { Dashboard } from "@mui/icons-material";
 // import Register from "./admin/UserManagement/Register";
 // import Login from "./admin/UserManagement/Login";
 function App() {
@@ -33,9 +34,8 @@ function App() {
               />
             );
           })}
-
           {/*Admin */}
-          {privateRoutes.map((route, index) => {
+          {/* {privateRoutes.map((route, index) => {
             let Layout = AdminDefaultLayout;
             if (route.layout) {
               Layout = route.layout;
@@ -44,10 +44,11 @@ function App() {
             }
 
             const Page = route.component;
+            const adminPrefix = "/admin";
             return (
               <Route
                 key={index}
-                path={route.path}
+                path={`${adminPrefix}${route.path}`}
                 element={
                   <Layout>
                     <Page />
@@ -57,6 +58,31 @@ function App() {
                 //   <Page />
                 // </Layout>
               />
+            );
+          })} */}
+          {privateRoutes.map((route, index) => {
+            const { path, element, children } = route;
+            const Layout = element;
+
+            return (
+              <Route key={index} path={path}>
+                {children.map((childRoute, childIndex) => {
+                  const Page = childRoute.element;
+
+                  // console.log(childRoute.element);
+                  return (
+                    <Route
+                      key={childIndex}
+                      path={childRoute.path}
+                      element={
+                        <Layout>
+                          <Page></Page>
+                        </Layout>
+                      }
+                    />
+                  );
+                })}
+              </Route>
             );
           })}
         </Routes>

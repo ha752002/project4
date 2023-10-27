@@ -64,7 +64,7 @@ function App() {
               <Route key={index} path={path}>
                 {children.map((childRoute, childIndex) => {
                   let Layout = AdminDefaultLayout;
-                  // console.log(childRoute.element),
+                  // console.log(childRoute.element);
                   return (
                     <Route
                       key={childIndex}

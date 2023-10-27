@@ -34,6 +34,7 @@ const privateRoutes = [
     path: "admin",
     element: <AdminDefaultLayout />,
     children: [
+      { path: "", element: <h1></h1> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "product-management", element: <ProductManagement /> },
     ],

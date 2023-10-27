@@ -9,7 +9,7 @@
     "node": "18.16.0"
   },
   "scripts": {
-    "dev": "vite --host   --port=3000 --open",
+    "dev": "vite --host --port=3000 --open",
     "build": "vite build --base=./",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"

@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Dashboard from "../admin/Dashboard";
 import ProductManagement from "../admin/ProductManagement";
 import AdminDefaultLayout from "../components/Layout/AdminDefaultLayout";
+// import SignUp from "../pages/auth/sign-up";
 // import CategoryManagement from '@/admin/CategoryManagement';
 
 // web minh an
@@ -36,6 +37,7 @@ const privateRoutes = [
     children: [
       { path: "", element: <h1></h1> },
       { path: "dashboard", element: <Dashboard /> },
+      // { path: "sign-up", element: <SignUp /> },
       { path: "product-management", element: <ProductManagement /> },
     ],
   },

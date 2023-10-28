@@ -13,7 +13,7 @@ function App() {
       <div className="App">
         <Routes>
           {/* web minh an computer */}
-          {publicRoutes.map((route, index) => {
+          {/* {publicRoutes.map((route, index) => {
             let Layout = WebDefaultLayout;
             if (route.layout) {
               Layout = route.layout;
@@ -32,6 +32,24 @@ function App() {
                   </Layout>
                 }
               />
+            );
+          })} */}
+          {publicRoutes.map((route, index) => {
+            const { path, element, children } = route;
+            return (
+              <Route key={index} path={path}>
+                {children.map((childRoute, childIndex) => {
+                  let Layout = WebDefaultLayout;
+                  // console.log(childRoute.element);
+                  return (
+                    <Route
+                      key={childIndex}
+                      path={childRoute.path}
+                      element={<Layout>{childRoute.element}</Layout>}
+                    />
+                  );
+                })}
+              </Route>
             );
           })}
           {/*Admin */}

@@ -5,30 +5,21 @@ import Home from "../pages/Home";
 import Dashboard from "../admin/Dashboard";
 import ProductManagement from "../admin/ProductManagement";
 import AdminDefaultLayout from "../components/Layout/AdminDefaultLayout";
-// import SignUp from "../pages/auth/sign-up";
-// import CategoryManagement from '@/admin/CategoryManagement';
+import WebDefaultLayout from "../components/Layout/WebDefaultLayout";
+import SignUp from "../pages/auth/sign-up";
+import SignIn from "../pages/auth/sign-in";
 
-// web minh an
 const publicRoutes = [
-  { path: "/", component: Home },
-  { path: "", component: Home },
-  // { path: '/following', component: Following },
-  // { path: '/upload', component: Upload, layout: HeaderLayoutOnly },
+  {
+    path: "user",
+    element: <WebDefaultLayout />,
+    children: [
+      { path: "", element: <h1>ssss</h1> },
+      { path: "signup", element: <SignUp /> },
+      { path: "signin", element: <SignIn /> },
+    ],
+  },
 ];
-
-// admin
-// const privateRoutes = [
-//   {
-//     path: "/admin",
-//     component: Dashboard,
-//     children: [
-//       { path: "/dashboard", component: Dashboard },
-//       { path: "/ProductManagement", component: ProductManagement },
-//     ],
-//   },
-
-//   // { path: '/upload', component: Upload, layout: HeaderLayoutOnly },
-// ];
 
 const privateRoutes = [
   {

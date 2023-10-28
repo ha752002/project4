@@ -1,14 +1,15 @@
 import React from "react";
+import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Card from "../../../components/Card";
+import Card from "../../components/Card";
 
 // img
-import facebook from "../../../assets/images/brands/fb.svg";
-import google from "../../../assets/images/brands/gm.svg";
-import instagram from "../../../assets/images/brands/im.svg";
-import linkedin from "../../../assets/images/brands/li.svg";
-import auth1 from "../../../assets/images/auth/01.png";
+import facebook from "../../assets/images/brands/fb.svg";
+import google from "../../assets/images/brands/gm.svg";
+import instagram from "../../assets/images/brands/im.svg";
+import linkedin from "../../assets/images/brands/li.svg";
+import auth1 from "../../assets/images/auth/01.png";
 
 const SignIn = () => {
   let history = useNavigate();

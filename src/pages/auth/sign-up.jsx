@@ -1,10 +1,9 @@
-// import React from "react";
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
-
+import Validation from "./Validation";
 // img
 import facebook from "../../assets/images/brands/fb.svg";
 import google from "../../assets/images/brands/gm.svg";
@@ -14,6 +13,27 @@ import auth5 from "../../assets/images/auth/05.png";
 import "./reset.css";
 const SignUp = () => {
   let history = useNavigate();
+  const [values, setValues] = useState({
+    fullname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmpw: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setErrors(Validation(values));
+  };
+
+  const handleInput = (event) => {
+    setValues((prev) => ({
+      ...prev,
+      [event.target.name]: [event.target.value],
+    }));
+  };
   return (
     <>
       <section className="login-content">
@@ -82,32 +102,36 @@ const SignUp = () => {
                     </Link>
                     <h2 className="mb-2 text-center">Sign Up</h2>
                     <p className="text-center">Create your Hope UI account.</p>
-                    <Form>
+                    <Form action="" onSubmit={handleSubmit}>
                       <Row>
                         <Col lg="6">
                           <Form.Group className="form-group">
-                            <Form.Label htmlFor="full-name" className="">
+                            <Form.Label htmlFor="fullname" className="">
                               Full Name
                             </Form.Label>
                             <Form.Control
-                              type="text"
-                              className=""
+                              type="fullname"
+                              name="fullname"
                               id="full-name"
                               placeholder=" "
+                              onChange={handleInput}
                             />
+                            {errors.fullname && <span>{errors.fullname}</span>}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
                           <Form.Group className="form-group">
-                            <Form.Label htmlFor="last-name" className="">
+                            <Form.Label htmlFor="lastname" className="">
                               Last Name
                             </Form.Label>
                             <Form.Control
-                              type="text"
-                              className=""
+                              type="lastname"
+                              name="lastname"
                               id="last-name"
                               placeholder=" "
+                              onChange={handleInput}
                             />
+                            {errors.lastname && <span>{errors.lastname}</span>}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
@@ -117,10 +141,12 @@ const SignUp = () => {
                             </Form.Label>
                             <Form.Control
                               type="email"
-                              className=""
+                              name="email"
                               id="email"
                               placeholder=" "
+                              onChange={handleInput}
                             />
+                            {errors.email && <span>{errors.email}</span>}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
@@ -130,10 +156,12 @@ const SignUp = () => {
                             </Form.Label>
                             <Form.Control
                               type="text"
-                              className=""
+                              name="phone"
                               id="phone"
                               placeholder=" "
+                              onChange={handleInput}
                             />
+                            {errors.phone && <span>{errors.phone}</span>}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
@@ -143,23 +171,28 @@ const SignUp = () => {
                             </Form.Label>
                             <Form.Control
                               type="password"
-                              className=""
+                              name="password"
                               id="password"
                               placeholder=" "
+                              onChange={handleInput}
                             />
+                            {errors.password && <span>{errors.password}</span>}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
                           <Form.Group className="form-group">
-                            <Form.Label htmlFor="confirm-password" className="">
+                            <Form.Label htmlFor="confirmpw" className="">
                               Confirm Password
                             </Form.Label>
                             <Form.Control
-                              type="text"
-                              className=""
+                              type="password"
+                              name="confirmpw"
                               id="confirm-password"
                               placeholder=" "
                             />
+                            {errors.confirmpw && (
+                              <span>{errors.confirmpw}</span>
+                            )}
                           </Form.Group>
                         </Col>
                         <Col lg="12" className="d-flex justify-content-center">
@@ -178,7 +211,7 @@ const SignUp = () => {
                         <Button
                           className="login_lockscreen"
                           onClick={() => history.push("/dashboard")}
-                          type="button"
+                          type="submit"
                           variant="primary"
                         >
                           Sign Up

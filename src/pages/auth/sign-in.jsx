@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
 import "./reset.css";
+import Validation from "./Validation";
 // img
 import facebook from "../../assets/images/brands/fb.svg";
 import google from "../../assets/images/brands/gm.svg";
@@ -13,6 +14,21 @@ import auth1 from "../../assets/images/auth/01.png";
 
 const SignIn = () => {
   let history = useNavigate();
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setErrors(Validation(values));
+  };
+  const handleInput = (event) => {
+    setValues((prev) => ({
+      ...prev,
+      [event.target.name]: [event.target.value],
+    }));
+  };
   return (
     <>
       <section className="login-content">
@@ -74,7 +90,7 @@ const SignIn = () => {
                     </Link>
                     <h2 className="mb-2 text-center">Sign In</h2>
                     <p className="text-center">Login to stay connected.</p>
-                    <Form>
+                    <Form action="" onSubmit={handleSubmit}>
                       <Row>
                         <Col lg="12">
                           <Form.Group className="form-group">
@@ -83,11 +99,13 @@ const SignIn = () => {
                             </Form.Label>
                             <Form.Control
                               type="email"
-                              className=""
+                              name="email"
                               id="email"
                               aria-describedby="email"
                               placeholder=" "
+                              onChange={handleInput}
                             />
+                            {/* {errors.email && <span>{errors.email}</span>} */}
                           </Form.Group>
                         </Col>
                         <Col lg="12" className="">
@@ -97,11 +115,13 @@ const SignIn = () => {
                             </Form.Label>
                             <Form.Control
                               type="password"
-                              className=""
+                              name="password"
                               id="password"
                               aria-describedby="password"
                               placeholder=" "
+                              onChange={handleInput}
                             />
+                            {/* {errors.password && <span>{errors.password}</span>} */}
                           </Form.Group>
                         </Col>
                         <Col lg="12" className="d-flex justify-content-between">
@@ -120,8 +140,8 @@ const SignIn = () => {
                       <div className="d-flex justify-content-center">
                         <Button
                           className="login_lockscreen "
-                          onClick={() => history.push("/admin")}
-                          type="button"
+                          onClick={() => history.push("/user")}
+                          type="submit"
                           variant="btn btn-primary"
                         >
                           Sign In
@@ -160,7 +180,7 @@ const SignIn = () => {
                       <p className="mt-3 text-center">
                         Don’t have an account?{" "}
                         <Link to="/user/signup" className="text-underline ">
-                          Click here to sign up.
+                          Click here to Sign up.
                         </Link>
                       </p>
                     </Form>

@@ -14,7 +14,7 @@ class Sidebar extends Component {
           name: "HOME",
           sidebarData: [
             {
-              name: "Test 1",
+              name: "Dashboard",
               img_1: mapImage,
               img_2: dropdown,
               showChildItem: false,
@@ -32,25 +32,7 @@ class Sidebar extends Component {
                 },
               ],
             },
-            {
-              name: "Test 1.2",
-              img_1: mapImage,
-              img_2: dropdown,
-              showChildItem: false,
-              url: "",
-              items: [
-                {
-                  name: "My Workout",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/user/myWorkout",
-                },
-                {
-                  name: "All Exercises",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/user/allExercises",
-                },
-              ],
-            },
+
             // Add more items here
           ],
         },
@@ -58,19 +40,24 @@ class Sidebar extends Component {
           name: "PAGE",
           sidebarData: [
             {
-              name: "Test 2.1",
+              name: "Users",
               img_1: mapImage,
               img_2: dropdown,
               showChildItem: false,
               url: "",
               items: [
                 {
-                  name: "My Workout",
+                  name: "User Profile",
                   img: "../../../assets/svg/bulk.svg",
                   url: "/user/myWorkout",
                 },
                 {
-                  name: "All Exercises",
+                  name: "Add User",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/user/allExercises",
+                },
+                {
+                  name: "User List",
                   img: "../../../assets/svg/bulk.svg",
                   url: "/user/allExercises",
                 },
@@ -83,19 +70,19 @@ class Sidebar extends Component {
           name: "ELEMENT",
           sidebarData: [
             {
-              name: "Test3",
+              name: "Maps",
               img_1: mapImage,
               img_2: dropdown,
               showChildItem: false,
               url: "",
               items: [
                 {
-                  name: "My Workout",
+                  name: "Google",
                   img: "../../../assets/svg/bulk.svg",
                   url: "/user/myWorkout",
                 },
                 {
-                  name: "All Exercises",
+                  name: "Vector",
                   img: "../../../assets/svg/bulk.svg",
                   url: "/user/allExercises",
                 },
@@ -153,7 +140,7 @@ class Sidebar extends Component {
           )}
         >
           <img src="../../../assets/svg/Frame 453.svg" alt="" />
-          gymmax
+          Admin
           <div
             className={clsx(Styles.close_sidebar)}
             onClick={this.toggleSidebar}

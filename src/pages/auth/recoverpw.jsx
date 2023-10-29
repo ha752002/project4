@@ -1,10 +1,10 @@
 import React from "react";
 import { Row, Col, Image, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Card from "../../../components/Card";
-
+import Card from "../../components/Card";
+import "./reset.css";
 // img
-import auth2 from "../../../assets/images/auth/02.png";
+import auth2 from "../../assets/images/auth/02.png";
 const Recoverpw = () => {
   let history = useNavigate();
   return (
@@ -22,10 +22,10 @@ const Recoverpw = () => {
             />
           </Col>
           <Col md="6" className="p-0">
-            <Card className="card-transparent auth-card shadow-none d-flex justify-content-center mb-0">
+            <Card className="card-transparent auth-card shadow-none d-flex justify-content-center mb-0 border-0">
               <Card.Body>
                 <Link
-                  to="/dashboard"
+                  to="/admin"
                   className="navbar-brand d-flex align-items-center mb-3"
                 >
                   <svg
@@ -107,7 +107,7 @@ const Recoverpw = () => {
                 </Form>
               </Card.Body>
             </Card>
-            <div className="sign-bg sign-bg-right">
+            {/* <div className="sign-bg sign-bg-right">
               <svg
                 width="280"
                 height="230"
@@ -154,7 +154,7 @@ const Recoverpw = () => {
                   />
                 </g>
               </svg>
-            </div>
+            </div> */}
           </Col>
         </Row>
       </section>

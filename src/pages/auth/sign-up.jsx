@@ -11,14 +11,14 @@ import google from "../../assets/images/brands/gm.svg";
 import instagram from "../../assets/images/brands/im.svg";
 import linkedin from "../../assets/images/brands/li.svg";
 import auth5 from "../../assets/images/auth/05.png";
-
+import "./reset.css";
 const SignUp = () => {
   let history = useNavigate();
   return (
     <>
       <section className="login-content">
         <Row className="m-0 align-items-center bg-white vh-100">
-          <div className="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
+          <div className="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden ">
             <Image
               src={auth5}
               className="Image-fluid gradient-main animated-scaleX"
@@ -26,12 +26,12 @@ const SignUp = () => {
             />
           </div>
           <Col md="6">
-            <Row className="justify-content-center">
+            <Row className="justify-content-center ">
               <Col md="10">
-                <Card className="card-transparent auth-card shadow-none d-flex justify-content-center mb-0">
+                <Card className="card-transparent auth-card shadow-none d-flex justify-content-center mb-0 border-0">
                   <Card.Body>
                     <Link
-                      to="/dashboard"
+                      to="/admin"
                       className="navbar-brand d-flex align-items-center mb-3"
                     >
                       <svg
@@ -78,7 +78,7 @@ const SignUp = () => {
                           fill="currentColor"
                         />
                       </svg>
-                      <h4 className="logo-title ms-3">Hope UI</h4>
+                      <h4 className="logo-title ms-4">Hope UI</h4>
                     </Link>
                     <h2 className="mb-2 text-center">Sign Up</h2>
                     <p className="text-center">Create your Hope UI account.</p>
@@ -176,6 +176,7 @@ const SignUp = () => {
                       </Row>
                       <div className="d-flex justify-content-center">
                         <Button
+                          className="login_lockscreen"
                           onClick={() => history.push("/dashboard")}
                           type="button"
                           variant="primary"
@@ -227,7 +228,10 @@ const SignUp = () => {
                       </div>
                       <p className="mt-3 text-center">
                         Already have an Account{" "}
-                        <Link to="/auth/sign-in" className="text-underline">
+                        <Link
+                          to="/user/signin"
+                          className="text-underline link-signup color-signin"
+                        >
                           Sign In
                         </Link>
                       </p>
@@ -236,54 +240,6 @@ const SignUp = () => {
                 </Card>
               </Col>
             </Row>
-            <div className="sign-bg sign-bg-right">
-              <svg
-                width="280"
-                height="230"
-                viewBox="0 0 421 359"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g opacity="0.05">
-                  <rect
-                    x="-15.0845"
-                    y="154.773"
-                    width="543"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(-45 -15.0845 154.773)"
-                    fill="#3A57E8"
-                  />
-                  <rect
-                    x="149.47"
-                    y="319.328"
-                    width="543"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(-45 149.47 319.328)"
-                    fill="#3A57E8"
-                  />
-                  <rect
-                    x="203.936"
-                    y="99.543"
-                    width="310.286"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(45 203.936 99.543)"
-                    fill="#3A57E8"
-                  />
-                  <rect
-                    x="204.316"
-                    y="-229.172"
-                    width="543"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(45 204.316 -229.172)"
-                    fill="#3A57E8"
-                  />
-                </g>
-              </svg>
-            </div>
           </Col>
         </Row>
       </section>

@@ -3,7 +3,7 @@ import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
-
+import "./reset.css";
 // img
 import facebook from "../../assets/images/brands/fb.svg";
 import google from "../../assets/images/brands/gm.svg";
@@ -20,10 +20,10 @@ const SignIn = () => {
           <Col md="6">
             <Row className="justify-content-center">
               <Col md="10">
-                <Card className="card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
+                <Card className="card-transparent shadow-none d-flex justify-content-center mb-0 auth-card border-0">
                   <Card.Body>
                     <Link
-                      to="/dashboard"
+                      to="/admin"
                       className="navbar-brand d-flex align-items-center mb-3"
                     >
                       <svg
@@ -114,12 +114,13 @@ const SignIn = () => {
                               Remember Me
                             </Form.Check.Label>
                           </Form.Check>
-                          <Link to="/auth/recoverpw">Forgot Password?</Link>
+                          <Link to="/user/recoverpw">Forgot Password?</Link>
                         </Col>
                       </Row>
                       <div className="d-flex justify-content-center">
                         <Button
-                          onClick={() => history.push("/dashboard")}
+                          className="login_lockscreen "
+                          onClick={() => history.push("/admin")}
                           type="button"
                           variant="btn btn-primary"
                         >
@@ -158,7 +159,7 @@ const SignIn = () => {
                       </div>
                       <p className="mt-3 text-center">
                         Don’t have an account?{" "}
-                        <Link to="/auth/sign-up" className="text-underline">
+                        <Link to="/user/signup" className="text-underline ">
                           Click here to sign up.
                         </Link>
                       </p>
@@ -167,7 +168,7 @@ const SignIn = () => {
                 </Card>
               </Col>
             </Row>
-            <div className="sign-bg">
+            {/* <div className="sign-bg sign-bg-right">
               <svg
                 width="280"
                 height="230"
@@ -214,7 +215,7 @@ const SignIn = () => {
                   />
                 </g>
               </svg>
-            </div>
+            </div> */}
           </Col>
           <Col
             md="6"

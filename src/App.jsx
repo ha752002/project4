@@ -13,34 +13,12 @@ function App() {
       <div className="App">
         <Routes>
           {/* web minh an computer */}
-          {/* {publicRoutes.map((route, index) => {
-            let Layout = WebDefaultLayout;
-            if (route.layout) {
-              Layout = route.layout;
-            } else if (route.layout === null) {
-              Layout = Fragment;
-            }
-
-            const Page = route.component;
-            return (
-              <Route
-                key={index}
-                path={route.path}
-                element={
-                  <Layout>
-                    <Page />
-                  </Layout>
-                }
-              />
-            );
-          })} */}
           {publicRoutes.map((route, index) => {
             const { path, element, children } = route;
             return (
               <Route key={index} path={path}>
                 {children.map((childRoute, childIndex) => {
                   let Layout = WebDefaultLayout;
-                  // console.log(childRoute.element);
                   return (
                     <Route
                       key={childIndex}
@@ -52,29 +30,7 @@ function App() {
               </Route>
             );
           })}
-          {/*Admin */}
-          {/* {privateRoutes.map((route, index) => {
-            let Layout = AdminDefaultLayout;
-            if (route.layout) {
-              Layout = route.layout;
-            } else if (route.layout === null) {
-              Layout = Fragment;
-            }
 
-            const Page = route.component;
-            const adminPrefix = "/admin";
-            return (
-              <Route
-                key={index}
-                path={`${adminPrefix}${route.path}`}
-                element={
-                  <Layout>
-                    <Page />
-                  </Layout>
-                }
-              />
-            );
-          })} */}
           {/* Admin Routes */}
           {privateRoutes.map((route, index) => {
             const { path, element, children } = route;

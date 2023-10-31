@@ -5,8 +5,8 @@ import AdminDefaultLayout from "./components/Layout/AdminDefaultLayout";
 import WebDefaultLayout from "./components/Layout/WebDefaultLayout";
 import { privateRoutes, publicRoutes } from "./routes";
 import { Dashboard } from "@mui/icons-material";
-// import Register from "./admin/UserManagement/Register";
-// import Login from "./admin/UserManagement/Login";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <Router>
@@ -52,7 +52,7 @@ function App() {
           })}
         </Routes>
       </div>
-      {/* <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -62,7 +62,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      /> */}
+      />
     </Router>
   );
 }

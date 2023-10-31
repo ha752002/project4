@@ -11,6 +11,10 @@ import SignIn from "../pages/auth/sign-in";
 import Recoverpw from "../pages/auth/recoverpw";
 import LockScreen from "../pages/auth/lock-screen";
 import ConfirmMail from "../pages/auth/confirm-mail";
+import AddUser from "../admin/AddUserManagement";
+import UsersList from "../admin/UserListManagement";
+import UsersProfile from "../admin/UserProfileManagement";
+
 const publicRoutes = [
   {
     path: "user",
@@ -34,6 +38,9 @@ const privateRoutes = [
       { path: "", element: <h1></h1> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "product-management", element: <ProductManagement /> },
+      { path: "users-profile", element: <UsersProfile /> },
+      { path: "list-users", element: <UsersList /> },
+      { path: "add-users", element: <AddUser /> },
     ],
   },
 ];

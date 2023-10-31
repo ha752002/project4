@@ -80,7 +80,9 @@ export default function UsersList() {
           <Card>
             <Card.Header className="d-flex justify-content-between">
               <div className="header-title">
-                <h4 className="card-title">User List</h4>
+                <h4 className={(`card_title`, clsx(Styles.card_title))}>
+                  User List
+                </h4>
               </div>
             </Card.Header>
             <Card.Body className="px-0">
@@ -92,7 +94,7 @@ export default function UsersList() {
                   data-toggle="data-table"
                 >
                   <thead>
-                    <tr className="ligth">
+                    <tr className={(`ligth`, clsx(Styles.ligth))}>
                       <th>Profile</th>
                       <th>Name</th>
                       <th>Contact</th>
@@ -137,7 +139,7 @@ export default function UsersList() {
                             >
                               <span className="btn-inner">
                                 <svg
-                                  width="32"
+                                  width="20"
                                   viewBox="0 0 24 24"
                                   fill="none"
                                   xmlns="http://www.w3.org/2000/svg"

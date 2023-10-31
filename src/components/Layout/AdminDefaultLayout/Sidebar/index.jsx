@@ -3,6 +3,7 @@ import Styles from "./Sidebar.module.scss";
 import clsx from "clsx";
 import mapImage from "../../../../assets/images/sidebar/map.svg";
 import dropdown from "../../../../assets/images/sidebar/ic_Chevron.svg";
+import { NavLink } from "react-router-dom";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -19,20 +20,8 @@ class Sidebar extends Component {
               img_2: dropdown,
               showChildItem: false,
               url: "",
-              items: [
-                {
-                  name: "My Workout",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/user/myWorkout",
-                },
-                {
-                  name: "All Exercises",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/user/allExercises",
-                },
-              ],
+              items: [],
             },
-
             // Add more items here
           ],
         },
@@ -49,19 +38,27 @@ class Sidebar extends Component {
                 {
                   name: "User Profile",
                   img: "../../../assets/svg/bulk.svg",
-                  url: "/user/myWorkout",
+                  url: "/admin/users-profile",
                 },
                 {
                   name: "Add User",
                   img: "../../../assets/svg/bulk.svg",
-                  url: "/user/allExercises",
+                  url: "/admin/add-users",
                 },
                 {
                   name: "User List",
                   img: "../../../assets/svg/bulk.svg",
-                  url: "/user/allExercises",
+                  url: "/admin/list-users",
                 },
               ],
+            },
+            {
+              name: "Admin",
+              img_1: mapImage,
+              img_2: dropdown,
+              showChildItem: false,
+              url: "",
+              items: [],
             },
             // Add more items here
           ],
@@ -191,14 +188,16 @@ class Sidebar extends Component {
                       <ul>
                         {item.items.map((childItem, childIndex) => (
                           <li key={childIndex}>
-                            <div className={Styles.Sidebar_Items}>
-                              <div className={Styles.conten}>
-                                <div className={Styles.tile}>
-                                  <img src={childItem.img} alt="" />
-                                  {childItem.name}
+                            <NavLink to={childItem.url}>
+                              <div className={Styles.Sidebar_Items}>
+                                <div className={Styles.conten}>
+                                  <div className={Styles.tile}>
+                                    <img src={childItem.img} alt="" />
+                                    {childItem.name}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            </NavLink>
                           </li>
                         ))}
                       </ul>

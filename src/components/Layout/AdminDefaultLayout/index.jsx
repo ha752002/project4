@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@mui/material";
 import styles from "./DefaultLayout.module.scss";
 import Header from "../AdminComponents/Header";
-import Footer from "../AdminComponents/Footer";
+// import Footer from "../AdminComponents/Footer";
 import Sidebar from "./Sidebar";
 import clsx from "clsx";
 
@@ -16,7 +16,7 @@ export default function AdminDefaultLayout(props) {
         <Header />
         {console.log(props)}
         <div className={clsx(styles.content)}>{props.children}</div>
-        <Footer />
+        {/* <Footer /> */}
       </Grid>
     </Grid>
   );

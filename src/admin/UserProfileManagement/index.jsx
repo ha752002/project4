@@ -56,7 +56,7 @@ export default function UsersProfile() {
           ]}
         />
         <Tab.Container defaultActiveKey="first">
-          <Row>
+          <Row className={clsx(Styles.container)}>
             <Col lg="12">
               <Card>
                 <Card.Body>
@@ -71,7 +71,7 @@ export default function UsersProfile() {
                           src={avatars11}
                           alt="profile-pic"
                         />
-                        <Image
+                        {/* <Image
                           className={
                             (`theme-color-default-img  img-fluid rounded-pill avatar-100`,
                             clsx(Styles.image))
@@ -110,10 +110,10 @@ export default function UsersProfile() {
                           }
                           src={avatars44}
                           alt="profile-pic"
-                        />
+                        /> */}
                       </div>
                       <div className="d-flex flex-wrap align-items-center mb-3 mb-sm-0">
-                        <h4 className="me-2 h4">Austin Robertson</h4>
+                        <h4 className="me-2 h4">Tuan Anh</h4>
                         <span> - Web Developer</span>
                       </div>
                     </div>
@@ -181,7 +181,7 @@ export default function UsersProfile() {
                 </Card.Body>
               </Card>
               <Card>
-                <Card.Header className="d-flex align-items-center justify-content-between">
+                {/* <Card.Header className="d-flex align-items-center justify-content-between">
                   <div className="header-title">
                     <h4 className="card-title">Gallery</h4>
                   </div>
@@ -192,42 +192,60 @@ export default function UsersProfile() {
                     <Link onClick={() => setToggler(!toggler)} to="#">
                       <Image
                         src={icon4}
-                        className="img-fluid bg-soft-info rounded"
+                        className={
+                          (`img-fluid bg-soft-info rounded`,
+                          clsx(Styles.gallery))
+                        }
                         alt="profile-image"
                       />
                     </Link>
                     <Link onClick={() => setToggler(!toggler)} to="#">
                       <Image
                         src={shap2}
-                        className="img-fluid bg-soft-primary rounded"
+                        className={
+                          (`img-fluid bg-soft-primary rounded`,
+                          clsx(Styles.gallery))
+                        }
                         alt="profile-image"
                       />
                     </Link>
                     <Link onClick={() => setToggler(!toggler)} to="#">
                       <Image
                         src={icon8}
-                        className="img-fluid bg-soft-info rounded"
+                        className={
+                          (`img-fluid bg-soft-info rounded`,
+                          clsx(Styles.gallery))
+                        }
                         alt="profile-image"
                       />
                     </Link>
                     <Link onClick={() => setToggler(!toggler)} to="#">
                       <Image
                         src={shap4}
-                        className="img-fluid bg-soft-primary rounded"
+                        className={
+                          (`img-fluid bg-soft-primary rounded`,
+                          clsx(Styles.gallery))
+                        }
                         alt="profile-image"
                       />
                     </Link>
                     <Link onClick={() => setToggler(!toggler)} to="#">
                       <Image
                         src={icon2}
-                        className="img-fluid bg-soft-warning rounded"
+                        className={
+                          (`img-fluid bg-soft-warning rounded`,
+                          clsx(Styles.gallery))
+                        }
                         alt="profile-image"
                       />
                     </Link>
                     <Link onClick={() => setToggler(!toggler)} to="#">
                       <Image
                         src={shap6}
-                        className="img-fluid bg-soft-primary rounded"
+                        className={
+                          (`img-fluid bg-soft-primary rounded`,
+                          clsx(Styles.gallery))
+                        }
                         alt="profile-image"
                       />
                     </Link>
@@ -235,13 +253,20 @@ export default function UsersProfile() {
                       <Image
                         onClick={() => setToggler(!toggler)}
                         src={icon5}
-                        className="img-fluid bg-soft-danger rounded"
+                        className={
+                          (`img-fluid bg-soft-danger rounded`,
+                          clsx(Styles.gallery))
+                        }
                         alt="profile-image"
                       />
                     </Link>
                     <Link onClick={() => setToggler(!toggler)} to="#">
                       <Image
                         src={shap4}
+                        // className={
+                        //   (`img-fluid bg-soft-primary rounded`,
+                        //   clsx(Styles.gallery))
+                        // }
                         className="img-fluid bg-soft-primary rounded"
                         alt="profile-image"
                       />
@@ -249,12 +274,16 @@ export default function UsersProfile() {
                     <Link onClick={() => setToggler(!toggler)} to="#">
                       <Image
                         src={icon1}
+                        // className={
+                        //   (`img-fluid bg-soft-success rounded`,
+                        //   clsx(Styles.gallery))
+                        // }
                         className="img-fluid bg-soft-success rounded"
                         alt="profile-image"
                       />
                     </Link>
                   </div>
-                </Card.Body>
+                </Card.Body> */}
               </Card>
               <Card>
                 <Card.Header>
@@ -266,7 +295,10 @@ export default function UsersProfile() {
                   <div className="twit-feed">
                     <div className="d-flex align-items-center mb-2">
                       <Image
-                        className="rounded-pill img-fluid avatar-50 me-3 p-1 bg-soft-danger ps-2"
+                        className={
+                          (`rounded-pill img-fluid avatar-50 me-3 p-1 bg-soft-danger ps-2`,
+                          clsx(Styles.image))
+                        }
                         src={icon3}
                         alt=""
                       />
@@ -298,14 +330,17 @@ export default function UsersProfile() {
                           #Bootstrap
                         </Link>
                       </div>
-                      <div className="twit-date">07 Jan 2021</div>
+                      <div className="twit-date">07 Jan 2023</div>
                     </div>
                   </div>
                   <hr className="my-4" />
                   <div className="twit-feed">
                     <div className="d-flex align-items-center mb-2">
                       <Image
-                        className="rounded-pill img-fluid avatar-50 me-3 p-1 bg-soft-primary"
+                        className={
+                          (`rounded-pill img-fluid avatar-50 me-3 p-1 bg-soft-primary`,
+                          clsx(Styles.image))
+                        }
                         src={icon4}
                         alt=""
                       />
@@ -337,14 +372,17 @@ export default function UsersProfile() {
                           #Bootstrap
                         </Link>
                       </div>
-                      <div className="twit-date">18 Feb 2021</div>
+                      <div className="twit-date">18 Feb 2023</div>
                     </div>
                   </div>
                   <hr className="my-4" />
                   <div className="twit-feed">
                     <div className="d-flex align-items-center mb-2">
                       <Image
-                        className="rounded-pill img-fluid avatar-50 me-3 p-1 bg-soft-warning pt-2"
+                        className={
+                          (`rounded-pill img-fluid avatar-50 me-3 p-1 bg-soft-warning pt-2`,
+                          clsx(Styles.image))
+                        }
                         src={icon2}
                         alt=""
                       />
@@ -376,7 +414,7 @@ export default function UsersProfile() {
                           #CSS
                         </Link>
                       </div>
-                      <div className="twit-date">15 Mar 2021</div>
+                      <div className="twit-date">15 Mar 2023</div>
                     </div>
                   </div>
                 </Card.Body>
@@ -391,7 +429,10 @@ export default function UsersProfile() {
                         <div className="d-flex flex-wrap">
                           <div className="media-support-user-img me-3">
                             <Image
-                              className="rounded-pill img-fluid avatar-60 bg-soft-danger p-1 ps-2"
+                              className={
+                                (`rounded-pill img-fluid avatar-60 bg-soft-danger p-1 ps-2`,
+                                clsx(Styles.image))
+                              }
                               src={avatars2}
                               alt=""
                             />
@@ -428,9 +469,9 @@ export default function UsersProfile() {
                       <div className="user-post">
                         <Link to="#">
                           <Image
+                            className={(`img-fluid`, clsx(Styles.user_post))}
                             src={pages2}
                             alt="post-image"
-                            className="img-fluid"
                           />
                         </Link>
                       </div>
@@ -474,7 +515,10 @@ export default function UsersProfile() {
                               <Image
                                 src={avatars3}
                                 alt="userimg"
-                                className="avatar-50 p-1 pt-2 bg-soft-primary rounded-pill img-fluid"
+                                className={
+                                  (`avatar-50 p-1 pt-2 bg-soft-primary rounded-pill img-fluid`,
+                                  clsx(Styles.monty_carlo))
+                                }
                               />
                               <div className="ms-3">
                                 <h6 className="mb-1">Monty Carlo</h6>
@@ -523,7 +567,10 @@ export default function UsersProfile() {
                               <Image
                                 src={avatars4}
                                 alt="userimg"
-                                className="avatar-50 p-1 bg-soft-danger rounded-pill img-fluid"
+                                className={
+                                  (`avatar-50 p-1 bg-soft-danger rounded-pill img-fluid`,
+                                  clsx(Styles.monty_carlo))
+                                }
                               />
                               <div className="ms-3">
                                 <h6 className="mb-1">Paul Molive</h6>
@@ -574,7 +621,7 @@ export default function UsersProfile() {
                         >
                           <Form.Control
                             type="text"
-                            className="rounded"
+                            className={(`rounded`, clsx(Styles.rounded))}
                             placeholder="Lovely!"
                           />
                           <div className="comment-attagement d-flex">
@@ -605,7 +652,10 @@ export default function UsersProfile() {
                         <div className="d-flex flex-wrap">
                           <div className="media-support-user-img me-3">
                             <Image
-                              className="rounded-pill img-fluid avatar-60 p-1 bg-soft-info"
+                              className={
+                                (`rounded-pill img-fluid avatar-60 p-1 bg-soft-info`,
+                                clsx(Styles.image))
+                              }
                               src={avatars5}
                               alt=""
                             />
@@ -678,7 +728,7 @@ export default function UsersProfile() {
                         >
                           <Form.Control
                             type="text"
-                            className="rounded"
+                            className={(`rounded`, clsx(Styles.rounded))}
                             placeholder="Lovely!"
                           />
                           <div className="comment-attagement d-flex">
@@ -718,7 +768,7 @@ export default function UsersProfile() {
                             <div className="timeline-dots timeline-dot1 border-primary text-primary"></div>
                             <h6 className="float-left mb-1">Client Login</h6>
                             <small className="float-right mt-1">
-                              24 November 2019
+                              24 November 2023
                             </small>
                             <div className="d-inline-block w-100">
                               <p>
@@ -733,7 +783,7 @@ export default function UsersProfile() {
                               Scheduled Maintenance
                             </h6>
                             <small className="float-right mt-1">
-                              23 November 2019
+                              23 November 2023
                             </small>
                             <div className="d-inline-block w-100">
                               <p>
@@ -746,7 +796,7 @@ export default function UsersProfile() {
                             <div className="timeline-dots timeline-dot1 border-danger text-danger"></div>
                             <h6 className="float-left mb-1">Dev Meetup</h6>
                             <small className="float-right mt-1">
-                              20 November 2019
+                              20 November 2023
                             </small>
                             <div className="d-inline-block w-100">
                               <p>
@@ -777,7 +827,7 @@ export default function UsersProfile() {
                             <div className="timeline-dots timeline-dot1 border-primary text-primary"></div>
                             <h6 className="float-left mb-1">Client Call</h6>
                             <small className="float-right mt-1">
-                              19 November 2019
+                              19 November 2023
                             </small>
                             <div className="d-inline-block w-100">
                               <p>
@@ -790,7 +840,7 @@ export default function UsersProfile() {
                             <div className="timeline-dots timeline-dot1 border-warning text-warning"></div>
                             <h6 className="float-left mb-1">Mega event</h6>
                             <small className="float-right mt-1">
-                              15 November 2019
+                              15 November 2023
                             </small>
                             <div className="d-inline-block w-100">
                               <p>
@@ -815,35 +865,53 @@ export default function UsersProfile() {
                       <ul className="list-inline m-0 p-0">
                         <li className="d-flex mb-4 align-items-center">
                           <Image
-                            className="theme-color-default-img  rounded-pill avatar-40"
+                            className={
+                              (`theme-color-default-img  rounded-pill avatar-40`,
+                              clsx(Styles.image))
+                            }
                             src={avatars11}
                             alt="profile-pic"
                           />
-                          <Image
-                            className="theme-color-purple-img rounded-pill avatar-40"
+                          {/* <Image
+                            className={
+                              (`theme-color-purple-img rounded-pill avatar-40`,
+                              clsx(Styles.image))
+                            }
                             src={avatars22}
                             alt="profile-pic"
                           />
                           <Image
-                            className="theme-color-blue-img rounded-pill avatar-40"
+                            className={
+                              (`theme-color-blue-img rounded-pill avatar-40`,
+                              clsx(Styles.image))
+                            }
                             src={avatars33}
                             alt="profile-pic"
                           />
                           <Image
-                            className="theme-color-green-img rounded-pill avatar-40"
+                            className={
+                              (`theme-color-green-img rounded-pill avatar-40`,
+                              clsx(Styles.image))
+                            }
                             src={avatars55}
                             alt="profile-pic"
                           />
                           <Image
-                            className="theme-color-yellow-img rounded-pill avatar-40"
+                            className={
+                              (`theme-color-yellow-img rounded-pill avatar-40`,
+                              clsx(Styles.image))
+                            }
                             src={avatars66}
                             alt="profile-pic"
                           />
                           <Image
-                            className="theme-color-pink-img rounded-pill avatar-40"
+                            className={
+                              (`theme-color-pink-img rounded-pill avatar-40`,
+                              clsx(Styles.image))
+                            }
                             src={avatars44}
                             alt="profile-pic"
-                          />
+                          /> */}
                           <div className="ms-3 flex-grow-1">
                             <h6>Paul Molive</h6>
                             <p className="mb-0">Web Designer</p>
@@ -1077,46 +1145,24 @@ export default function UsersProfile() {
                       <div className="text-center">
                         <div className="user-profile">
                           <Image
-                            className="theme-color-default-img  rounded-pill avatar-130 img-fluid"
+                            className={
+                              (`theme-color-default-img  rounded-pill avatar-130 img-fluid`,
+                              clsx(Styles.profile))
+                            }
                             src={avatars11}
-                            alt="profile-pic"
-                          />
-                          <Image
-                            className="theme-color-purple-img rounded-pill avatar-130 img-fluid"
-                            src={avatars22}
-                            alt="profile-pic"
-                          />
-                          <Image
-                            className="theme-color-blue-img rounded-pill avatar-130 img-fluid"
-                            src={avatars33}
-                            alt="profile-pic"
-                          />
-                          <Image
-                            className="theme-color-green-img rounded-pill avatar-130 img-fluid"
-                            src={avatars55}
-                            alt="profile-pic"
-                          />
-                          <Image
-                            className="theme-color-yellow-img rounded-pill avatar-130 img-fluid"
-                            src={avatars66}
-                            alt="profile-pic"
-                          />
-                          <Image
-                            className="theme-color-pink-img rounded-pill avatar-130 img-fluid"
-                            src={avatars44}
                             alt="profile-pic"
                           />
                         </div>
                         <div className="mt-3">
-                          <h3 className="d-inline-block">Austin Robertson</h3>
+                          <h3 className="d-inline-block">Tuan Anh</h3>
                           <p className="d-inline-block pl-3">
                             {" "}
                             - Web developer
                           </p>
                           <p className="mb-0">
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s
+                            Tôi thường không lên kế hoạch tỉ mỉ cho tất cả mọi
+                            thứ ngay từ bước ban đầu. Trái lại, tôi sẽ vừa làm
+                            vừa quan sát và rút kinh nghiệm.
                           </p>
                         </div>
                       </div>
@@ -1130,42 +1176,31 @@ export default function UsersProfile() {
                     </Card.Header>
                     <Card.Body>
                       <div className="user-bio">
-                        <p>
-                          Tart I love sugar plum I love oat cake. Sweet roll
-                          caramels I love jujubes. Topping cake wafer.
-                        </p>
+                        <p>I like playing table tennis, boxing, muaythai</p>
                       </div>
                       <div className="mt-2">
                         <h6 className="mb-1">Joined:</h6>
-                        <p>Feb 15, 2021</p>
+                        <p>January 11, 2023</p>
                       </div>
                       <div className="mt-2">
                         <h6 className="mb-1">Lives:</h6>
-                        <p>United States of America</p>
+                        <p>Viet Nam</p>
                       </div>
                       <div className="mt-2">
                         <h6 className="mb-1">Email:</h6>
                         <p>
                           <Link to="#" className="text-body">
                             {" "}
-                            austin@gmail.com
+                            anh.pt.1976@aptechlearning.edu.vn
                           </Link>
                         </p>
                       </div>
-                      <div className="mt-2">
-                        <h6 className="mb-1">Url:</h6>
-                        <p>
-                          <Link to="#" className="text-body" target="_blank">
-                            {" "}
-                            www.bootstrap.com{" "}
-                          </Link>
-                        </p>
-                      </div>
+                      <div className="mt-2"></div>
                       <div className="mt-2">
                         <h6 className="mb-1">Contact:</h6>
                         <p>
                           <Link to="#" className="text-body">
-                            (001) 4544 565 456
+                            0836668336
                           </Link>
                         </p>
                       </div>
@@ -1186,17 +1221,17 @@ export default function UsersProfile() {
                   <div className="mb-1">
                     Email:{" "}
                     <Link to="#" className="ms-3">
-                      nikjone@demoo.com
+                      anh.pt.1976@aptechlearning.edu.vn
                     </Link>
                   </div>
                   <div className="mb-1">
                     Phone:{" "}
                     <Link to="#" className="ms-3">
-                      001 2351 256 12
+                      0836668336
                     </Link>
                   </div>
                   <div>
-                    Location: <span className="ms-3">USA</span>
+                    Location: <span className="ms-3">VN</span>
                   </div>
                 </Card.Body>
               </Card>
@@ -1212,7 +1247,10 @@ export default function UsersProfile() {
                       <Image
                         src={icon6}
                         alt="story-img"
-                        className="rounded-pill avatar-70 p-1 border bg-soft-light img-fluid"
+                        className={
+                          (`rounded-pill avatar-70 p-1 border bg-soft-light img-fluid`,
+                          clsx(Styles.stories))
+                        }
                       />
                       <div className="ms-3">
                         <h5>Web Design</h5>
@@ -1223,7 +1261,10 @@ export default function UsersProfile() {
                       <Image
                         src={icon3}
                         alt="story-img"
-                        className="rounded-pill avatar-70 p-1 border img-fluid bg-soft-danger"
+                        className={
+                          (`rounded-pill avatar-70 p-1 border img-fluid bg-soft-danger`,
+                          clsx(Styles.stories))
+                        }
                       />
                       <div className="ms-3">
                         <h5>App Design</h5>
@@ -1234,7 +1275,10 @@ export default function UsersProfile() {
                       <Image
                         src={icon7}
                         alt="story-img"
-                        className="rounded-pill avatar-70 p-1 border bg-soft-primary img-fluid"
+                        className={
+                          (`rounded-pill avatar-70 p-1 border bg-soft-primary img-fluid`,
+                          clsx(Styles.stories))
+                        }
                       />
                       <div className="ms-3">
                         <h5>Abstract Design</h5>
@@ -1245,12 +1289,7 @@ export default function UsersProfile() {
                 </Card.Body>
               </Card>
               <Card>
-                <Card.Header>
-                  <div className="header-title">
-                    <h4 className="card-title">Suggestions</h4>
-                  </div>
-                </Card.Header>
-                <Card.Body>
+                {/* <Card.Body>
                   <ul className="list-inline m-0 p-0">
                     <li className="d-flex mb-4 align-items-center">
                       <div className="img-fluid bg-soft-warning rounded-pill">
@@ -1733,7 +1772,7 @@ export default function UsersProfile() {
                       </Link>
                     </li>
                   </ul>
-                </Card.Body>
+                </Card.Body> */}
               </Card>
             </Col>
           </Row>

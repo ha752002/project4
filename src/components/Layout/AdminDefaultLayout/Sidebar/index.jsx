@@ -66,6 +66,30 @@ class Sidebar extends Component {
                 },
               ],
             },
+            {
+              name: "Products",
+              img_1: mapImage,
+              img_2: dropdown,
+              showChildItem: false,
+              url: "",
+              items: [
+                {
+                  name: "Add products",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/admin/add-products",
+                },
+                {
+                  name: "Edit products",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/admin/edit-products",
+                },
+                {
+                  name: "Delete products",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/admin/delete-products",
+                },
+              ],
+            },
             // Add more items here
           ],
         },

@@ -19,6 +19,7 @@ import AdminsRole from "../admin/AdminRoleManagement";
 import AddProductManagement from "../admin/AddProductManagement";
 import EditProductManagement from "../admin/EditProductManagement";
 import DeleteProductManagement from "../admin/DeleteProductManagement";
+import ListProducsManagement from "../admin/ListProductsManagement";
 
 const publicRoutes = [
   {
@@ -49,6 +50,7 @@ const privateRoutes = [
       { path: "add-products", element: <AddProductManagement /> },
       { path: "delete-products", element: <DeleteProductManagement /> },
       { path: "edit-products", element: <EditProductManagement /> },
+      { path: "list-products", element: <ListProducsManagement /> },
     ],
   },
 ];

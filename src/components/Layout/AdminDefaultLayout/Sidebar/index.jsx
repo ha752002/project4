@@ -74,20 +74,25 @@ class Sidebar extends Component {
               url: "",
               items: [
                 {
+                  name: "List Products",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/admin/list-products",
+                },
+                {
                   name: "Add products",
                   img: "../../../assets/svg/bulk.svg",
                   url: "/admin/add-products",
                 },
-                {
-                  name: "Edit products",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/admin/edit-products",
-                },
-                {
-                  name: "Delete products",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/admin/delete-products",
-                },
+                // {
+                //   name: "Edit products",
+                //   img: "../../../assets/svg/bulk.svg",
+                //   url: "/admin/edit-products",
+                // },
+                // {
+                //   name: "Delete products",
+                //   img: "../../../assets/svg/bulk.svg",
+                //   url: "/admin/delete-products",
+                // },
               ],
             },
             // Add more items here

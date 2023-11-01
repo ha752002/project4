@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Image, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
-import "./reset.css";
+// import "./reset.css";
 // img
 import auth2 from "../../assets/images/auth/02.png";
 const Recoverpw = () => {

@@ -5,6 +5,7 @@ import AdminDefaultLayout from "./components/Layout/AdminDefaultLayout";
 import WebDefaultLayout from "./components/Layout/WebDefaultLayout";
 import { privateRoutes, publicRoutes } from "./routes";
 import { Dashboard } from "@mui/icons-material";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function App() {

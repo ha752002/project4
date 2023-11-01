@@ -14,6 +14,7 @@ import ConfirmMail from "../pages/auth/confirm-mail";
 import AddUser from "../admin/AddUserManagement";
 import UsersList from "../admin/UserListManagement";
 import UsersProfile from "../admin/UserProfileManagement";
+import AdminsRole from "../admin/AdminRoleManagement";
 
 const publicRoutes = [
   {
@@ -41,6 +42,7 @@ const privateRoutes = [
       { path: "users-profile", element: <UsersProfile /> },
       { path: "list-users", element: <UsersList /> },
       { path: "add-users", element: <AddUser /> },
+      { path: "admin-role", element: <AdminsRole /> },
     ],
   },
 ];

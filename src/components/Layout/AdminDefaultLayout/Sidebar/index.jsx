@@ -58,7 +58,13 @@ class Sidebar extends Component {
               img_2: dropdown,
               showChildItem: false,
               url: "",
-              items: [],
+              items: [
+                {
+                  name: "Admin Role",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/admin/admin-role",
+                },
+              ],
             },
             // Add more items here
           ],

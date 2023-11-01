@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Card from "../../components/Card";
-import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
-import Validation from "./Validation";
+import Card from "../../../components/Card";
+import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
+import Validation from "../../../utils/Validation";
 // img
-import facebook from "../../assets/images/brands/fb.svg";
-import google from "../../assets/images/brands/gm.svg";
-import instagram from "../../assets/images/brands/im.svg";
-import linkedin from "../../assets/images/brands/li.svg";
-import auth5 from "../../assets/images/auth/05.png";
-import "./reset.css";
+import facebook from "../../../assets/images/brands/fb.svg";
+import google from "../../../assets/images/brands/gm.svg";
+import instagram from "../../../assets/images/brands/im.svg";
+import linkedin from "../../../assets/images/brands/li.svg";
+import auth5 from "../../../assets/images/auth/05.png";
+// import "./reset.css";
+import { handleRegister } from "./main.js";
+
+const data = {
+  email: "Ha2002@gmail.com",
+  password: "Ha2002@gmail",
+  reEnterPassword: "Ha2002@gmail",
+};
+
 const SignUp = () => {
-  let history = useNavigate();
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     fullname: "",
     lastname: "",
@@ -34,6 +42,8 @@ const SignUp = () => {
       [event.target.name]: [event.target.value],
     }));
   };
+
+  handleRegister(data);
   return (
     <>
       <section className="login-content">
@@ -210,11 +220,11 @@ const SignUp = () => {
                       <div className="d-flex justify-content-center">
                         <Button
                           className="login_lockscreen"
-                          onClick={() => history.push("/dashboard")}
+                          onClick={() => navigate("/user/signin")}
                           type="submit"
                           variant="primary"
                         >
-                          Sign Up
+                          Sign in
                         </Button>
                       </div>
                       <p className="text-center my-3">

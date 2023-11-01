@@ -3,7 +3,7 @@ import { Row, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import mail from "../../assets/images/auth/03.png";
 import Card from "../../components/Card";
-import "./reset.css";
+// import "./reset.css";
 const ConfirmMail = () => {
   return (
     <>

@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Image, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
-import "./reset.css";
+// import "./reset.css";
 // img
 import avatars1 from "../../assets/images/avatars/01.png";
 import auth1 from "../../assets/images/auth/04.png";

@@ -1,11 +1,11 @@
 import React from "react";
 import { Row, Col, Image, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Card from "../../../components/Card";
-
+import Card from "../../components/Card";
+// import "./reset.css";
 // img
-import avatars1 from "../../../assets/images/avatars/01.png";
-import auth1 from "../../../assets/images/auth/04.png";
+import avatars1 from "../../assets/images/avatars/01.png";
+import auth1 from "../../assets/images/auth/04.png";
 
 const LockScreen = () => {
   let history = useNavigate();
@@ -13,11 +13,11 @@ const LockScreen = () => {
     <>
       <section className="login-content">
         <Row className="m-0 align-items-center bg-white vh-100">
-          <Col md="6" className="p-0">
-            <Card className="card-transparent auth-card shadow-none d-flex justify-content-center mb-0">
+          <Col md="6" className="p-0 ">
+            <Card className="card-transparent auth-card shadow-none d-flex justify-content-center mb-0 border-0">
               <Card.Body>
                 <Link
-                  to="/dashboard"
+                  to="/admin"
                   className="navbar-brand d-flex align-items-center mb-3"
                 >
                   <svg
@@ -68,7 +68,7 @@ const LockScreen = () => {
                 </Link>
                 <Image
                   src={avatars1}
-                  className="rounded avatar-80 mb-3"
+                  className="rounded avatar-80 mb-3 "
                   alt=""
                 />
                 <h2 className="mb-2">Hi ! Ruben Dokidis</h2>
@@ -76,7 +76,7 @@ const LockScreen = () => {
                 <Form>
                   <Row>
                     <Col lg="12">
-                      <Form.Group className="floating-label form-group">
+                      <Form.Group className="floating-label form-group mb-5">
                         <Form.Label htmlFor="password" className="">
                           Password
                         </Form.Label>
@@ -91,6 +91,7 @@ const LockScreen = () => {
                     </Col>
                   </Row>
                   <Button
+                    className="login_lockscreen"
                     onClick={() => history.push("/dashboard")}
                     type="button"
                     variant="btn btn-primary"
@@ -100,7 +101,7 @@ const LockScreen = () => {
                 </Form>
               </Card.Body>
             </Card>
-            <div className="sign-bg">
+            {/* <div className="sign-bg">
               <svg
                 width="280"
                 height="230"
@@ -147,7 +148,7 @@ const LockScreen = () => {
                   ></rect>
                 </g>
               </svg>
-            </div>
+            </div> */}
           </Col>
           <Col
             md="6"

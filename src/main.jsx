@@ -7,12 +7,12 @@ import theme from "./theme.js";
 import GlobalStyles from "./components/GlobalStyles/AdminGlobalStyles";
 import "./tailwind.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <>
     <GlobalStyles>
       <CssVarsProvider theme={theme}>
         <CssBaseline />
         <App />
       </CssVarsProvider>
     </GlobalStyles>
-  </React.StrictMode>
+  </>
 );

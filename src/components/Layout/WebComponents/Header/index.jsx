@@ -1,15 +1,12 @@
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styles from "./Header.module.scss";
+const cx = classNames.bind(styles);
 import {
   faCircleXmark,
   faMagnifyingGlass,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
-
-import styles from "./Header.module.scss";
-// import images from "../../../../assets/images";
-// console.log(images);
-const cx = classNames.bind(styles);
 
 function Header() {
   return (

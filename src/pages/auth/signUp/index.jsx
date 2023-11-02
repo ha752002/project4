@@ -1,24 +1,55 @@
-// import React from "react";
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Card from "../../components/Card";
-import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
-
+import Card from "../../../components/Card";
+import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
+import Validation from "../../../utils/Validation";
 // img
-import facebook from "../../assets/images/brands/fb.svg";
-import google from "../../assets/images/brands/gm.svg";
-import instagram from "../../assets/images/brands/im.svg";
-import linkedin from "../../assets/images/brands/li.svg";
-import auth5 from "../../assets/images/auth/05.png";
+
+import facebook from "../../../assets/images/brands/fb.svg";
+import google from "../../../assets/images/brands/gm.svg";
+import instagram from "../../../assets/images/brands/im.svg";
+import linkedin from "../../../assets/images/brands/li.svg";
+import auth5 from "../../../assets/images/auth/05.png";
+import { handleRegister } from "../../../helpers/authHelpers";
+
+const data = {
+  email: "Ha011e3311122@gmail.com",
+  password: "Ha2002@gmail",
+  reEnterPassword: "Ha2002@gmail",
+};
+
+handleRegister(data);
 
 const SignUp = () => {
-  let history = useNavigate();
+  const navigate = useNavigate();
+  const [values, setValues] = useState({
+    fullname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmpw: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setErrors(Validation(values));
+  };
+
+  const handleInput = (event) => {
+    setValues((prev) => ({
+      ...prev,
+      [event.target.name]: [event.target.value],
+    }));
+  };
+
   return (
     <>
       <section className="login-content">
         <Row className="m-0 align-items-center bg-white vh-100">
-          <div className="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
+          <div className="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden ">
             <Image
               src={auth5}
               className="Image-fluid gradient-main animated-scaleX"
@@ -26,12 +57,12 @@ const SignUp = () => {
             />
           </div>
           <Col md="6">
-            <Row className="justify-content-center">
+            <Row className="justify-content-center ">
               <Col md="10">
-                <Card className="card-transparent auth-card shadow-none d-flex justify-content-center mb-0">
+                <Card className="card-transparent auth-card shadow-none d-flex justify-content-center mb-0 border-0">
                   <Card.Body>
                     <Link
-                      to="/dashboard"
+                      to="/admin"
                       className="navbar-brand d-flex align-items-center mb-3"
                     >
                       <svg
@@ -78,49 +109,40 @@ const SignUp = () => {
                           fill="currentColor"
                         />
                       </svg>
-                      <h4 className="logo-title ms-3">Hope UI</h4>
+                      <h4 className="logo-title ms-4">Hope UI</h4>
                     </Link>
                     <h2 className="mb-2 text-center">Sign Up</h2>
                     <p className="text-center">Create your Hope UI account.</p>
-                    <Form>
+                    <Form action="" onSubmit={handleSubmit}>
                       <Row>
-                        <Col lg="6">
-                          <Form.Group className="form-group">
-                            <Form.Label htmlFor="full-name" className="">
-                              Full Name
-                            </Form.Label>
-                            <Form.Control
-                              type="text"
-                              className=""
-                              id="full-name"
-                              placeholder=" "
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col lg="6">
-                          <Form.Group className="form-group">
-                            <Form.Label htmlFor="last-name" className="">
-                              Last Name
-                            </Form.Label>
-                            <Form.Control
-                              type="text"
-                              className=""
-                              id="last-name"
-                              placeholder=" "
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col lg="6">
+                        <Col lg="12">
                           <Form.Group className="form-group">
                             <Form.Label htmlFor="email" className="">
                               Email
                             </Form.Label>
                             <Form.Control
                               type="email"
-                              className=""
+                              name="email"
                               id="email"
                               placeholder=" "
+                              onChange={handleInput}
                             />
+                            {errors.email && <span>{errors.email}</span>}
+                          </Form.Group>
+                        </Col>
+                        <Col lg="6">
+                          <Form.Group className="form-group">
+                            <Form.Label htmlFor="fullname" className="">
+                              Full Name
+                            </Form.Label>
+                            <Form.Control
+                              type="fullname"
+                              name="fullname"
+                              id="full-name"
+                              placeholder=" "
+                              onChange={handleInput}
+                            />
+                            {errors.fullname && <span>{errors.fullname}</span>}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
@@ -130,10 +152,12 @@ const SignUp = () => {
                             </Form.Label>
                             <Form.Control
                               type="text"
-                              className=""
+                              name="phone"
                               id="phone"
                               placeholder=" "
+                              onChange={handleInput}
                             />
+                            {errors.phone && <span>{errors.phone}</span>}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
@@ -143,23 +167,28 @@ const SignUp = () => {
                             </Form.Label>
                             <Form.Control
                               type="password"
-                              className=""
+                              name="password"
                               id="password"
                               placeholder=" "
+                              onChange={handleInput}
                             />
+                            {errors.password && <span>{errors.password}</span>}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
                           <Form.Group className="form-group">
-                            <Form.Label htmlFor="confirm-password" className="">
+                            <Form.Label htmlFor="confirmpw" className="">
                               Confirm Password
                             </Form.Label>
                             <Form.Control
-                              type="text"
-                              className=""
+                              type="password"
+                              name="confirmpw"
                               id="confirm-password"
                               placeholder=" "
                             />
+                            {errors.confirmpw && (
+                              <span>{errors.confirmpw}</span>
+                            )}
                           </Form.Group>
                         </Col>
                         <Col lg="12" className="d-flex justify-content-center">
@@ -176,11 +205,12 @@ const SignUp = () => {
                       </Row>
                       <div className="d-flex justify-content-center">
                         <Button
-                          onClick={() => history.push("/dashboard")}
-                          type="button"
+                          className="login_lockscreen"
+                          onClick={() => navigate("/user/signin")}
+                          type="submit"
                           variant="primary"
                         >
-                          Sign Up
+                          Sign in
                         </Button>
                       </div>
                       <p className="text-center my-3">
@@ -227,7 +257,10 @@ const SignUp = () => {
                       </div>
                       <p className="mt-3 text-center">
                         Already have an Account{" "}
-                        <Link to="/auth/sign-in" className="text-underline">
+                        <Link
+                          to="/user/signin"
+                          className="text-underline link-signup color-signin"
+                        >
                           Sign In
                         </Link>
                       </p>
@@ -236,54 +269,6 @@ const SignUp = () => {
                 </Card>
               </Col>
             </Row>
-            <div className="sign-bg sign-bg-right">
-              <svg
-                width="280"
-                height="230"
-                viewBox="0 0 421 359"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g opacity="0.05">
-                  <rect
-                    x="-15.0845"
-                    y="154.773"
-                    width="543"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(-45 -15.0845 154.773)"
-                    fill="#3A57E8"
-                  />
-                  <rect
-                    x="149.47"
-                    y="319.328"
-                    width="543"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(-45 149.47 319.328)"
-                    fill="#3A57E8"
-                  />
-                  <rect
-                    x="203.936"
-                    y="99.543"
-                    width="310.286"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(45 203.936 99.543)"
-                    fill="#3A57E8"
-                  />
-                  <rect
-                    x="204.316"
-                    y="-229.172"
-                    width="543"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(45 204.316 -229.172)"
-                    fill="#3A57E8"
-                  />
-                </g>
-              </svg>
-            </div>
           </Col>
         </Row>
       </section>

@@ -3,6 +3,7 @@ import Styles from "./Sidebar.module.scss";
 import clsx from "clsx";
 import mapImage from "../../../../assets/images/sidebar/map.svg";
 import dropdown from "../../../../assets/images/sidebar/ic_Chevron.svg";
+import { NavLink } from "react-router-dom";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -14,42 +15,12 @@ class Sidebar extends Component {
           name: "HOME",
           sidebarData: [
             {
-              name: "Test 1",
+              name: "Dashboard",
               img_1: mapImage,
               img_2: dropdown,
               showChildItem: false,
-              url: "",
-              items: [
-                {
-                  name: "My Workout",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/user/myWorkout",
-                },
-                {
-                  name: "All Exercises",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/user/allExercises",
-                },
-              ],
-            },
-            {
-              name: "Test 1.2",
-              img_1: mapImage,
-              img_2: dropdown,
-              showChildItem: false,
-              url: "",
-              items: [
-                {
-                  name: "My Workout",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/user/myWorkout",
-                },
-                {
-                  name: "All Exercises",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/user/allExercises",
-                },
-              ],
+              url: "/admin/dashboard",
+              items: [],
             },
             // Add more items here
           ],
@@ -58,22 +29,71 @@ class Sidebar extends Component {
           name: "PAGE",
           sidebarData: [
             {
-              name: "Test 2.1",
+              name: "Users",
               img_1: mapImage,
               img_2: dropdown,
               showChildItem: false,
               url: "",
               items: [
                 {
-                  name: "My Workout",
+                  name: "User Profile",
                   img: "../../../assets/svg/bulk.svg",
-                  url: "/user/myWorkout",
+                  url: "/admin/users-profile",
                 },
                 {
-                  name: "All Exercises",
+                  name: "Add User",
                   img: "../../../assets/svg/bulk.svg",
-                  url: "/user/allExercises",
+                  url: "/admin/add-users",
                 },
+                {
+                  name: "User List",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/admin/list-users",
+                },
+              ],
+            },
+            {
+              name: "Admin",
+              img_1: mapImage,
+              img_2: dropdown,
+              showChildItem: false,
+              url: "",
+              items: [
+                {
+                  name: "Admin Role",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/admin/admin-role",
+                },
+              ],
+            },
+            {
+              name: "Products",
+              img_1: mapImage,
+              img_2: dropdown,
+              showChildItem: false,
+              url: "",
+              items: [
+                {
+                  name: "Add products",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/admin/add-products",
+                },
+                {
+                  name: "List Products",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/admin/list-products",
+                },
+
+                // {
+                //   name: "Edit products",
+                //   img: "../../../assets/svg/bulk.svg",
+                //   url: "/admin/edit-products",
+                // },
+                // {
+                //   name: "Delete products",
+                //   img: "../../../assets/svg/bulk.svg",
+                //   url: "/admin/delete-products",
+                // },
               ],
             },
             // Add more items here
@@ -83,21 +103,16 @@ class Sidebar extends Component {
           name: "ELEMENT",
           sidebarData: [
             {
-              name: "Test3",
+              name: "Maps",
               img_1: mapImage,
               img_2: dropdown,
               showChildItem: false,
               url: "",
               items: [
                 {
-                  name: "My Workout",
+                  name: "Map",
                   img: "../../../assets/svg/bulk.svg",
-                  url: "/user/myWorkout",
-                },
-                {
-                  name: "All Exercises",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/user/allExercises",
+                  url: "/admin/map",
                 },
               ],
             },
@@ -108,11 +123,11 @@ class Sidebar extends Component {
     };
   }
 
-  toggleSidebar = () => {
-    this.setState((prevState) => ({
-      isSidebarOpen: !prevState.isSidebarOpen,
-    }));
-  };
+  // toggleSidebar = () => {
+  //   this.setState((prevState) => ({
+  //     isSidebarOpen: !prevState.isSidebarOpen,
+  //   }));
+  // };
 
   toggleContent = (item) => {
     const { titleSidebarData } = this.state;
@@ -153,10 +168,10 @@ class Sidebar extends Component {
           )}
         >
           <img src="../../../assets/svg/Frame 453.svg" alt="" />
-          gymmax
+          Admin
           <div
             className={clsx(Styles.close_sidebar)}
-            onClick={this.toggleSidebar}
+            // onClick={this.toggleSidebar}
           >
             <img
               src="../../../../assets/images/sidebar/left_arrow.svg"
@@ -172,46 +187,54 @@ class Sidebar extends Component {
               <ul>
                 {titleItem.sidebarData.map((item, index) => (
                   <li key={index}>
-                    <div
-                      className={clsx(Styles.Sidebar_Items, {
-                        [Styles.click_color]: item.showChildItem,
-                      })}
-                      onClick={() => this.toggleContent(item)}
-                    >
+                    <NavLink to={item.url}>
                       <div
-                        className={clsx(Styles.content, Styles.content_group, {
-                          [Styles.click_img]: item.showChildItem,
+                        className={clsx(Styles.Sidebar_Items, {
+                          [Styles.click_color]: item.showChildItem,
                         })}
+                        onClick={() => this.toggleContent(item)}
                       >
-                        <div className={Styles.tile}>
-                          <img src={item.img_1} alt="" />
-                          {item.name}
-                        </div>
-                        {item.items.length > 0 && (
-                          <div className={Styles.title__img}>
-                            <img
-                              className={clsx({
-                                [Styles.rotate]: item.showChildItem,
-                              })}
-                              src={item.img_2}
-                              alt=""
-                            />
+                        <div
+                          className={clsx(
+                            Styles.content,
+                            Styles.content_group,
+                            {
+                              [Styles.click_img]: item.showChildItem,
+                            }
+                          )}
+                        >
+                          <div className={Styles.tile}>
+                            <img src={item.img_1} alt="" />
+                            {item.name}
                           </div>
-                        )}
+                          {item.items.length > 0 && (
+                            <div className={Styles.title__img}>
+                              <img
+                                className={clsx({
+                                  [Styles.rotate]: item.showChildItem,
+                                })}
+                                src={item.img_2}
+                                alt=""
+                              />
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
+                    </NavLink>
                     {item.showChildItem && (
                       <ul>
                         {item.items.map((childItem, childIndex) => (
                           <li key={childIndex}>
-                            <div className={Styles.Sidebar_Items}>
-                              <div className={Styles.conten}>
-                                <div className={Styles.tile}>
-                                  <img src={childItem.img} alt="" />
-                                  {childItem.name}
+                            <NavLink to={childItem.url}>
+                              <div className={Styles.Sidebar_Items}>
+                                <div className={Styles.conten}>
+                                  <div className={Styles.tile}>
+                                    <img src={childItem.img} alt="" />
+                                    {childItem.name}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            </NavLink>
                           </li>
                         ))}
                       </ul>

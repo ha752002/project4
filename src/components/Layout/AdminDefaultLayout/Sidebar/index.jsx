@@ -19,7 +19,7 @@ class Sidebar extends Component {
               img_1: mapImage,
               img_2: dropdown,
               showChildItem: false,
-              url: "",
+              url: "/admin/dashboard",
               items: [],
             },
             // Add more items here
@@ -187,34 +187,40 @@ class Sidebar extends Component {
               <ul>
                 {titleItem.sidebarData.map((item, index) => (
                   <li key={index}>
-                    <div
-                      className={clsx(Styles.Sidebar_Items, {
-                        [Styles.click_color]: item.showChildItem,
-                      })}
-                      onClick={() => this.toggleContent(item)}
-                    >
+                    <NavLink to={item.url}>
                       <div
-                        className={clsx(Styles.content, Styles.content_group, {
-                          [Styles.click_img]: item.showChildItem,
+                        className={clsx(Styles.Sidebar_Items, {
+                          [Styles.click_color]: item.showChildItem,
                         })}
+                        onClick={() => this.toggleContent(item)}
                       >
-                        <div className={Styles.tile}>
-                          <img src={item.img_1} alt="" />
-                          {item.name}
-                        </div>
-                        {item.items.length > 0 && (
-                          <div className={Styles.title__img}>
-                            <img
-                              className={clsx({
-                                [Styles.rotate]: item.showChildItem,
-                              })}
-                              src={item.img_2}
-                              alt=""
-                            />
+                        <div
+                          className={clsx(
+                            Styles.content,
+                            Styles.content_group,
+                            {
+                              [Styles.click_img]: item.showChildItem,
+                            }
+                          )}
+                        >
+                          <div className={Styles.tile}>
+                            <img src={item.img_1} alt="" />
+                            {item.name}
                           </div>
-                        )}
+                          {item.items.length > 0 && (
+                            <div className={Styles.title__img}>
+                              <img
+                                className={clsx({
+                                  [Styles.rotate]: item.showChildItem,
+                                })}
+                                src={item.img_2}
+                                alt=""
+                              />
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
+                    </NavLink>
                     {item.showChildItem && (
                       <ul>
                         {item.items.map((childItem, childIndex) => (

@@ -23,6 +23,7 @@ import {
   EditProductManagement,
 } from "../admin/ProductsManagement";
 import Map from "../admin/Map";
+import Schedule from "../admin/Schedule";
 
 const publicRoutes = [
   {
@@ -55,6 +56,7 @@ const privateRoutes = [
       { path: "edit-products", element: <EditProductManagement /> },
       { path: "list-products", element: <ListProductManagement /> },
       { path: "map", element: <Map /> },
+      { path: "schedule", element: <Schedule /> },
     ],
   },
 ];

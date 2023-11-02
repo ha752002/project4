@@ -22,6 +22,14 @@ class Sidebar extends Component {
               url: "/admin/dashboard",
               items: [],
             },
+            {
+              name: "schedule",
+              img_1: mapImage,
+              img_2: dropdown,
+              showChildItem: false,
+              url: "/admin/schedule",
+              items: [],
+            },
             // Add more items here
           ],
         },

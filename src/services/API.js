@@ -2,25 +2,28 @@
 import { config } from "./config.js";
 const { SERVER_AUTH_API } = config;
 import axios from "axios";
+
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
-
-const axiosClient = axios.create(
-    () => {
-        const headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        };
-        const token = cookies.get('JWT_TOKEN');
-        if (token) {
-            headers['Authorization'] = `Bearer ` + token;
-        }
-        return {
-            url: SERVER_AUTH_API,
-            headers
-        }
+const options = (() => {
+    const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    };
+    const token = cookies.get('JWT_TOKEN');
+    if (token) {
+        headers['Authorization'] = `Bearer ` + token;
     }
+
+    return {
+        baseURL: SERVER_AUTH_API,
+        headers
+    }
+})()
+console.log(options);
+const axiosClient = axios.create(
+    options
 );
 
 function buildUrl(baseUrl, params) {

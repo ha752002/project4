@@ -11,15 +11,14 @@ import google from "../../../assets/images/brands/gm.svg";
 import instagram from "../../../assets/images/brands/im.svg";
 import linkedin from "../../../assets/images/brands/li.svg";
 import auth5 from "../../../assets/images/auth/05.png";
-import { handleRegister } from "../../../helpers/authHelpers";
+import { handleRegister, handleLogin } from "../../../helpers/authHelpers";
 
 const data = {
-  email: "Ha011e3311122@gmail.com",
+  email: "Ha0883sss122@gmail.com",
   password: "Ha2002@gmail",
-  reEnterPassword: "Ha2002@gmail",
 };
 
-handleRegister(data);
+handleLogin(data);
 
 const SignUp = () => {
   const navigate = useNavigate();

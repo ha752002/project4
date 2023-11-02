@@ -16,10 +16,13 @@ import AddUser from "../admin/AddUserManagement";
 import UsersList from "../admin/UserListManagement";
 import UsersProfile from "../admin/UserProfileManagement";
 import AdminsRole from "../admin/AdminRoleManagement";
-import AddProductManagement from "../admin/AddProductManagement";
-import EditProductManagement from "../admin/EditProductManagement";
-import DeleteProductManagement from "../admin/DeleteProductManagement";
-import ListProducsManagement from "../admin/ListProductsManagement";
+import {
+  AddProductManagement,
+  ListProductManagement,
+  DeleteProductManagement,
+  EditProductManagement,
+} from "../admin/ProductsManagement";
+import Map from "../admin/Map";
 
 const publicRoutes = [
   {
@@ -50,7 +53,8 @@ const privateRoutes = [
       { path: "add-products", element: <AddProductManagement /> },
       { path: "delete-products", element: <DeleteProductManagement /> },
       { path: "edit-products", element: <EditProductManagement /> },
-      { path: "list-products", element: <ListProducsManagement /> },
+      { path: "list-products", element: <ListProductManagement /> },
+      { path: "map", element: <Map /> },
     ],
   },
 ];

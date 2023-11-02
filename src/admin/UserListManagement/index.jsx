@@ -111,7 +111,10 @@ export default function UsersList() {
                       <tr key={idx}>
                         <td className="text-center">
                           <Image
-                            className="bg-soft-primary rounded img-fluid avatar-40 me-3"
+                            className={
+                              (`bg-soft-primary rounded img-fluid avatar-40 me-3`,
+                              clsx(Styles.image))
+                            }
                             src={item.img}
                             alt="profile"
                           />

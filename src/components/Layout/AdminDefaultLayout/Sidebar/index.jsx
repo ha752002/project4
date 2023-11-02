@@ -74,15 +74,16 @@ class Sidebar extends Component {
               url: "",
               items: [
                 {
-                  name: "List Products",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/admin/list-products",
-                },
-                {
                   name: "Add products",
                   img: "../../../assets/svg/bulk.svg",
                   url: "/admin/add-products",
                 },
+                {
+                  name: "List Products",
+                  img: "../../../assets/svg/bulk.svg",
+                  url: "/admin/list-products",
+                },
+
                 // {
                 //   name: "Edit products",
                 //   img: "../../../assets/svg/bulk.svg",
@@ -109,14 +110,9 @@ class Sidebar extends Component {
               url: "",
               items: [
                 {
-                  name: "Google",
+                  name: "Map",
                   img: "../../../assets/svg/bulk.svg",
-                  url: "/user/myWorkout",
-                },
-                {
-                  name: "Vector",
-                  img: "../../../assets/svg/bulk.svg",
-                  url: "/user/allExercises",
+                  url: "/admin/map",
                 },
               ],
             },

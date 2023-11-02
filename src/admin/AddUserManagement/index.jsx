@@ -29,32 +29,50 @@ export default function AddUser() {
                 <Form.Group className="form-group">
                   <div className="profile-img-edit position-relative">
                     <Image
-                      className="theme-color-default-img  profile-pic rounded avatar-100"
+                      className={
+                        (`theme-color-default-img  profile-pic rounded avatar-100`,
+                        clsx(Styles.image))
+                      }
                       src={avatars1}
                       alt="profile-pic"
                     />
                     <Image
-                      className="theme-color-purple-img profile-pic rounded avatar-100"
+                      className={
+                        (`theme-color-purple-img profile-pic rounded avatar-100`,
+                        clsx(Styles.image))
+                      }
                       src={avatars2}
                       alt="profile-pic"
                     />
                     <Image
-                      className="theme-color-blue-img profile-pic rounded avatar-100"
+                      className={
+                        (`theme-color-blue-img profile-pic rounded avatar-100`,
+                        clsx(Styles.image))
+                      }
                       src={avatars3}
                       alt="profile-pic"
                     />
                     <Image
-                      className="theme-color-green-img profile-pic rounded avatar-100"
+                      className={
+                        (`theme-color-green-img profile-pic rounded avatar-100`,
+                        clsx(Styles.image))
+                      }
                       src={avatars5}
                       alt="profile-pic"
                     />
                     <Image
-                      className="theme-color-yellow-img profile-pic rounded avatar-100"
+                      className={
+                        (`theme-color-yellow-img profile-pic rounded avatar-100`,
+                        clsx(Styles.image))
+                      }
                       src={avatars6}
                       alt="profile-pic"
                     />
                     <Image
-                      className="theme-color-pink-img profile-pic rounded avatar-100"
+                      className={
+                        (`theme-color-pink-img profile-pic rounded avatar-100`,
+                        clsx(Styles.image))
+                      }
                       src={avatars4}
                       alt="profile-pic"
                     />

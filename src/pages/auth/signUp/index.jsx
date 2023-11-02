@@ -5,19 +5,21 @@ import Card from "../../../components/Card";
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import Validation from "../../../utils/Validation";
 // img
+
 import facebook from "../../../assets/images/brands/fb.svg";
 import google from "../../../assets/images/brands/gm.svg";
 import instagram from "../../../assets/images/brands/im.svg";
 import linkedin from "../../../assets/images/brands/li.svg";
 import auth5 from "../../../assets/images/auth/05.png";
-// import "./reset.css";
-import { handleRegister } from "./main.js";
+import { handleRegister } from "../../../helpers/authHelpers";
 
 const data = {
-  email: "Ha2002@gmail.com",
+  email: "Ha011e3311122@gmail.com",
   password: "Ha2002@gmail",
   reEnterPassword: "Ha2002@gmail",
 };
+
+handleRegister(data);
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -43,7 +45,6 @@ const SignUp = () => {
     }));
   };
 
-  handleRegister(data);
   return (
     <>
       <section className="login-content">
@@ -114,6 +115,21 @@ const SignUp = () => {
                     <p className="text-center">Create your Hope UI account.</p>
                     <Form action="" onSubmit={handleSubmit}>
                       <Row>
+                        <Col lg="12">
+                          <Form.Group className="form-group">
+                            <Form.Label htmlFor="email" className="">
+                              Email
+                            </Form.Label>
+                            <Form.Control
+                              type="email"
+                              name="email"
+                              id="email"
+                              placeholder=" "
+                              onChange={handleInput}
+                            />
+                            {errors.email && <span>{errors.email}</span>}
+                          </Form.Group>
+                        </Col>
                         <Col lg="6">
                           <Form.Group className="form-group">
                             <Form.Label htmlFor="fullname" className="">
@@ -127,36 +143,6 @@ const SignUp = () => {
                               onChange={handleInput}
                             />
                             {errors.fullname && <span>{errors.fullname}</span>}
-                          </Form.Group>
-                        </Col>
-                        <Col lg="6">
-                          <Form.Group className="form-group">
-                            <Form.Label htmlFor="lastname" className="">
-                              Last Name
-                            </Form.Label>
-                            <Form.Control
-                              type="lastname"
-                              name="lastname"
-                              id="last-name"
-                              placeholder=" "
-                              onChange={handleInput}
-                            />
-                            {errors.lastname && <span>{errors.lastname}</span>}
-                          </Form.Group>
-                        </Col>
-                        <Col lg="6">
-                          <Form.Group className="form-group">
-                            <Form.Label htmlFor="email" className="">
-                              Email
-                            </Form.Label>
-                            <Form.Control
-                              type="email"
-                              name="email"
-                              id="email"
-                              placeholder=" "
-                              onChange={handleInput}
-                            />
-                            {errors.email && <span>{errors.email}</span>}
                           </Form.Group>
                         </Col>
                         <Col lg="6">

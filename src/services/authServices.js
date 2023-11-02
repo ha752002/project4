@@ -3,12 +3,11 @@ import { apiClient } from './API.js';
 
 export const register = async (body) => {
     try {
-        const { data: dataResponse, response: response } = await apiClient.post('/api/v1/auth/register', body);
-        if (dataResponse.code === 201) {
-            return response.message;
-        }
+        const response = await apiClient.post('/api/v1/auth/register', body);
+        console.log(response);
+        return response.data;
     } catch (error) {
-        throw error;
+        throw Error(error);
     }
 }
 

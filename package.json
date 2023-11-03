@@ -23,6 +23,8 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/icons-material": "^5.14.15",
     "@mui/material": "^5.14.15",
+    "@mui/x-charts": "^6.0.0-alpha.17",
+    "@mui/x-data-grid": "^6.17.0",
     "axios": "^1.6.0",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.4.0",

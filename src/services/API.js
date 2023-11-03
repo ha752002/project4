@@ -2,60 +2,69 @@
 import { config } from "./config.js";
 const { SERVER_AUTH_API } = config;
 import axios from "axios";
+import queryString from 'query-string';
 
-import Cookies from 'universal-cookie';
 
-const cookies = new Cookies();
-const options = (() => {
-    const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    };
-    const token = cookies.get('JWT_TOKEN');
-    if (token) {
-        headers['Authorization'] = `Bearer ` + token;
-    }
+// import Cookies from 'universal-cookie';
+// const cookies = new Cookies();
 
-    return {
-        baseURL: SERVER_AUTH_API,
-        headers
-    }
-})()
-console.log(options);
 const axiosClient = axios.create(
-    options
+    (() => {
+
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
+
+
+        return {
+            baseURL: SERVER_AUTH_API,
+            headers
+        }
+    })()
 );
 
+axiosClient.interceptors.request.use(function (config) {
+    const token = localStorage.getItem('access_Token');
+    // console.log(token);
+    config.headers['Authorization'] = token;
+
+    return config;
+});
+
 function buildUrl(baseUrl, params) {
-    const url = new URL(baseUrl);
-
-    for (const key in params) {
-        if (params.hasOwnProperty(key)) {
-            url.searchParams.set(key, params[key]);
-        }
-    }
-
-    return url.toString();
+    const query = queryString.stringify(params);
+    const url = `${baseUrl}?${query}`;
+    // console.log(url);
+    return url;
 }
 
 export const apiClient = {
     get: async (url, requestParam = null) => {
+
         try {
-            url = buildUrl(url, requestParam);
+            if (requestParam) {
+                url = buildUrl(url, requestParam);
+            }
+            console.log(url);
             const response = await axiosClient.get(url);
+            // console.log(response);
             return response.data;
         } catch (error) {
-            throw Error(error.response.data.errors);
+            // console.log(error)
+            throw Error(error.response.data.message);
         }
     },
 
     post: async (url, body = {}) => {
         try {
+            console.log(body);
+
             const response = await axiosClient.post(url, body);
-            // console.log(response);
+            console.log(response);
             return response.data;
         } catch (error) {
-            throw Error(error.response.data.errors);
+            throw Error(error.response.data.message);
         }
     },
 
@@ -65,7 +74,7 @@ export const apiClient = {
             const response = await axiosClient.patch(url, body);
             return response.data;
         } catch (error) {
-            throw Error(error.response.data.errors);
+            throw Error(error.response.data.message);
         }
     },
 
@@ -75,7 +84,7 @@ export const apiClient = {
             const response = await axiosClient.put(url, body);
             return response.data;
         } catch (error) {
-            throw Error(error.response.data.errors);
+            throw Error(error.response.data.message);
         }
     },
 
@@ -84,11 +93,7 @@ export const apiClient = {
             const response = await axiosClient.delete(url);
             return response.data;
         } catch (error) {
-            throw Error(error.response.data.errors);
+            throw Error(error.response.data.message);
         }
     }
 };
-
-
-
-

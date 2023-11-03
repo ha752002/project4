@@ -5,18 +5,12 @@ import axios from "axios";
 import queryString from 'query-string';
 
 
-// import Cookies from 'universal-cookie';
-// const cookies = new Cookies();
-
 const axiosClient = axios.create(
     (() => {
-
         const headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         };
-
-
         return {
             baseURL: SERVER_AUTH_API,
             headers
@@ -52,7 +46,7 @@ export const apiClient = {
             return response.data;
         } catch (error) {
             // console.log(error)
-            throw Error(error.response.data.message);
+            throw Error(error.response.data.errors);
         }
     },
 
@@ -64,7 +58,7 @@ export const apiClient = {
             console.log(response);
             return response.data;
         } catch (error) {
-            throw Error(error.response.data.message);
+            throw Error(error.response.data.errors);
         }
     },
 
@@ -74,7 +68,7 @@ export const apiClient = {
             const response = await axiosClient.patch(url, body);
             return response.data;
         } catch (error) {
-            throw Error(error.response.data.message);
+            throw Error(error.response.data.errors);
         }
     },
 
@@ -84,7 +78,7 @@ export const apiClient = {
             const response = await axiosClient.put(url, body);
             return response.data;
         } catch (error) {
-            throw Error(error.response.data.message);
+            throw Error(error.response.data.errors);
         }
     },
 
@@ -93,7 +87,7 @@ export const apiClient = {
             const response = await axiosClient.delete(url);
             return response.data;
         } catch (error) {
-            throw Error(error.response.data.message);
+            throw Error(error.response.data.errors);
         }
     }
 };

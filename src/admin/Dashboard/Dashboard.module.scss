@@ -1,24 +1,38 @@
 .Dashboard {
-  
   width: 100%;
   // position: absolute;
   top: 78px;
 }
+.dashboard_wrapper {
+  width: 100%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.background_group_hello.responsive_image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
-.main{
+.main {
   padding: 40px;
   position: relative;
 }
 
-.background_group_hello{
-  // width: 100%;
-  height: 250px;
+.background_group_hello {
+  width: auto;
+  // height: 250px;
   overflow: hidden;
   position: absolute;
   border-radius: 0 0 22px 22px;
 }
 
-.background_group_hello img{
+.background_group_hello img {
   width: 100%;
   height: 100%;
 }
@@ -35,7 +49,7 @@
 }
 
 .hello_text {
-  color: var(--FFFFFF-Bg-1, #FFF);
+  color: var(--FFFFFF-Bg-1, #fff);
   text-align: center;
 
   /* H1 40px Bold Inter */
@@ -47,7 +61,7 @@
 }
 
 .title {
-  color: var(--FFFFFF-Bg-1, #FFF);
+  color: var(--FFFFFF-Bg-1, #fff);
   text-align: center;
 
   /* H4 23px Medium Inter */
@@ -57,11 +71,10 @@
   font-weight: 500;
   line-height: 130%;
   /* 29.9px */
-
 }
 
 .text {
-  color: var(--8A92A6-Text-Color-2, #8A92A6);
+  color: var(--8A92A6-Text-Color-2, #8a92a6);
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
@@ -86,10 +99,10 @@
   /* 16.9px */
 }
 
-.text_11{
-// color: var(--FFFFFF-Bg-1, #FFF);
-font-size: 11px;
-font-weight: 400;
+.text_11 {
+  // color: var(--FFFFFF-Bg-1, #FFF);
+  font-size: 11px;
+  font-weight: 400;
 }
 
 .title_chart {
@@ -154,7 +167,7 @@ font-weight: 400;
 
 .card {
   border-radius: 24px;
-  border: 2px solid #FFF;
+  border: 2px solid #fff;
   padding: 10px;
   background: rgba(255, 255, 255, 0.25);
 
@@ -166,17 +179,15 @@ font-weight: 400;
   color: white;
 }
 
-
-
 .background_card {
   // width: 100%;
   height: auto;
-  background-image: url('../../assets/images/dashboard/Graphic Side.png');
+  background-image: url("../../assets/images/dashboard/Graphic Side.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.card_number{
+.card_number {
   word-spacing: 25px;
 }
 

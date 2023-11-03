@@ -3,9 +3,10 @@ import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../../components/Card";
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
-import Validation from "../../../utils/Validation";
+
 import { toast } from "react-toastify";
 import { handleRegister, handleLogin } from "../../../helpers/authHelpers";
+import { formSchema } from "../../../validation/signUpValidation";
 // img
 
 import facebook from "../../../assets/images/brands/fb.svg";
@@ -13,15 +14,6 @@ import google from "../../../assets/images/brands/gm.svg";
 import instagram from "../../../assets/images/brands/im.svg";
 import linkedin from "../../../assets/images/brands/li.svg";
 import auth5 from "../../../assets/images/auth/05.png";
-import { object, string, number, date } from "yup";
-
-const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
-
-let formSchema = object({
-  fullname: string().required(),
-  email: string().email(),
-  phone: string().required().matches(phoneRegExp, "Phone number is not valid"),
-});
 
 // handleRegister(data);
 export const SignUp = () => {
@@ -33,6 +25,15 @@ export const SignUp = () => {
           ...prev,
           form: { ...prev.form, [action.payload.name]: action.payload.value },
         };
+
+      case "agree/toggle":
+        return {
+          ...prev,
+          isAgree: !prev.isAgree,
+        };
+
+      default:
+        return prev;
     }
   };
 
@@ -46,6 +47,8 @@ export const SignUp = () => {
     },
 
     errors: {},
+
+    isAgree: false,
   });
 
   const handleOnChange = (e) => {
@@ -68,25 +71,22 @@ export const SignUp = () => {
       });
   };
 
+  // event Submit Register
   const handleSubmit = async (e) => {
     e.preventDefault();
-    validateForm();
-    const response = await handleRegister(signUpState.form);
-    console.log(signUpState);
-    if (response) {
-      toast.success(response.message);
-    } else {
-      toast.warn(response.message);
-    }
-    // setErrors(Validation(values));
-  };
+    try {
+      if (signUpState.isAgree) {
+        validateForm();
+        const response = await handleRegister(signUpState.form);
+        console.log(signUpState);
 
-  // const handleInput = (event) => {
-  //   setValues((prev) => ({
-  //     ...prev,
-  //     [event.target.name]: [event.target.value],
-  //   }));
-  // };
+        navigate("/user/signIn");
+        toast.success(response.message);
+      }
+    } catch (error) {
+      toast.warn(error.message);
+    }
+  };
 
   return (
     <>
@@ -246,6 +246,12 @@ export const SignUp = () => {
                             <Form.Check.Input
                               type="checkbox"
                               id="customCheck1"
+                              onChange={() => {
+                                dispatch({
+                                  type: "agree/toggle",
+                                });
+                              }}
+                              checked={signUpState.isAgree}
                             />
                             <Form.Check.Label htmlFor="customCheck1">
                               I agree with the terms of use
@@ -259,7 +265,7 @@ export const SignUp = () => {
                           type="submit"
                           variant="primary"
                         >
-                          Sign in
+                          Sign Up
                         </Button>
                       </div>
                       <p className="text-center my-3">

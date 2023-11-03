@@ -1,0 +1,92 @@
+.Schedule {
+    padding: 40px;
+    width: 100%;
+}
+
+ul {
+    display: flex;
+    // margin-top: 40px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.tableStatistical_tables {
+    margin-top: 40px;
+    width: 100%;
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.week {
+    display: flex;
+    flex-direction: row;
+}
+
+.week th,
+.week td {
+    flex: 1;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.week th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+.week td {
+    height: 100px;
+    background-color: rgb(161, 205, 208)
+}
+
+.week td:hover {
+    background-color: #e6e6e6;
+}
+
+.select_month {
+    margin-top: 40px;
+}
+
+.select_month,
+.workout {
+    /* padding: 40px; */
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.select_month li,
+.workout li {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+}
+
+.select_month .month {
+    border-left: 1px solid #ddd;
+}
+
+.select_month .month:hover {
+    background: #C4CCF8;
+    color: #3A57E8;
+}
+
+.today .workout {
+    width: 100%;
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+    /* padding: 8px; */
+    overflow: hidden;
+}
+
+.currentMonth {
+    background-color: white;
+}

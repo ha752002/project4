@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../../components/Card";
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import Validation from "../../../utils/Validation";
+import { toast } from "react-toastify";
+import { handleRegister, handleLogin } from "../../../helpers/authHelpers";
 // img
 
 import facebook from "../../../assets/images/brands/fb.svg";
@@ -11,38 +13,80 @@ import google from "../../../assets/images/brands/gm.svg";
 import instagram from "../../../assets/images/brands/im.svg";
 import linkedin from "../../../assets/images/brands/li.svg";
 import auth5 from "../../../assets/images/auth/05.png";
-import { handleRegister, handleLogin } from "../../../helpers/authHelpers";
+import { object, string, number, date } from "yup";
 
-const data = {
-  email: "Ha0883sss122@gmail.com",
-  password: "Ha2002@gmail",
-};
+const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
 
-handleLogin(data);
+let formSchema = object({
+  fullname: string().required(),
+  email: string().email(),
+  phone: string().required().matches(phoneRegExp, "Phone number is not valid"),
+});
 
-const SignUp = () => {
+// handleRegister(data);
+export const SignUp = () => {
   const navigate = useNavigate();
-  const [values, setValues] = useState({
-    fullname: "",
-    lastname: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmpw: "",
+  const reduce = (prev, action = {}) => {
+    switch (action.type) {
+      case "form/change":
+        return {
+          ...prev,
+          form: { ...prev.form, [action.payload.name]: action.payload.value },
+        };
+    }
+  };
+
+  const [signUpState, dispatch] = useReducer(reduce, {
+    form: {
+      fullname: "",
+      email: "",
+      phone: "",
+      password: "",
+      reEnterPassword: "",
+    },
+
+    errors: {},
   });
-  const [errors, setErrors] = useState({});
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setErrors(Validation(values));
+  const handleOnChange = (e) => {
+    console.log(e.target.name);
+    e.preventDefault();
+    dispatch({
+      type: "form/change",
+      payload: { name: e.target.name, value: e.target.value },
+    });
   };
 
-  const handleInput = (event) => {
-    setValues((prev) => ({
-      ...prev,
-      [event.target.name]: [event.target.value],
-    }));
+  const validateForm = () => {
+    const resultValidate = formSchema
+      .validate(signUpState.form)
+      .then((resolve) => {
+        console.log(resolve);
+      })
+      .catch((reject) => {
+        console.log(reject);
+      });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    validateForm();
+    const response = await handleRegister(signUpState.form);
+    console.log(signUpState);
+    if (response) {
+      toast.success(response.message);
+    } else {
+      toast.warn(response.message);
+    }
+    // setErrors(Validation(values));
+  };
+
+  // const handleInput = (event) => {
+  //   setValues((prev) => ({
+  //     ...prev,
+  //     [event.target.name]: [event.target.value],
+  //   }));
+  // };
 
   return (
     <>
@@ -121,14 +165,16 @@ const SignUp = () => {
                             </Form.Label>
                             <Form.Control
                               type="email"
+                              onChange={handleOnChange}
                               name="email"
+                              value={signUpState.form.email}
                               id="email"
                               placeholder=" "
-                              onChange={handleInput}
                             />
-                            {errors.email && <span>{errors.email}</span>}
+                            {/* {errors.email && <span>{errors.email}</span>} */}
                           </Form.Group>
                         </Col>
+                        {/* fullName */}
                         <Col lg="6">
                           <Form.Group className="form-group">
                             <Form.Label htmlFor="fullname" className="">
@@ -137,11 +183,12 @@ const SignUp = () => {
                             <Form.Control
                               type="fullname"
                               name="fullname"
+                              value={signUpState.form.fullname}
                               id="full-name"
                               placeholder=" "
-                              onChange={handleInput}
+                              onChange={handleOnChange}
                             />
-                            {errors.fullname && <span>{errors.fullname}</span>}
+                            {/* {errors.fullname && <span>{errors.fullname}</span>} */}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
@@ -151,12 +198,13 @@ const SignUp = () => {
                             </Form.Label>
                             <Form.Control
                               type="text"
+                              value={signUpState.form.phone}
                               name="phone"
                               id="phone"
                               placeholder=" "
-                              onChange={handleInput}
+                              onChange={handleOnChange}
                             />
-                            {errors.phone && <span>{errors.phone}</span>}
+                            {/* {errors.phone && <span>{errors.phone}</span>} */}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
@@ -167,11 +215,12 @@ const SignUp = () => {
                             <Form.Control
                               type="password"
                               name="password"
+                              value={signUpState.form.password}
                               id="password"
                               placeholder=" "
-                              onChange={handleInput}
+                              onChange={handleOnChange}
                             />
-                            {errors.password && <span>{errors.password}</span>}
+                            {/* {errors.password && <span>{errors.password}</span>} */}
                           </Form.Group>
                         </Col>
                         <Col lg="6">
@@ -181,13 +230,15 @@ const SignUp = () => {
                             </Form.Label>
                             <Form.Control
                               type="password"
-                              name="confirmpw"
+                              value={signUpState.form.reEnterPassword}
+                              name="reEnterPassword"
                               id="confirm-password"
+                              onChange={handleOnChange}
                               placeholder=" "
                             />
-                            {errors.confirmpw && (
-                              <span>{errors.confirmpw}</span>
-                            )}
+                            {/* {errors.reEnterPassword && (
+                              <span>{errors.reEnterPassword}</span>
+                            )} */}
                           </Form.Group>
                         </Col>
                         <Col lg="12" className="d-flex justify-content-center">
@@ -205,7 +256,6 @@ const SignUp = () => {
                       <div className="d-flex justify-content-center">
                         <Button
                           className="login_lockscreen"
-                          onClick={() => navigate("/user/signin")}
                           type="submit"
                           variant="primary"
                         >

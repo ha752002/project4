@@ -1,4 +1,8 @@
 .Dashboard {
+  padding: 40px;
+  width: 100%;
+  max-height: 100vh;
+  overflow: auto;
   width: 100%;
   // position: absolute;
   top: 78px;
@@ -75,6 +79,8 @@ img {
 
 .text {
   color: var(--8A92A6-Text-Color-2, #8a92a6);
+
+  /* H6 16px Regular Inter */
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
@@ -84,8 +90,12 @@ img {
 }
 
 .text_b {
-  // color: var(--232D42-Text-Color-1, #232D42);
+  color: var(--232D42-Text-Color-1, #232d42);
+
+  /* H5 19px Medium Inter */
+  font-family: Inter;
   font-size: 19px;
+  font-style: normal;
   font-weight: 500;
   line-height: 175%;
   /* 33.25px */
@@ -146,6 +156,96 @@ img {
   height: 68px;
   flex-shrink: 0;
 }
+
+//-----------------------------------
+ul {
+  display: flex;
+  // margin-top: 40px;
+}
+
+li {
+  list-style-type: none;
+}
+
+table {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  width: 100%;
+  border-collapse: collapse;
+  display: flex;
+  flex-direction: column;
+}
+
+tr {
+  display: flex;
+  flex-direction: row;
+}
+
+th,
+td {
+  flex: 1;
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+
+td {
+  height: 100px;
+  background-color: rgb(161, 205, 208);
+}
+
+td:hover {
+  background-color: #e6e6e6;
+}
+
+.select_month {
+  margin-top: 40px;
+}
+
+.select_month,
+.workout {
+  /* padding: 40px; */
+  width: 100%;
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.select_month li,
+.workout li {
+  flex: 1;
+  text-align: center;
+  padding: 8px;
+}
+
+.select_month .month {
+  border-left: 1px solid #ddd;
+}
+
+.select_month .month:hover {
+  background: #c4ccf8;
+  color: #3a57e8;
+}
+
+.today .workout {
+  width: 100%;
+  flex: 1;
+  background-color: white;
+  border-radius: 10px;
+  /* padding: 8px; */
+  overflow: hidden;
+}
+
+.currentMonth {
+  background-color: white;
+}
+
 
 .LineChart {
   padding: 20px;

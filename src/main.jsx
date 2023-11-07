@@ -6,6 +6,7 @@ import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/s
 import theme from "./theme.js";
 import GlobalStyles from "./components/GlobalStyles/AdminGlobalStyles";
 import "./tailwind.css";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
     <GlobalStyles>

@@ -58,6 +58,7 @@ export const apiClient = {
             console.log(response);
             return response.data;
         } catch (error) {
+            console.log(error);
             throw Error(error.response.data.errors);
         }
     },

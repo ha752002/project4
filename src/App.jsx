@@ -8,12 +8,14 @@ import { Dashboard } from "@mui/icons-material";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotFoundPage from "./pages/common/NotFoundPage";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
+          <Route path="*" exact={true} element={<NotFoundPage />} />
           {/* web minh an computer */}
           {publicRoutes.map((route, index) => {
             const { path, element, children } = route;

@@ -1,30 +1,35 @@
 // import { HeaderLayoutOnly } from '@/components/Layout';
-import Home from "../pages/Home";
-// import Following from '@/pages/Following';
-// import Upload from '@/pages/Upload';
-import Dashboard from "../admin/Dashboard";
-import AdminDefaultLayout from "../components/Layout/AdminDefaultLayout";
-import WebDefaultLayout from "../components/Layout/WebDefaultLayout";
-// import SignUp from "../pages/auth/sign-up";
-// import SignIn from "../pages/auth/sign-in";
-import SignIn from "../pages/auth/signIn";
-import SignUp from "../pages/auth/signUp";
-import Recoverpw from "../pages/auth/recoverpw";
-import LockScreen from "../pages/auth/lock-screen";
-import ConfirmMail from "../pages/auth/confirm-mail";
-import AddUser from "../admin/AddUserManagement";
-import UsersList from "../admin/UserListManagement";
-import UsersProfile from "../admin/UserProfileManagement";
-import AdminsRole from "../admin/AdminRoleManagement";
+import { AdminDefaultLayout, WebDefaultLayout } from "../components";
+import {
+  SignIn,
+  SignUp,
+  Recoverpw,
+  LockScreen,
+  ConfirmMail,
+  Home,
+} from "../pages";
 
 import {
   AddProductManagement,
   ListProductManagement,
   DeleteProductManagement,
   EditProductManagement,
-} from "../admin/ProductsManagement";
-import Map from "../admin/Map";
-import Schedule from "../admin/Schedule";
+  Dashboard,
+  AddUser,
+  UsersList,
+  UsersProfile,
+  AdminsRole,
+  Map,
+  Schedule,
+} from "../admin";
+
+const USER_TYPES = {
+  PUBLIC: "public User",
+  NORMAL_USER: "Normal User",
+  ADMIN_USER: "Admin User",
+};
+
+const CURRENT_USER_TYPE = USER_TYPES.PUBLIC;
 
 const publicRoutes = [
   {
@@ -37,6 +42,7 @@ const publicRoutes = [
       { path: "recoverpw", element: <Recoverpw /> },
       { path: "lockscreen", element: <LockScreen /> },
       { path: "confirmmail", element: <ConfirmMail /> },
+      { path: "home", element: <Home /> },
     ],
   },
 ];

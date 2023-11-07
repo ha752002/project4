@@ -1,35 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import Card from "@/components/Card";
+import Validation from "@/utils/Validation";
+import "@/../node_modules/bootstrap/dist/css/bootstrap.css";
+import { facebook, google, instagram, linkedin, auth1 } from "@/assets/images";
+import { handleLogin } from "../../../helpers/authHelpers";
+import Cookies from "universal-cookie";
 
-import Card from "../../../components/Card";
-import Validation from "../../../utils/Validation";
-import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
-
-// img
-import facebook from "../../../assets/images/brands/fb.svg";
-import google from "../../../assets/images/brands/gm.svg";
-import instagram from "../../../assets/images/brands/im.svg";
-import linkedin from "../../../assets/images/brands/li.svg";
-import auth1 from "../../../assets/images/auth/01.png";
-
-const SignIn = () => {
+export const SignIn = () => {
+  const cookies = new Cookies();
   const navigate = useNavigate();
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
+
+  const reduce = (prev, action = {}) => {
+    switch (action.type) {
+      case "form/change":
+        return {
+          ...prev,
+          form: { ...prev.form, [action.payload.name]: action.payload.value },
+        };
+    }
+  };
+
+  const [signInState, dispatch] = useReducer(reduce, {
+    form: {
+      email: "",
+      password: "",
+    },
+
+    errors: {},
   });
-  const [errors, setErrors] = useState({});
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setErrors(Validation(values));
+  // const [errors, setErrors] = useState({});
+
+  const handleOnchange = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: "form/change",
+      payload: { name: e.target.name, value: e.target.value },
+    });
   };
-  const handleInput = (event) => {
-    setValues((prev) => ({
-      ...prev,
-      [event.target.name]: [event.target.value],
-    }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await handleLogin(signInState.form);
+      let expires = new Date(response.data.expiresIn);
+
+      cookies.set("jwtToken", response.data.jwtToken, { path: "/", expires });
+
+      // console.log(response);
+    } catch (errors) {
+      console.log(errors);
+    }
   };
+
   return (
     <>
       <section className="login-content">
@@ -102,9 +126,10 @@ const SignIn = () => {
                               type="email"
                               name="email"
                               id="email"
+                              value={signInState.form.email}
+                              onChange={handleOnchange}
                               aria-describedby="email"
                               placeholder=" "
-                              onChange={handleInput}
                             />
                             {/* {errors.email && <span>{errors.email}</span>} */}
                           </Form.Group>
@@ -118,9 +143,10 @@ const SignIn = () => {
                               type="password"
                               name="password"
                               id="password"
+                              value={signInState.form.password}
+                              onChange={handleOnchange}
                               aria-describedby="password"
                               placeholder=" "
-                              onChange={handleInput}
                             />
                             {/* {errors.password && <span>{errors.password}</span>} */}
                           </Form.Group>
@@ -141,7 +167,6 @@ const SignIn = () => {
                       <div className="d-flex justify-content-center">
                         <Button
                           className="login_lockscreen "
-                          onClick={() => navigate("/user/signup")}
                           type="submit"
                           variant="btn btn-primary"
                         >

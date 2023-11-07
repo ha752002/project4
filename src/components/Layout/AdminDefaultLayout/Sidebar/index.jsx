@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Styles from "./Sidebar.module.scss";
 import clsx from "clsx";
-import mapImage from "../../../../assets/images/sidebar/map.svg";
-import dropdown from "../../../../assets/images/sidebar/ic_Chevron.svg";
+import mapImage from "@/assets/images/sidebar/map.svg";
+import dropdown from "@/assets/images/sidebar/ic_Chevron.svg";
 import { NavLink } from "react-router-dom";
 
 class Sidebar extends Component {
@@ -20,6 +20,14 @@ class Sidebar extends Component {
               img_2: dropdown,
               showChildItem: false,
               url: "/admin/dashboard",
+              items: [],
+            },
+            {
+              name: "schedule",
+              img_1: mapImage,
+              img_2: dropdown,
+              showChildItem: false,
+              url: "/admin/schedule",
               items: [],
             },
             // Add more items here
@@ -83,17 +91,6 @@ class Sidebar extends Component {
                   img: "../../../assets/svg/bulk.svg",
                   url: "/admin/list-products",
                 },
-
-                // {
-                //   name: "Edit products",
-                //   img: "../../../assets/svg/bulk.svg",
-                //   url: "/admin/edit-products",
-                // },
-                // {
-                //   name: "Delete products",
-                //   img: "../../../assets/svg/bulk.svg",
-                //   url: "/admin/delete-products",
-                // },
               ],
             },
             // Add more items here

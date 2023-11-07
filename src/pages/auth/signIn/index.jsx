@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 import Card from "../../../components/Card";
 import Validation from "../../../utils/Validation";
-// import "./reset.css";
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 // img
@@ -146,7 +145,7 @@ const SignIn = () => {
                           type="submit"
                           variant="btn btn-primary"
                         >
-                          Sign up
+                          Sign in
                         </Button>
                       </div>
                       <p className="text-center my-3">

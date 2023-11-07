@@ -9,10 +9,10 @@ import clsx from "clsx";
 export default function AdminDefaultLayout(props) {
   return (
     <Grid container className={clsx(styles.container)}>
-      <Grid item md={2}>
+      <Grid item md={0}>
         <Sidebar />
       </Grid>
-      <Grid item md={10} className={clsx(styles.container)}>
+      <Grid item md={12} className={clsx(styles.container)}>
         <Header />
         {console.log(props)}
         <div className={clsx(styles.content)}>{props.children}</div>

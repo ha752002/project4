@@ -1,9 +1,9 @@
 import React, { Component, useRef, useEffect, useState } from "react";
 import clsx from "clsx";
 
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-import { Doughnut } from 'react-chartjs-2';
+import { Doughnut } from "react-chartjs-2";
 
 import Styles from "./Dashboard.module.scss";
 // import faker from 'faker';
@@ -13,34 +13,31 @@ export const data = {
   // labels: [],
   datasets: [
     {
-      label: '# of Votes',
+      label: "# of Votes",
       data: [120, 19],
-      backgroundColor: [
-        'rgba(255, 255, 255, 0.2)',
-        'rgba(255, 255, 255, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-      ],
+      backgroundColor: ["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.2)"],
+      borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
       borderWidth: [1],
     },
   ],
 };
 
-
-
-
-
 const numberOfRepeats = 4;
 
 export default class Dashboard extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      daysOfWeek: ['Chủ Nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'],
+      daysOfWeek: [
+        "Chủ Nhật",
+        "Thứ 2",
+        "Thứ 3",
+        "Thứ 4",
+        "Thứ 5",
+        "Thứ 6",
+        "Thứ 7",
+      ],
       currentDate: new Date(),
       day: 0,
       lastDayOfMonth: 0,
@@ -56,7 +53,6 @@ export default class Dashboard extends Component {
     this.calculateDaysInMonth();
   }
 
-
   generateYears(numYears) {
     const currentYear = new Date().getFullYear();
     const years = [];
@@ -69,22 +65,33 @@ export default class Dashboard extends Component {
   }
 
   calculateDaysInMonth = () => {
-    const firstDay = new Date(this.state.currentYear, this.state.currentMonth - 1, 1);
-    const lastDay = new Date(this.state.currentYear, this.state.currentMonth, 0);
+    const firstDay = new Date(
+      this.state.currentYear,
+      this.state.currentMonth - 1,
+      1
+    );
+    const lastDay = new Date(
+      this.state.currentYear,
+      this.state.currentMonth,
+      0
+    );
     const firstDayOfWeek = firstDay.getDay();
     const lastDayOfMonth = lastDay.getDate();
     let weeks = [];
     let daysInWeek = [];
 
     // Tính toán ngày của tháng trước
-    const prevMonthLastDay = new Date(this.state.currentYear, this.state.currentMonth - 1, 0);
+    const prevMonthLastDay = new Date(
+      this.state.currentYear,
+      this.state.currentMonth - 1,
+      0
+    );
     const prevMonthDays = prevMonthLastDay.getDate();
     for (let i = prevMonthDays - firstDayOfWeek + 1; i <= prevMonthDays; i++) {
-      if(this.state.currentMonth === 1){
-        daysInWeek.push({ day:i, month: 12 });
-      }else{
-        daysInWeek.push({day: i, month: this.state.currentMonth - 1 });
-
+      if (this.state.currentMonth === 1) {
+        daysInWeek.push({ day: i, month: 12 });
+      } else {
+        daysInWeek.push({ day: i, month: this.state.currentMonth - 1 });
       }
       // daysInWeek.push({ day: i, month: this.state.currentMonth - 1 });
     }
@@ -99,13 +106,21 @@ export default class Dashboard extends Component {
 
     // Tính toán ngày của tháng này
     if (daysInWeek.length > 0) {
-      const nextMonthFirstDay = new Date(this.state.currentYear, this.state.currentMonth, 1);
+      const nextMonthFirstDay = new Date(
+        this.state.currentYear,
+        this.state.currentMonth,
+        1
+      );
       const remainingDays = 7 - daysInWeek.length;
 
-      for (let day = nextMonthFirstDay.getDate(); day <= nextMonthFirstDay.getDate() + remainingDays - 1; day++) {
-        if(this.state.currentMonth === 12){
+      for (
+        let day = nextMonthFirstDay.getDate();
+        day <= nextMonthFirstDay.getDate() + remainingDays - 1;
+        day++
+      ) {
+        if (this.state.currentMonth === 12) {
           daysInWeek.push({ day, month: 1 });
-        }else{
+        } else {
           daysInWeek.push({ day, month: this.state.currentMonth + 1 });
         }
       }
@@ -136,15 +151,17 @@ export default class Dashboard extends Component {
       newCurrentYear = this.state.currentYear;
     }
 
-    this.setState({
-      currentMonth: newCurrentMonth,
-      currentYear: newCurrentYear,
-      weeks: newWeeks,
-    }, () => {
-      this.calculateDaysInMonth();
-    });
+    this.setState(
+      {
+        currentMonth: newCurrentMonth,
+        currentYear: newCurrentYear,
+        weeks: newWeeks,
+      },
+      () => {
+        this.calculateDaysInMonth();
+      }
+    );
   }
-
 
   renderTableHead() {
     return (
@@ -164,7 +181,14 @@ export default class Dashboard extends Component {
         {this.state.weeks.map((week, i) => (
           <tr key={i}>
             {week.map((days, j) => (
-              <td key={j} className={clsx(this.state.currentMonth == days.month ? Styles.currentMonth : "")}>
+              <td
+                key={j}
+                className={clsx(
+                  this.state.currentMonth == days.month
+                    ? Styles.currentMonth
+                    : ""
+                )}
+              >
                 {days.day}/{days.month}
                 {/* {this.state.currentMonth} */}
                 <br />
@@ -181,8 +205,10 @@ export default class Dashboard extends Component {
     return this.state.practiceTimes.map((time) => {
       if (
         this.formatDay(day) === new Date(time.timeStart).getDate().toString() &&
-        month.toString() === (new Date(time.timeStart).getMonth() + 1).toString() &&
-        this.state.currentYear.toString() === new Date(time.timeStart).getFullYear().toString()
+        month.toString() ===
+          (new Date(time.timeStart).getMonth() + 1).toString() &&
+        this.state.currentYear.toString() ===
+          new Date(time.timeStart).getFullYear().toString()
       ) {
         return (
           <div key={time.id}>
@@ -196,18 +222,17 @@ export default class Dashboard extends Component {
     });
   }
 
-
-
   render() {
-    const logDays = () => {
-
-    }
+    const logDays = () => {};
     return (
       <React.Fragment>
         <div className={clsx(Styles.Dashboard, Styles.text)}>
           <div className={clsx(Styles.group_hello)}>
             <div className={clsx(Styles.hello_text)}>Hello Devs !</div>
-            <div className={clsx(Styles.title)}>We are on a mission to help developers like you to build beautiful projects for free.</div>
+            <div className={clsx(Styles.title)}>
+              We are on a mission to help developers like you to build beautiful
+              projects for free.
+            </div>
           </div>
           <div className={clsx(Styles.group_Dashboard)}>
             <div className={clsx(Styles.group_chart)}>
@@ -225,14 +250,18 @@ export default class Dashboard extends Component {
             </div>
             <div>
               <div>
-
                 <div>
                   <ul className={clsx(Styles.select_month)}>
                     <li onClick={() => this.updateCurrentMonthAndYear(-1)}>
                       <img src="../../../assets/svg/arrow-left.svg" alt="" />
                     </li>
-                    <li className={clsx(Styles.month)}>{this.state.currentMonth}/{this.state.currentYear}</li>
-                    <li className={clsx(Styles.month)} onClick={() => this.updateCurrentMonthAndYear(1)}>
+                    <li className={clsx(Styles.month)}>
+                      {this.state.currentMonth}/{this.state.currentYear}
+                    </li>
+                    <li
+                      className={clsx(Styles.month)}
+                      onClick={() => this.updateCurrentMonthAndYear(1)}
+                    >
                       <img src="../../../assets/svg/arrow-right.svg" alt="" />
                     </li>
                   </ul>

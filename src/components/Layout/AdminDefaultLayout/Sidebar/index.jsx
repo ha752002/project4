@@ -123,11 +123,11 @@ class Sidebar extends Component {
     };
   }
 
-  // toggleSidebar = () => {
-  //   this.setState((prevState) => ({
-  //     isSidebarOpen: !prevState.isSidebarOpen,
-  //   }));
-  // };
+  toggleSidebar = () => {
+    this.setState((prevState) => ({
+      isSidebarOpen: !prevState.isSidebarOpen,
+    }));
+  };
 
   toggleContent = (item) => {
     const { titleSidebarData } = this.state;
@@ -171,7 +171,7 @@ class Sidebar extends Component {
           Admin
           <div
             className={clsx(Styles.close_sidebar)}
-            // onClick={this.toggleSidebar}
+            onClick={this.toggleSidebar}
           >
             <img
               src="../../../../assets/images/sidebar/left_arrow.svg"

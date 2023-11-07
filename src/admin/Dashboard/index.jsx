@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import clsx from "clsx";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+
 import { Doughnut } from "react-chartjs-2";
 import * as ReactS from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
@@ -133,6 +134,7 @@ export default function Dashboard(props) {
     document.addEventListener("mouseup", handleMouseUp);
   };
 
+
   return (
     <React.Fragment>
       <div className={clsx(Styles.dashboard_wrapper)}>
@@ -186,6 +188,7 @@ export default function Dashboard(props) {
                   </div>
                   <div></div>
                 </div>
+
                 <div className={clsx(Styles.graphic_side)}>
                   <div className={clsx(Styles.visa, Styles.background_card)}>
                     <div className={clsx(Styles.card)}>

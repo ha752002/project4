@@ -1,28 +1,15 @@
-import React, { useState, useReducer } from "react";
+import React from "react";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "@/components/Card";
-import Validation from "@/utils/Validation";
 import "@/../node_modules/bootstrap/dist/css/bootstrap.css";
 import { facebook, google, instagram, linkedin, auth1 } from "@/assets/images";
 import { handleLogin } from "../../../helpers/authHelpers";
 import Cookies from "universal-cookie";
+import { reduce } from "./reducer";
 
 export const SignIn = () => {
-  const cookies = new Cookies();
-  const navigate = useNavigate();
-
-  const reduce = (prev, action = {}) => {
-    switch (action.type) {
-      case "form/change":
-        return {
-          ...prev,
-          form: { ...prev.form, [action.payload.name]: action.payload.value },
-        };
-    }
-  };
-
-  const [signInState, dispatch] = useReducer(reduce, {
+  const [signInState, signInDispatch] = useReducer(reduce, {
     form: {
       email: "",
       password: "",
@@ -30,11 +17,14 @@ export const SignIn = () => {
 
     errors: {},
   });
+  const cookies = new Cookies();
+  const navigate = useNavigate();
+
   // const [errors, setErrors] = useState({});
 
   const handleOnchange = (e) => {
     e.preventDefault();
-    dispatch({
+    signInDispatch({
       type: "form/change",
       payload: { name: e.target.name, value: e.target.value },
     });

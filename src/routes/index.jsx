@@ -1,5 +1,10 @@
 // import { HeaderLayoutOnly } from '@/components/Layout';
-import { AdminDefaultLayout, WebDefaultLayout } from "../components";
+import {
+  AdminDefaultLayout,
+  AdminRole,
+  WebDefaultLayout,
+  PublicRole,
+} from "../components";
 import {
   SignIn,
   SignUp,
@@ -23,18 +28,22 @@ import {
   Schedule,
 } from "../admin";
 
-const USER_TYPES = {
-  PUBLIC: "public User",
-  NORMAL_USER: "Normal User",
-  ADMIN_USER: "Admin User",
-};
+// const USER_TYPES = {
+//   PUBLIC: "public User",
+//   NORMAL_USER: "Normal User",
+//   ADMIN_USER: "Admin User",
+// };
 
-const CURRENT_USER_TYPE = USER_TYPES.PUBLIC;
+// const CURRENT_USER_TYPE = USER_TYPES.ADMIN_USER;
 
 const publicRoutes = [
   {
     path: "user",
-    element: <WebDefaultLayout />,
+    element: (
+      <PublicRole>
+        <WebDefaultLayout />
+      </PublicRole>
+    ),
     children: [
       { path: "", element: <h1>ssss</h1> },
       { path: "signup", element: <SignUp /> },
@@ -50,7 +59,11 @@ const publicRoutes = [
 const privateRoutes = [
   {
     path: "admin",
-    element: <AdminDefaultLayout />,
+    element: (
+      <AdminRole>
+        <AdminDefaultLayout />
+      </AdminRole>
+    ),
     children: [
       { path: "", element: <h1></h1> },
       { path: "dashboard", element: <Dashboard /> },

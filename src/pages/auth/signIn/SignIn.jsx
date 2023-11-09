@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "@/components/Card";
@@ -7,6 +7,7 @@ import { facebook, google, instagram, linkedin, auth1 } from "@/assets/images";
 import { handleLogin } from "../../../helpers/authHelpers";
 import Cookies from "universal-cookie";
 import { reduce } from "./reducer";
+import { toast } from "react-toastify";
 
 export const SignIn = () => {
   const [signInState, signInDispatch] = useReducer(reduce, {
@@ -19,9 +20,6 @@ export const SignIn = () => {
   });
   const cookies = new Cookies();
   const navigate = useNavigate();
-
-  // const [errors, setErrors] = useState({});
-
   const handleOnchange = (e) => {
     e.preventDefault();
     signInDispatch({
@@ -35,12 +33,11 @@ export const SignIn = () => {
     try {
       const response = await handleLogin(signInState.form);
       let expires = new Date(response.data.expiresIn);
-
       cookies.set("jwtToken", response.data.jwtToken, { path: "/", expires });
-
+      toast.success(response.message);
       // console.log(response);
     } catch (errors) {
-      console.log(errors);
+      toast.warn(errors.message);
     }
   };
 

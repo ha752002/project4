@@ -1,46 +1,16 @@
 import React, { useState, useReducer } from "react";
+import "@/../node_modules/bootstrap/dist/css/bootstrap.css";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Card from "../../../components/Card";
-import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
-// import { toast } from "react-toastify";
-import { handleRegister, handleLogin } from "../../../helpers/authHelpers";
-import { signUpFormSchema } from "../../../validation/signUpValidation";
+import { handleRegister, handleLogin } from "@/helpers/authHelpers";
+import { signUpFormSchema } from "@/validation/signUpValidation";
+import { facebook, google, instagram, linkedin, auth5 } from "@/assets/images";
+import { toast } from "react-toastify";
+import Card from "@/components/Card";
+import { reduce } from "./reduce";
 
-// img
-import facebook from "../../../assets/images/brands/fb.svg";
-import google from "../../../assets/images/brands/gm.svg";
-import instagram from "../../../assets/images/brands/im.svg";
-import linkedin from "../../../assets/images/brands/li.svg";
-import auth5 from "../../../assets/images/auth/05.png";
-
-// handleRegister(data);
 export const SignUp = () => {
   const navigate = useNavigate();
-  const reduce = (prev, action = {}) => {
-    switch (action.type) {
-      case "form/change":
-        return {
-          ...prev,
-          form: { ...prev.form, [action.payload.name]: action.payload.value },
-        };
-
-      case "agree/toggle":
-        return {
-          ...prev,
-          form: { ...prev.form, isAgree: !prev.form.isAgree },
-        };
-
-      case "error/set":
-        return {
-          ...prev,
-          errors: action.payload,
-        };
-      default:
-        return prev;
-    }
-  };
-
   const [signUpState, dispatch] = useReducer(reduce, {
     form: {
       fullName: "",
@@ -81,20 +51,27 @@ export const SignUp = () => {
     e.preventDefault();
     validateForm()
       .then((errors) => {
+        const formError = {};
         if (errors) {
-          const formError = {};
           errors.forEach((error) => {
             formError[error.path] = error.message;
           });
-          dispatch({
-            type: "error/set",
-            payload: formError,
-          });
-          console.log("formError:", formError);
-          console.log("Errors:", errors);
+          // console.log("formError:", formError);
+          // console.log("Errors:", errors);
         } else {
-          handleRegister(signUpState.form);
+          handleRegister(signUpState.form)
+            .then((response) => {
+              toast.success(response.message);
+              navigate("/user/signIn");
+            })
+            .catch((error) => {
+              toast.warn(error.message);
+            });
         }
+        dispatch({
+          type: "error/set",
+          payload: formError,
+        });
       })
       .catch((error) => {
         console.error("Validation error:", error);
@@ -277,6 +254,9 @@ export const SignUp = () => {
                               name="password"
                               value={signUpState.form.password}
                               id="password"
+                              onKeyDown={(e) => {
+                                console.log(e.keyCode);
+                              }}
                               placeholder=" "
                               onChange={handleOnChange}
                             />

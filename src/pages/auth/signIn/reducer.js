@@ -1,4 +1,3 @@
-
 const reduce = (prev, action = {}) => {
     switch (action.type) {
         case "form/change":

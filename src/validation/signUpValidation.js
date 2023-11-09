@@ -1,7 +1,7 @@
 import { object, string, boolean, ref } from "yup";
 
-const phoneRegExp = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/;
-const passwordRegExp = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+const phoneRegExp = /((0|\+84)\d{9})/g;
+const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
 
 export const signUpFormSchema = object({

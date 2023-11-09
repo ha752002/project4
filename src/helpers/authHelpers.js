@@ -1,28 +1,21 @@
 import { register, login } from '../services/authServices';
-import { toast } from 'react-toastify';
 
 const handleRegister = async (data) => {
     try {
         const response = await register(data);
         // console.log(signUpState);
-        navigate("/user/signIn");
-        toast.success(response.message);
+        return response;
     } catch (error) {
-        toast.warn(error.message);
+        throw Error(error.message)
     }
 }
 
 const handleLogin = async (data) => {
     try {
         const dataResponse = await login(data);
-        if (dataResponse && dataResponse.message) {
-            toast(dataResponse.message);
-        } else {
-            toast(dataResponse.message);
-        }
+        return dataResponse;
     } catch (error) {
-        toast(error.message);
-        throw error;
+        throw Error(error.message)
     };
 }
 

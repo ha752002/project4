@@ -1,5 +1,5 @@
-import SignIn from "./auth/signIn";
-import SignUp from "./auth/signUp";
+import SignIn from "./auth/SignIn/SignIn";
+import SignUp from "./auth/SignUp/SignUp";
 import Recoverpw from "./auth/recoverpw";
 import LockScreen from "./auth/lock-screen";
 import ConfirmMail from "./auth/confirm-mail";

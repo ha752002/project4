@@ -3,12 +3,11 @@ import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../../components/Card";
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
-
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { handleRegister, handleLogin } from "../../../helpers/authHelpers";
-import { formSchema } from "../../../validation/signUpValidation";
-// img
+import { signUpFormSchema } from "../../../validation/signUpValidation";
 
+// img
 import facebook from "../../../assets/images/brands/fb.svg";
 import google from "../../../assets/images/brands/gm.svg";
 import instagram from "../../../assets/images/brands/im.svg";
@@ -29,9 +28,14 @@ export const SignUp = () => {
       case "agree/toggle":
         return {
           ...prev,
-          isAgree: !prev.isAgree,
+          form: { ...prev.form, isAgree: !prev.form.isAgree },
         };
 
+      case "error/set":
+        return {
+          ...prev,
+          errors: action.payload,
+        };
       default:
         return prev;
     }
@@ -39,16 +43,15 @@ export const SignUp = () => {
 
   const [signUpState, dispatch] = useReducer(reduce, {
     form: {
-      fullname: "",
+      fullName: "",
       email: "",
       phone: "",
       password: "",
       reEnterPassword: "",
+      isAgree: false,
     },
 
     errors: {},
-
-    isAgree: false,
   });
 
   const handleOnChange = (e) => {
@@ -60,32 +63,43 @@ export const SignUp = () => {
     });
   };
 
-  const validateForm = () => {
-    const resultValidate = formSchema
-      .validate(signUpState.form)
-      .then((resolve) => {
-        console.log(resolve);
-      })
-      .catch((reject) => {
-        console.log(reject);
+  const validateForm = async () => {
+    console.log(signUpState);
+    try {
+      const result = await signUpFormSchema.validate(signUpState.form, {
+        abortEarly: false,
       });
+      console.log(result);
+      return null;
+    } catch (error) {
+      return error.inner;
+    }
   };
 
   // event Submit Register
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      if (signUpState.isAgree) {
-        validateForm();
-        const response = await handleRegister(signUpState.form);
-        console.log(signUpState);
-
-        navigate("/user/signIn");
-        toast.success(response.message);
-      }
-    } catch (error) {
-      toast.warn(error.message);
-    }
+    validateForm()
+      .then((errors) => {
+        if (errors) {
+          const formError = {};
+          errors.forEach((error) => {
+            formError[error.path] = error.message;
+          });
+          dispatch({
+            type: "error/set",
+            payload: formError,
+          });
+          console.log("formError:", formError);
+          console.log("Errors:", errors);
+        } else {
+          handleRegister(signUpState.form);
+        }
+      })
+      .catch((error) => {
+        console.error("Validation error:", error);
+      });
+    // handleRegister();
   };
 
   return (
@@ -157,43 +171,75 @@ export const SignUp = () => {
                     <h2 className="mb-2 text-center">Sign Up</h2>
                     <p className="text-center">Create your Hope UI account.</p>
                     <Form action="" onSubmit={handleSubmit}>
-                      <Row>
-                        <Col lg="12">
+                      <Row style={{ display: "flex" }}>
+                        <Col lg="12" style={{ margin: "4px 0px " }}>
                           <Form.Group className="form-group">
-                            <Form.Label htmlFor="email" className="">
+                            <Form.Label
+                              htmlFor="email"
+                              className=""
+                              style={{ fontWeight: "600", fontSize: "1.2rem" }}
+                            >
                               Email
                             </Form.Label>
                             <Form.Control
-                              type="email"
+                              type="text"
                               onChange={handleOnChange}
                               name="email"
                               value={signUpState.form.email}
                               id="email"
                               placeholder=" "
                             />
-                            {/* {errors.email && <span>{errors.email}</span>} */}
+                            {signUpState.errors.email && (
+                              <div
+                                // className="invalid-feedback"
+                                style={{
+                                  color: "red",
+                                  display: "block",
+                                }}
+                              >
+                                {signUpState.errors.email}
+                              </div>
+                            )}
                           </Form.Group>
                         </Col>
+
                         {/* fullName */}
-                        <Col lg="6">
+                        <Col lg="6" style={{ margin: "4px 0px " }}>
                           <Form.Group className="form-group">
-                            <Form.Label htmlFor="fullname" className="">
+                            <Form.Label
+                              htmlFor="fullName"
+                              className=""
+                              style={{ fontWeight: "600", fontSize: "1.2rem" }}
+                            >
                               Full Name
                             </Form.Label>
                             <Form.Control
-                              type="fullname"
-                              name="fullname"
-                              value={signUpState.form.fullname}
+                              type="fullName"
+                              name="fullName"
+                              value={signUpState.form.fullName}
                               id="full-name"
                               placeholder=" "
                               onChange={handleOnChange}
                             />
-                            {/* {errors.fullname && <span>{errors.fullname}</span>} */}
+                            <div
+                              // className="invalid-feedback"
+                              style={{
+                                color: "red",
+                                display: "block",
+                              }}
+                            >
+                              {signUpState.errors.fullName}
+                            </div>
                           </Form.Group>
                         </Col>
-                        <Col lg="6">
+
+                        <Col lg="6" style={{ margin: "4px 0px " }}>
                           <Form.Group className="form-group">
-                            <Form.Label htmlFor="phone" className="">
+                            <Form.Label
+                              htmlFor="phone"
+                              className=""
+                              style={{ fontWeight: "600", fontSize: "1.2rem" }}
+                            >
                               Phone No.
                             </Form.Label>
                             <Form.Control
@@ -204,12 +250,26 @@ export const SignUp = () => {
                               placeholder=" "
                               onChange={handleOnChange}
                             />
-                            {/* {errors.phone && <span>{errors.phone}</span>} */}
+                            {signUpState.errors.phone && (
+                              <div
+                                // className="invalid-feedback"
+                                style={{
+                                  color: "red",
+                                  display: "block",
+                                }}
+                              >
+                                {signUpState.errors.phone}
+                              </div>
+                            )}
                           </Form.Group>
                         </Col>
-                        <Col lg="6">
+                        <Col lg="6" style={{ margin: "4px 0px " }}>
                           <Form.Group className="form-group">
-                            <Form.Label htmlFor="password" className="">
+                            <Form.Label
+                              htmlFor="password"
+                              className=""
+                              style={{ fontWeight: "600", fontSize: "1.2rem" }}
+                            >
                               Password
                             </Form.Label>
                             <Form.Control
@@ -220,12 +280,26 @@ export const SignUp = () => {
                               placeholder=" "
                               onChange={handleOnChange}
                             />
-                            {/* {errors.password && <span>{errors.password}</span>} */}
+                            {signUpState.errors.password && (
+                              <div
+                                // className="invalid-feedback"
+                                style={{
+                                  color: "red",
+                                  display: "block",
+                                }}
+                              >
+                                {signUpState.errors.password}
+                              </div>
+                            )}
                           </Form.Group>
                         </Col>
-                        <Col lg="6">
+                        <Col lg="6" style={{ margin: "4px 0px " }}>
                           <Form.Group className="form-group">
-                            <Form.Label htmlFor="confirmpw" className="">
+                            <Form.Label
+                              htmlFor="confirmpw"
+                              className=""
+                              style={{ fontWeight: "600", fontSize: "1.2rem" }}
+                            >
                               Confirm Password
                             </Form.Label>
                             <Form.Control
@@ -236,13 +310,36 @@ export const SignUp = () => {
                               onChange={handleOnChange}
                               placeholder=" "
                             />
-                            {/* {errors.reEnterPassword && (
-                              <span>{errors.reEnterPassword}</span>
-                            )} */}
+                            {signUpState.errors.reEnterPassword && (
+                              // <span>{signUpState.errors.reEnterPassword}</span>
+                              <div
+                                // className="invalid-feedback"
+                                style={{
+                                  color: "red",
+                                  display: "block",
+                                }}
+                              >
+                                {signUpState.errors.reEnterPassword}
+                              </div>
+                            )}
                           </Form.Group>
                         </Col>
-                        <Col lg="12" className="d-flex justify-content-center">
-                          <Form.Check className="mb-3 form-check">
+                        <Col
+                          lg="12"
+                          className="d-flex justify-content-center"
+                          style={{
+                            flexDirection: "column",
+                            margin: "4px 0px ",
+                          }}
+                        >
+                          <Form.Check
+                            className="form-check"
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              gap: "6px",
+                            }}
+                          >
                             <Form.Check.Input
                               type="checkbox"
                               id="customCheck1"
@@ -251,12 +348,25 @@ export const SignUp = () => {
                                   type: "agree/toggle",
                                 });
                               }}
-                              checked={signUpState.isAgree}
+                              checked={signUpState.form.isAgree}
                             />
                             <Form.Check.Label htmlFor="customCheck1">
                               I agree with the terms of use
                             </Form.Check.Label>
                           </Form.Check>
+
+                          {signUpState.errors.isAgree && (
+                            <div
+                              // className="invalid-feedback"
+                              style={{
+                                color: "red",
+                                display: "block",
+                                textAlign: "center",
+                              }}
+                            >
+                              {signUpState.errors.isAgree}
+                            </div>
+                          )}
                         </Col>
                       </Row>
                       <div className="d-flex justify-content-center">

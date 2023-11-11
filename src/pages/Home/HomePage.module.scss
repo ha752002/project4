@@ -1,0 +1,147 @@
+.home {
+    padding: 40px;
+    background: #f7f7f7;
+    width: 100%;
+}
+
+.home ul {
+    padding-left: 0;
+}
+
+.list_menu {
+    width: 300px;
+    position: relative;
+
+}
+
+.text {
+    color: var(--8A92A6-Text-Color-2, #8a92a6);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 175%;
+}
+
+.flex {
+    display: flex;
+    width: 100%;
+}
+
+
+.generalGenre {
+    display: block;
+    background-color: white;
+    padding-left: 0;
+    // width: 70%;
+}
+
+.content {
+    width: 920px;
+    height: auto;
+    background-color: white;
+    display: flex;
+    
+    position: absolute;
+    right: -920px;
+    top: 0;
+    // padding: 20px;
+    gap: 20px;
+    border-radius: 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: auto;
+}
+
+
+.title {
+    color: red;
+}
+
+
+.items {
+    // display: block;
+    width: 200px;
+    position: absolute;
+    right: -200px;
+    top: 0;
+    border-radius: 8px;
+    // padding: 20px;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.items li{
+    margin: 10px;
+}
+
+.items li:hover{
+    color: red;
+}
+
+.generalGenre>li {
+    padding: 5px 10px;
+}
+
+.generalGenre>li:hover {
+    background-color: red;
+    color: white;
+}
+
+.generalGenre li:hover .genre {
+    display: flex;
+    gap: 20px;
+}
+
+.generalGenre li:hover .genre>li>ul {
+    display: block;
+}
+
+.generalGenre ul {
+    display: none;
+}
+
+.showItem{
+    position: relative;
+}
+
+.showItem:hover > div{
+    color: red;
+}
+
+.showItem:hover ul {
+    display: block;
+}
+
+.genre {
+    margin: 10px 20px;
+    height: 500px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.grid_container {
+    display: grid;
+    grid-template-columns: 300px repeat(2, 300px);
+    grid-template-rows: repeat(2, 150px);
+    gap: 10px;
+    width: 900px;
+    height: 500px;
+}
+
+.griditem {
+    background-color: lightblue;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.griditem:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* Chiều rộng của thanh cuộn */
+  }

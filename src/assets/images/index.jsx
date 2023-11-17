@@ -5,4 +5,5 @@ import linkedin from "@/assets/images/brands/li.svg";
 import auth1 from "@/assets/images/auth/01.png";
 import auth5 from "@/assets/images/auth/05.png";
 
+
 export { facebook, google, instagram, linkedin, auth1, auth5 };

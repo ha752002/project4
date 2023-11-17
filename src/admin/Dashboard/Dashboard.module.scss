@@ -1,15 +1,19 @@
 .Dashboard {
   padding: 40px;
   width: 100%;
-  max-height: 100vh;
-  overflow: auto;
+  min-height: 100vh;
+  // overflow: auto;
   width: 100%;
-  // position: absolute;
-  top: 78px;
+  position: absolute;
+  // top: 78px;
 }
+
 .dashboard_wrapper {
   width: 100%;
+  position: relative;
+
 }
+
 img {
   max-width: 100%;
   height: auto;
@@ -24,7 +28,7 @@ img {
 }
 
 .main {
-  padding: 40px;
+  // padding: 40px;
   position: relative;
 }
 
@@ -253,9 +257,9 @@ td:hover {
   border-radius: 8px;
 }
 
-.graphic_side {
-  flex: 1;
-}
+// .graphic_side {
+//   flex: 1;
+// }
 
 .visa {
   // width: 100%;

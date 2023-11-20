@@ -2,7 +2,6 @@ import React, { useState } from "react";
 // import { div } from "@mui/material";
 import styles from "./DefaultLayout.module.scss";
 import Header from "../AdminComponents/Header";
-// import Footer from "../AdminComponents/Footer";
 import Sidebar from "./Sidebar";
 import clsx from "clsx";
 import x from "../../../assets/home/icon/x.svg";

@@ -1,6 +1,6 @@
 // call api
-import { config } from "./config.js";
-const { SERVER_AUTH_API } = config;
+import { apiConfig } from "../configs/apiConfig.js";
+const { SERVER_AUTH_API } = apiConfig;
 import axios from "axios";
 import queryString from 'query-string';
 

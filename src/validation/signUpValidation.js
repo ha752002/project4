@@ -3,7 +3,6 @@ import { object, string, boolean, ref } from "yup";
 const phoneRegExp = /((0|\+84)\d{9})/g;
 const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
-
 export const signUpFormSchema = object({
     fullName: string().required().min(8),
     email: string().email().required(),

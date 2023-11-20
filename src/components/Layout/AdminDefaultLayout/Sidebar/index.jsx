@@ -3,15 +3,13 @@ import Styles from "./Sidebar.module.scss";
 import clsx from "clsx";
 import mapImage from "@/assets/images/sidebar/map.svg";
 import dropdown from "@/assets/images/sidebar/ic_Chevron.svg";
-import leftArrow from "@/assets/images/sidebar/left_arrow.svg";
-
 import {NavLink} from "react-router-dom";
 
 class Sidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSidebarOpen: true,
+            // isSidebarOpen: true,
             titleSidebarData: [
                 {
                     name: "HOME",
@@ -122,12 +120,6 @@ class Sidebar extends Component {
         };
     }
 
-    toggleSidebar = () => {
-        this.setState((prevState) => ({
-            isSidebarOpen: !prevState.isSidebarOpen,
-        }));
-    };
-
     toggleContent = (item) => {
         const {titleSidebarData} = this.state;
         const updatedData = titleSidebarData.map((titleSidebar) => {
@@ -157,7 +149,7 @@ class Sidebar extends Component {
         const {isSidebarOpen, titleSidebarData} = this.state;
 
         return (
-            <div className={clsx(isSidebarOpen ? Styles.sidebar : Styles.hidden)}>
+            <div className={clsx(Styles.sidebar)}>
                 <div
                     className={clsx(
                         Styles.main_logo,
@@ -166,17 +158,9 @@ class Sidebar extends Component {
                         Styles.logo_name
                     )}
                 >
-                    <img src="" alt=""/>
+                    <img src="../../../assets/svg/Frame 453.svg" alt=""/>
                     Admin
-                    <div
-                        className={clsx(Styles.close_sidebar)}
-                        onClick={this.toggleSidebar}
-                    >
-                        <img
-                            src={leftArrow}
-                            alt=""
-                        />
-                    </div>
+
                 </div>
 
                 <div className={clsx(Styles.main, Styles.text)}>

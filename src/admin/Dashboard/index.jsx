@@ -140,11 +140,11 @@ export default function Dashboard(props) {
       <div className={clsx(Styles.dashboard_wrapper)}>
         <div className={clsx(Styles.Dashboard, Styles.text)}>
           <div className={clsx(Styles.background_group_hello)}>
-            <img
+            {/* <img
               src={top_image}
               alt=""
               className={clsx(Styles.responsive_image)}
-            />
+            /> */}
           </div>
 
           <div className={clsx(Styles.main)}>

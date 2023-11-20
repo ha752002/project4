@@ -6,14 +6,18 @@ import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/s
 import theme from "./theme.js";
 import GlobalStyles from "./components/GlobalStyles/AdminGlobalStyles";
 import "./tailwind.css";
+import {Provider} from "react-redux";
+import {store} from "./redux/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
+<Provider store={store}>
     <GlobalStyles>
-      <CssVarsProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </CssVarsProvider>
+        <CssVarsProvider theme={theme}>
+            <CssBaseline />
+            <App />
+        </CssVarsProvider>
     </GlobalStyles>
+</Provider>
   </>
 );

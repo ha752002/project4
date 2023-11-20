@@ -27,6 +27,7 @@ import {
   Map,
   Schedule,
 } from "../admin";
+import ProductDetail from "../pages/product/productDetail.jsx";
 
 // const USER_TYPES = {
 //   PUBLIC: "public User",
@@ -52,6 +53,7 @@ const publicRoutes = [
       { path: "lockscreen", element: <LockScreen /> },
       { path: "confirmmail", element: <ConfirmMail /> },
       { path: "home", element: <Home /> },
+      { path: "product-detail/:id", element: <ProductDetail /> },
     ],
   },
 ];

@@ -2,7 +2,7 @@ import { apiClient } from './API.js';
 
 export const register = async (body) => {
     console.log(111);
-    const response = await apiClient.post('/api/v1/auth/register', body);
+    const response = await apiClient.post('/auth/register', body);
     return response;
 
 }

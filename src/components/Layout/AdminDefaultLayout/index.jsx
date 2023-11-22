@@ -30,7 +30,7 @@ export default function AdminDefaultLayout(props) {
             </div>
 
             <div className={clsx(styles.open_and_close , styles.block)} onClick={handleClick}>
-              {isSidebarOpen ? (<img src={list_task} alt="" /> ) : ( <img src={x} alt="" /> )}
+              {isSidebarOpen ? (<img src={x} alt="" /> ) : ( <img src={list_task} alt="" /> )}
             </div>
 
             <Header />

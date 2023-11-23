@@ -1,316 +1,277 @@
-import React from "react";
-import { Row, Col, Image, Form, Button } from "react-bootstrap";
-import Card from "../../components/Card";
+import React, { useState } from "react";
+// import { Row, Col, Image, Form, Button } from "react-bootstrap";
+// import Card from "../../components/Card";
 import Styles from "./AddUser.module.scss";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // img
-import avatars1 from "../../assets/images/avatars/01.png";
-import avatars2 from "../../assets/images/avatars/avtar_1.png";
-import avatars3 from "../../assets/images/avatars/avtar_2.png";
-import avatars4 from "../../assets/images/avatars/avtar_3.png";
-import avatars5 from "../../assets/images/avatars/avtar_4.png";
-import avatars6 from "../../assets/images/avatars/avtar_5.png";
+import edit from "../../assets/icon_svg/edit.svg";
+
+import avatar001 from "../../assets/images/avatars/avata_001.png";
+import avatar002 from "../../assets/images/avatars/avata_002.png";
+import avatar003 from "../../assets/images/avatars/avata_003.png";
+import avatar004 from "../../assets/images/avatars/avata_004.png";
+import avatar005 from "../../assets/images/avatars/avata_005.png";
+import avatar006 from "../../assets/images/avatars/avata_006.png";
+import avatar007 from "../../assets/images/avatars/avata_007.jpg";
+import avatar008 from "../../assets/images/avatars/avata_008.jpg";
+import avatar009 from "../../assets/images/avatars/avata_009.jpg";
+import avatar010 from "../../assets/images/avatars/avata_010.jpg";
+import avatar011 from "../../assets/images/avatars/avata_011.jpg";
+import avatar012 from "../../assets/images/avatars/avata_012.jpg";
+import avatar013 from "../../assets/images/avatars/avata_013.jpg";
+import avatar014 from "../../assets/images/avatars/avata_014.jpg";
+import avatar015 from "../../assets/images/avatars/avata_015.jpg";
+import avatar016 from "../../assets/images/avatars/avata_016.jpg";
+import avatar017 from "../../assets/images/avatars/avata_017.jpg";
+import avatar018 from "../../assets/images/avatars/avata_018.jpg";
+import avatar019 from "../../assets/images/avatars/avata_019.jpg";
+import avatar020 from "../../assets/images/avatars/avata_020.jpg";
+import avatar021 from "../../assets/images/avatars/avata_021.jpg";
+
+
+// function getRandomAvatar() {
+//   const randomIndex = Math.floor(Math.random() * avatars.length);
+//   return avatars[randomIndex];
+// }
 
 export default function AddUser() {
+
+  const initialAvatars = [
+    avatar001,
+    avatar002,
+    avatar003,
+    avatar004,
+    avatar005,
+    avatar006,
+    avatar007,
+    avatar008,
+    avatar009,
+    avatar010,
+    avatar011,
+    avatar012,
+    avatar013,
+    avatar014,
+    avatar015,
+    avatar016,
+    avatar017,
+    avatar018,
+    avatar019,
+    avatar020,
+    avatar021,
+  ];
+  const [avatars, setAvatars] = useState(initialAvatars);
+  const [userInfo, setUserInfo] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    avatar: avatars[Math.floor(Math.random() * avatars.length)],
+    address: '',
+    facebook: '',
+    twitter: '',
+    instagram: '',
+    linkedin: '',
+    phoneNumber: 0,
+
+  });
+
+  const [AvatarSelectionFormStatus, setAvatarSelectionFormStatus] = useState(false);
+
+  const handleAvatarClick = (newAvatar) => {
+    setUserInfo((prevUserInfo) => ({
+      ...prevUserInfo,
+      avatar: newAvatar,
+      
+    }));
+    toggleAvatarSelectionForm()
+
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const newAvatar = e.target.result;
+        // Update the avatars array with the new avatar
+        setAvatars((prevAvatars) => [...prevAvatars, newAvatar]);
+        // Set the new avatar as the selected one
+        handleAvatarClick(newAvatar);
+      };
+
+      reader.readAsDataURL(file);
+    }
+    toggleAvatarSelectionForm()
+
+  };
+
+  const toggleAvatarSelectionForm = () => {
+    setAvatarSelectionFormStatus((prevStatus) => !prevStatus);
+  };
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInfo((prevUserInfo) => ({
+      ...prevUserInfo,
+      [name]: value,
+    }));
+  };
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('User information submitted:', userInfo);
+  };
+
+
   return (
-    <div className={clsx(Styles.add_user)}>
-      {" "}
-      <Row>
-        <Col xl="3" lg="4" className="">
-          <Card>
-            <Card.Header className="d-flex justify-content-between">
-              <div className="header-title">
-                <h4 className="card-title">Add New User</h4>
+
+    <div className={clsx(Styles.registration_form, Styles.text)}>
+      {/* <h1>User Registration Form</h1> */}
+      <form onSubmit={handleSubmit}>
+        <div className={clsx(Styles.group_information)}>
+          <div className={clsx(Styles.group_other_information)}>
+            <div className={clsx(Styles.form_avatar)}>
+              <div className={clsx(Styles.avatar)}>
+                {userInfo.avatar && <img src={userInfo.avatar} alt="Avatar" />}
+                <div className={clsx(Styles.edit_avatar)} onClick={toggleAvatarSelectionForm}>
+                  <img src={edit} alt="" />
+                </div>
               </div>
-            </Card.Header>
-            <Card.Body>
-              <Form>
-                <Form.Group className="form-group">
-                  <div className="profile-img-edit position-relative">
-                    <Image
-                      className={
-                        (`theme-color-default-img  profile-pic rounded avatar-100`,
-                        clsx(Styles.image))
-                      }
-                      src={avatars1}
-                      alt="profile-pic"
-                    />
-                    <Image
-                      className={
-                        (`theme-color-purple-img profile-pic rounded avatar-100`,
-                        clsx(Styles.image))
-                      }
-                      src={avatars2}
-                      alt="profile-pic"
-                    />
-                    <Image
-                      className={
-                        (`theme-color-blue-img profile-pic rounded avatar-100`,
-                        clsx(Styles.image))
-                      }
-                      src={avatars3}
-                      alt="profile-pic"
-                    />
-                    <Image
-                      className={
-                        (`theme-color-green-img profile-pic rounded avatar-100`,
-                        clsx(Styles.image))
-                      }
-                      src={avatars5}
-                      alt="profile-pic"
-                    />
-                    <Image
-                      className={
-                        (`theme-color-yellow-img profile-pic rounded avatar-100`,
-                        clsx(Styles.image))
-                      }
-                      src={avatars6}
-                      alt="profile-pic"
-                    />
-                    <Image
-                      className={
-                        (`theme-color-pink-img profile-pic rounded avatar-100`,
-                        clsx(Styles.image))
-                      }
-                      src={avatars4}
-                      alt="profile-pic"
-                    />
-                    <div className="upload-icone bg-primary">
-                      <svg
-                        className="upload-button"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="#ffffff"
-                          d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                        />
-                      </svg>
-                      <Form.Control
-                        className="file-upload"
-                        type="file"
-                        accept="image/*"
-                      />
-                    </div>
-                  </div>
-                  <div className="img-extension mt-3">
-                    <div className="d-inline-block align-items-center">
-                      <span>Only</span> <Link to="#">.jpg</Link>{" "}
-                      <Link to="#">.png</Link> <Link to="#">.jpeg</Link>{" "}
-                      <span>allowed</span>
-                    </div>
-                  </div>
-                </Form.Group>
-                <Form.Group className="form-group">
-                  <Form.Label>User Role:</Form.Label>
-                  <select
-                    name="type"
-                    className="selectpicker form-control"
-                    data-style="py-0"
-                  >
-                    <option>Select</option>
-                    <option>Web Designer</option>
-                    <option>Web Developer</option>
-                    <option>Tester</option>
-                    <option>Php Developer</option>
-                    <option>Ios Developer </option>
-                  </select>
-                </Form.Group>
-                <Form.Group className="form-group">
-                  <Form.Label htmlFor="furl">Facebook Url:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    id="furl"
-                    placeholder="Facebook Url"
-                  />
-                </Form.Group>
-                <Form.Group className="form-group">
-                  <Form.Label htmlFor="turl">Twitter Url:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    id="turl"
-                    placeholder="Twitter Url"
-                  />
-                </Form.Group>
-                <Form.Group className="form-group">
-                  <Form.Label htmlFor="instaurl">Instagram Url:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    id="instaurl"
-                    placeholder="Instagram Url"
-                  />
-                </Form.Group>
-                <Form.Group className="mb-0 form-group">
-                  <Form.Label htmlFor="lurl">Linkedin Url:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    id="lurl"
-                    placeholder="Linkedin Url"
-                  />
-                </Form.Group>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col xl="9" lg="8">
-          <Card>
-            <Card.Header className="d-flex justify-content-between">
-              <div className="header-title">
-                <h4 className="card-title">New User Information</h4>
+
+
+            </div>
+            <div>
+              <div className={clsx(Styles.form_input)}>
+                <label>Facebook:</label>
+                <input
+                  type="text"
+                  name="facebook"
+                  value={userInfo.facebook}
+                  onChange={handleChange}
+                />
               </div>
-            </Card.Header>
-            <Card.Body>
-              <div className="new-user-info">
-                <form>
-                  <div className="row">
-                    <Form.Group className="col-md-6 form-group">
-                      <Form.Label htmlFor="fname">First Name:</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="fname"
-                        placeholder="First Name"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-md-6 form-group">
-                      <Form.Label htmlFor="lname">Last Name:</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="lname"
-                        placeholder="Last Name"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-md-6 form-group">
-                      <Form.Label htmlFor="add1">Street Address 1:</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="add1"
-                        placeholder="Street Address 1"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-md-6 form-group">
-                      <Form.Label htmlFor="add2">Street Address 2:</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="add2"
-                        placeholder="Street Address 2"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-md-12 form-group">
-                      <Form.Label htmlFor="cname">Company Name:</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="cname"
-                        placeholder="Company Name"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-sm-12 form-group">
-                      <Form.Label>Country:</Form.Label>
-                      <select
-                        name="type"
-                        className="selectpicker form-control"
-                        data-style="py-0"
-                      >
-                        <option>Select Country</option>
-                        <option>Caneda</option>
-                        <option>Noida</option>
-                        <option>USA</option>
-                        <option>India</option>
-                        <option>Africa</option>
-                      </select>
-                    </Form.Group>
-                    <Form.Group className="col-md-6  form-group">
-                      <Form.Label htmlFor="mobno">Mobile Number:</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="mobno"
-                        placeholder="Mobile Number"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-md-6  form-group">
-                      <Form.Label htmlFor="altconno">
-                        Alternate Contact:
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="altconno"
-                        placeholder="Alternate Contact"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-md-6  form-group">
-                      <Form.Label htmlFor="email">Email:</Form.Label>
-                      <Form.Control
-                        type="email"
-                        id="email"
-                        placeholder="Email"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-md-6 form-group">
-                      <Form.Label htmlFor="pno">Pin Code:</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="pno"
-                        placeholder="Pin Code"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-md-12 form-group">
-                      <Form.Label htmlFor="city">Town/City:</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="city"
-                        placeholder="Town/City"
-                      />
-                    </Form.Group>
-                  </div>
-                  <hr />
-                  <h5 className="mb-3">Security</h5>
-                  <div className="row">
-                    <Form.Group className="col-md-12 form-group">
-                      <Form.Label htmlFor="uname">User Name:</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="uname"
-                        placeholder="User Name"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-md-6 form-group">
-                      <Form.Label htmlFor="pass">Password:</Form.Label>
-                      <Form.Control
-                        type="password"
-                        id="pass"
-                        placeholder="Password"
-                      />
-                    </Form.Group>
-                    <Form.Group className="col-md-6 form-group">
-                      <Form.Label htmlFor="rpass">Repeat Password:</Form.Label>
-                      <Form.Control
-                        type="password"
-                        id="rpass"
-                        placeholder="Repeat Password "
-                      />
-                    </Form.Group>
-                  </div>
-                  <div className="checkbox">
-                    <label className="form-label">
-                      <input
-                        type="checkbox"
-                        className="me-2 form-check-input"
-                        value=""
-                        id="flexCheckChecked"
-                      />
-                      Enable Two-Factor-Authentication
-                    </label>
-                  </div>
-                  <Button type="button" variant="btn btn-primary">
-                    Add New User
-                  </Button>
-                </form>
+              <div className={clsx(Styles.form_input)}>
+                <label>Twitter:</label>
+                <input
+                  type="text"
+                  name="twitter"
+                  value={userInfo.twitter}
+                  onChange={handleChange}
+                />
               </div>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+              <div className={clsx(Styles.form_input)}>
+                <label>Instagram:</label>
+                <input
+                  type="text"
+                  name="instagram"
+                  value={userInfo.instagram}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={clsx(Styles.form_input)}>
+                <label>LinkedIn:</label>
+                <input
+                  type="text"
+                  name="linkedin"
+                  value={userInfo.linkedin}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+          </div>
+          <div className={clsx(Styles.group_basic_information)}>
+            <div className={clsx(Styles.form_input)}>
+              <label>First Name:</label>
+              <input
+                type="text"
+                name="firstName"
+                value={userInfo.firstName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={clsx(Styles.form_input)}>
+              <label>Last Name:</label>
+              <input
+                type="text"
+                name="lastName"
+                value={userInfo.lastName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={clsx(Styles.form_input)}>
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={userInfo.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={clsx(Styles.form_input)}>
+              <label>Phone Number:</label>
+              <input
+                type="number"
+                name="phoneNumber"
+                value={userInfo.phoneNumber}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={clsx(Styles.form_input)}>
+              <label>Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={userInfo.password}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={clsx(Styles.form_input)}>
+              <label>Address:</label>
+              <input
+                type="text"
+                name="address"
+                value={userInfo.address}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={clsx(Styles.form_button)}>
+              <button type="reset">clean</button>
+              <button type="submit">Submit</button>
+            </div>
+          </div>
+        </div>
+        <div>
+        </div>
+      </form>
+
+      {AvatarSelectionFormStatus && (
+      <div className={clsx(Styles.choose_an_avatar)}>
+        <div className={clsx(Styles.form_choose)} >
+          <h2>All Avatars</h2>
+          <div className={clsx(Styles.list_avatar)}>
+            {avatars.map((avatar, index) => (
+              <img
+                key={index}
+                src={avatar}
+                alt={`Avatar ${index + 1}`}
+                onClick={() => handleAvatarClick(avatar)}
+              />
+            ))}
+          </div>
+          <div>
+            <input type="file" onChange={handleFileChange} />
+          </div>
+        </div>
+        
+      </div>
+      )}
     </div>
+
+
   );
 }

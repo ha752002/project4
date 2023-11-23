@@ -1,8 +1,172 @@
-.add_user{
-    font-size:15px;
+.registration_form {
+    padding: 40px;
 }
-.image{ width: 50px;
-height: 50px;
-border-radius: 99px;
-background-color: hsl(222, 24%, 86%);
+
+.text {
+    color: var(--8A92A6-Text-Color-2, #8a92a6);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 175%;
+}
+
+.registration_form form {
+    // flex-direction: column;
+    width: 100%;
+    background-color: white;
+    border-radius: 12px;
+}
+
+.group_information {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+
+}
+
+.form_avatar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    // overflow: hidden;
+    width: 50%;
+    max-width: 180px;
+    max-height: 180px;
+    position: relative;
+
+
+
+}
+
+.avatar>img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 1px black solid;
+
+}
+
+.edit_avatar {
+    padding: 10px;
+    background-color: white;
+    border: 1px gray solid;
+    border-radius: 50%;
+    position: absolute;
+    // border-bottom: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 2;
+}
+
+
+
+.form_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.form_input label {
+    width: 20%;
+    min-width: 100px;
+    text-align: end;
+
+}
+
+.form_input input {
+    flex: 1;
+    padding: 5px 10px;
+    border: 1px gray solid;
+    border-radius: 4px;
+    background-color: rgba(214, 208, 198, 0.204);
+}
+
+
+.group_other_information {
+    min-width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.group_other_information div {}
+
+.group_basic_information {
+    flex: 1;
+    position: relative;
+}
+
+.form_button {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    // margin-top: 20px;
+    // justify-content: end;
+    position: absolute;
+    bottom: 0;
+}
+
+.form_button button {
+    background-color: aquamarine;
+    border-radius: 4px;
+    padding: 5px;
+
+}
+
+.form_button button:first-child {
+    width: 20%;
+    min-width: 100px;
+}
+
+.form_button button:last-child {
+    flex: 1;
+
+}
+
+.choose_an_avatar {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: rgba(171, 171, 171, 0.545);
+}
+
+.choose_an_avatar input{
+    margin-top: 20px;
+    border:  none;
+}
+
+.form_choose {
+    width: 60vw;
+    height: 60vh;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.list_avatar {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+.list_avatar img {
+    width: 100px;
+    height: 100px;
+    margin: 0;
 }

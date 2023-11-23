@@ -35,60 +35,35 @@ function buildUrl(baseUrl, params) {
 
 export const apiClient = {
     get: async (url, requestParam = null) => {
-
-        try {
-            if (requestParam) {
-                url = buildUrl(url, requestParam);
-            }
-            console.log(url);
-            const response = await axiosClient.get(url);
-            // console.log(response);
-            return response.data;
-        } catch (error) {
-            // console.log(error)
-            throw Error(error.response.data.errors);
+        if (requestParam) {
+            url = buildUrl(url, requestParam);
         }
+        // console.log(url);
+        const response = await axiosClient.get(url);
+        return response.data;
     },
 
     post: async (url, body = {}) => {
-        try {
-            console.log(body);
-
-            const response = await axiosClient.post(url, body);
-            console.log(response);
-            return response.data;
-        } catch (error) {
-            console.log(error);
-            throw Error(error.response.data.errors);
-        }
+        const response = await axiosClient.post(url, body);
+        // console.log(response);
+        // console.log(response.data);
+        return response.data;
     },
 
 
     patch: async (url, body = {}) => {
-        try {
-            const response = await axiosClient.patch(url, body);
-            return response.data;
-        } catch (error) {
-            throw Error(error.response.data.errors);
-        }
+        const response = await axiosClient.patch(url, body);
+        return response.data;
     },
 
 
     put: async (url, body = {}) => {
-        try {
-            const response = await axiosClient.put(url, body);
-            return response.data;
-        } catch (error) {
-            throw Error(error.response.data.errors);
-        }
+        const response = await axiosClient.put(url, body);
+        return response.data;
     },
 
     delete: async (url) => {
-        try {
-            const response = await axiosClient.delete(url);
-            return response.data;
-        } catch (error) {
-            throw Error(error.response.data.errors);
-        }
+        const response = await axiosClient.delete(url);
+        return response.data;
     }
 };

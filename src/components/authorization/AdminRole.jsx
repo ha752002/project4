@@ -1,14 +1,15 @@
 import React from "react";
-const USER_TYPES = {
-  PUBLIC: "public User",
-  NORMAL_USER: "Normal User",
-  ADMIN_USER: "Admin User",
-};
+import {useSelector} from "react-redux";
+import {ROLE_ADMIN} from "../../constants/role.js";
+import {useNavigate} from "react-router-dom";
+import NotFoundPage from "../../pages/common/NotFoundPage.jsx";
 
-const CURRENT_USER_TYPE = USER_TYPES.ADMIN_USER;
 
 export default function AdminRole({ children }) {
-  console.log(CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER);
+  const CURRENT_USER_TYPE = useSelector(state => state.auth.userInfo.role);
+  const navigate = useNavigate();
+  console.log(CURRENT_USER_TYPE === ROLE_ADMIN);
   // console.log(111);
-  if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER) return <>{children}</>;
+  if (CURRENT_USER_TYPE === ROLE_ADMIN) return <>{children}</>;
+  return <NotFoundPage/>
 }

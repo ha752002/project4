@@ -1,6 +1,6 @@
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { facebook, google, instagram, linkedin, auth1 } from "@/assets/images";
-import {authLogin, authRegister} from "../../../redux/slice/authSlice.js";
+import {authLogin, authRegister, authSlice} from "../../../redux/slice/authSlice.js";
 import {FULFILLED, REJECTED} from "../../../constants/apiStatus.js";
 import "@/../node_modules/bootstrap/dist/css/bootstrap.css";
 import React, {useEffect} from "react";
@@ -10,12 +10,12 @@ import Card from "@/components/Card";
 import Cookies from "universal-cookie";
 import { toast } from "react-toastify";
 import {useForm} from "react-hook-form";
-
+const {resetStatus} = authSlice.actions
 export const SignIn = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {status, error} = useSelector(state => state.auth);
+  const {status, error, userInfo} = useSelector(state => state.auth);
 
   const {
     handleSubmit, register, formState: {errors, dirtyFields}
@@ -30,6 +30,12 @@ export const SignIn = () => {
       toast(error.message)
     } else if (status === FULFILLED) {
       toast("Đăng nhập thành công")
+      dispatch(resetStatus())
+      if(userInfo.role === "ROLE_ADMIN"){
+        navigate("/admin")
+      } else if(userInfo.role === "ROLE_USER"){
+        navigate("/user")
+      }
     }
   }, [status]);
   const onSubmit = (data, e) => {

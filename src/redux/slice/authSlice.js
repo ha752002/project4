@@ -17,10 +17,7 @@ export const authLogin = createAsyncThunk("auth/login", async (body, thunkApi) =
 
         if (jwtToken) {
             setLocalStorage("token", jwtToken)
-            return  {
-                token : response.data.jwtToken,
-                role : response.data.role
-            }
+            return response.data
             
         }
     } catch (e) {
@@ -49,7 +46,11 @@ export const authSlice = createSlice(
     {
         name: 'auth',
         initialState,
-        reducers: {},
+        reducers: {
+            resetStatus: (state)=> {
+                state.status = IDLE
+            }
+        },
         extraReducers: (builder) => {
             builder
                 .addCase(authLogin.pending, (state) => {
@@ -58,8 +59,8 @@ export const authSlice = createSlice(
 
                 .addCase(authLogin.fulfilled, (state, action) => {
                     state.status = FULFILLED;
-                    state.userInfo.token = action.payload;
-                    console.log(current(state.userInfo));
+                    state.userInfo = action.payload;
+                    // console.log(current(state.userInfo));
                     state.error = null;
                 })
 
@@ -72,7 +73,7 @@ export const authSlice = createSlice(
                 })
                 .addCase(authRegister.fulfilled, (state, action) => {
                     state.status = FULFILLED;
-                    state.userInfo.token = action.payload;
+                    state.userInfo = action.payload;
                     state.error = null;
                 })
                 .addCase(authRegister.rejected, (state, action) => {

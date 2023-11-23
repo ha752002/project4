@@ -1,6 +1,6 @@
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
 import { facebook, google, instagram, linkedin, auth1 } from "@/assets/images";
-import {authLogin, authRegister, authSlice} from "../../../redux/slice/authSlice.js";
+import {authLogin, authRegister, authSlice, getUserInfo} from "../../../redux/slice/authSlice.js";
 import {FULFILLED, REJECTED} from "../../../constants/apiStatus.js";
 import "@/../node_modules/bootstrap/dist/css/bootstrap.css";
 import React, {useEffect} from "react";
@@ -10,6 +10,7 @@ import Card from "@/components/Card";
 import Cookies from "universal-cookie";
 import { toast } from "react-toastify";
 import {useForm} from "react-hook-form";
+import {ROLE_ADMIN, ROLE_USER} from "../../../constants/role.js";
 const {resetStatus} = authSlice.actions
 export const SignIn = () => {
   const cookies = new Cookies();
@@ -31,17 +32,23 @@ export const SignIn = () => {
     } else if (status === FULFILLED) {
       toast("Đăng nhập thành công")
       dispatch(resetStatus())
-      if(userInfo.role === "ROLE_ADMIN"){
-        navigate("/admin")
-      } else if(userInfo.role === "ROLE_USER"){
-        navigate("/user")
-      }
+     if(userInfo){
+       if(userInfo.roles?.find(role => role.name === ROLE_ADMIN) ){
+         navigate("/admin")
+       } else if(userInfo.roles?.find(role => role.name === ROLE_USER)){
+         navigate("/user")
+       }
+     }
     }
   }, [status]);
   const onSubmit = (data, e) => {
     e.preventDefault();
     console.log(data);
-    dispatch(authLogin(data));
+    dispatch(authLogin(data)).then(resolve => {
+      if(resolve.type === "auth/login/fulfilled"){
+        dispatch(getUserInfo())
+      }
+    });
   };
 
   return (

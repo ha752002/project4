@@ -1,5 +1,5 @@
 /** @format */
-import React, { Fragment } from "react";
+import React, {Fragment, useEffect, useLayoutEffect} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WebDefaultLayout from "./components/Layout/WebDefaultLayout";
 import { privateRoutes, publicRoutes } from "./routes";
@@ -7,6 +7,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NotFoundPage from "./pages/common/NotFoundPage";
+import {useDispatch} from "react-redux";
+import {getUserInfo} from "./redux/slice/authSlice.js";
+import {Home} from "./pages/index.jsx";
 
 function App() {
   return (

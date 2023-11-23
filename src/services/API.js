@@ -3,6 +3,7 @@ import { apiConfig } from "../configs/apiConfig.js";
 const { SERVER_AUTH_API } = apiConfig;
 import axios from "axios";
 import queryString from 'query-string';
+import Cookies from "universal-cookie";
 
 
 const axiosClient = axios.create(
@@ -19,9 +20,11 @@ const axiosClient = axios.create(
 );
 
 axiosClient.interceptors.request.use(function (config) {
-    const token = localStorage.getItem('access_Token');
+    const cookies = new Cookies();
+    const token = cookies.get('token');
+    console.log(token)
     // console.log(token);
-    config.headers['Authorization'] = token;
+    config.headers['Authorization'] = "Bearer " +  token;
 
     return config;
 });

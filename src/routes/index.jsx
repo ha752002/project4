@@ -32,7 +32,7 @@ import ProductDetail from "../pages/product/productDetail.jsx";
 // user
 const publicRoutes = [
   {
-    path: "user",
+    path: "",
     element: (
       <PublicRole>
         <WebDefaultLayout />

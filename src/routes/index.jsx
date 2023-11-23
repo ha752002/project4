@@ -29,14 +29,7 @@ import {
 } from "../admin";
 import ProductDetail from "../pages/product/productDetail.jsx";
 
-// const USER_TYPES = {
-//   PUBLIC: "public User",
-//   NORMAL_USER: "Normal User",
-//   ADMIN_USER: "Admin User",
-// };
-
-// const CURRENT_USER_TYPE = USER_TYPES.ADMIN_USER;
-
+// user
 const publicRoutes = [
   {
     path: "user",
@@ -46,7 +39,7 @@ const publicRoutes = [
       </PublicRole>
     ),
     children: [
-      { path: "", element: <h1>ssss</h1> },
+      { path: "", element: <Home />},
       { path: "signup", element: <SignUp /> },
       { path: "signin", element: <SignIn /> },
       { path: "recoverpw", element: <Recoverpw /> },
@@ -58,6 +51,7 @@ const publicRoutes = [
   },
 ];
 
+// admin
 const privateRoutes = [
   {
     path: "admin",
@@ -67,7 +61,7 @@ const privateRoutes = [
       </AdminRole>
     ),
     children: [
-      { path: "", element: <h1></h1> },
+      { path: "", element: <Dashboard/> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "users-profile", element: <UsersProfile /> },
       { path: "list-users", element: <UsersList /> },

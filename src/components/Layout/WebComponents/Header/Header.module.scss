@@ -4,16 +4,42 @@
 // }
 
 ul {
-  padding-left: 0px;
-  margin-bottom: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .header {
   width: 100%;
+  background-color: #e10034;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
+}
+
+.header_2 {
+  background-color: #ececec;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.header_menu {
+  // width: 100%;
+  gap: 200px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  padding: 0px 20px;
+  position: relative;
+
+}
+
+.flex {
+  display: flex;
 }
 
 .text {
@@ -23,11 +49,6 @@ ul {
   font-style: normal;
   font-weight: 300;
   line-height: 175%;
-}
-
-.header nav {
-  position: relative;
-
 }
 
 .menu {
@@ -41,20 +62,36 @@ ul {
 
 .menuItem>div {
   // padding: 10px;
-  background-color: red;
+  // background-color: red;
   border-radius: 12px;
-  padding: 3px  15px;
+  padding: 3px 15px;
   color: white;
 }
 
-.menuItem:hover .subMenu{
-display: flex;
+.menuItem:first-child>div,
+.menuItem:nth-child(2)>div {
+  background: repeating-linear-gradient(to right, #f1d113 0, #fef273 25%, #f1b01f 50%, #fde904 75%, #e5bf23 100%);
+  color: red;
+}
+
+.menuItem:hover>div {
+  background-color: #b41f24;
+}
+
+.menuItem:hover .subMenu {
+  opacity: 1;
+
+  bottom: -400px;
+  visibility: visible;
+  transition: bottom 0.2s ease;
+  z-index: 10;
 }
 
 .subMenu {
   position: absolute;
-  display: none;
-  // display: flex;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
   width: 100%;
   height: 400px;
   background-color: white;
@@ -62,19 +99,179 @@ display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   left: 0;
-  bottom: -400px;
-  z-index: 10;
+  bottom: -430px;
+  z-index: 0;
   gap: 20px;
   padding: 20px;
+  transition: visibility 0.2s ease, opacity 0.5s ease;
+  border-radius: 12px;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
-.subMenu > li > div{
+.subMenu>li>div {
   background-color: #0d699e;
   color: white;
-  padding: 10px;
+  // padding: 5px 10px;
+  align-items: center;
+  gap: 10px;
+  // padding-right: 10px;
+  width: 100%;
   border-radius: 0px 10px 10px 0px;
+  display: flex;
+}
+
+.item_number {
+  padding: 5px 10px;
+  background-color: red;
 }
 
 .subMenuItem {
   flex-direction: column;
+}
+
+.phone {
+  color: red;
+}
+
+.register_login li {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100px;
+  color: white;
+}
+
+.group_header_2 {
+  display: flex;
+  align-items: center;
+  padding: 5px 0px 10px 0px;
+  gap: 20px;
+}
+
+.group_header_2>img {
+  max-width: 150px;
+  height: 40px;
+}
+
+.item_hot {
+  font-size: 8px;
+  gap: 10px;
+}
+
+.item_hot li {
+  background-color: #949494;
+  color: white;
+  border-radius: 12px;
+  padding: 0px 8px;
+  transition: 0.2s;
+  // margin: 10px 0px;
+}
+
+.item_hot li:hover{
+  background-color: #b41f24;
+  transition: 0.2s;
+
+}
+
+.group_search {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 100px;
+  padding: 5px;
+  gap: 10px;
+}
+
+.search_by_category {
+  background: #ededed;
+  border-radius: 100px;
+  border: 1px solid #d0cbcb;
+  padding: 0 18px 0 12px;
+  position: relative;
+}
+
+.search_by_category:hover .item_category {
+  opacity: 1;
+
+  bottom: -200px;
+  visibility: visible;
+  transition: bottom 0.2s ease;
+  z-index: 10;
+}
+
+.item_category {
+  position: absolute;
+  height: 200px;
+  overflow: auto;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ededed;
+  border-radius: 12px;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+  bottom: -250px;
+  visibility: hidden;
+  opacity: 0;
+  padding: 10px;
+}
+
+.item_category span {
+  padding: 5px 10px;
+}
+
+.item_category span:hover {
+  background-color: #c7c6c6;
+
+
+}
+
+.search {
+  flex: 1;
+}
+
+.search input {
+  width: 100%;
+}
+
+.icon_search {
+  padding: 5px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.group_other {
+  background-color: #e10034;
+  border-radius: 100px;
+  padding: 5px 20px;
+  display: flex;
+  color: white;
+  gap: 20px;
+}
+
+.group_other .flex {
+  gap: 10px;
+}
+
+.group_other .img {
+  padding: 5px;
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.group_other img {
+  height: 100%;
+  width: 100%;
+}
+
+.content {
+  font-size: 13px;
+  font-weight: 450;
+
+}
+
+.title {
+  font-size: 10px;
 }

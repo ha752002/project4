@@ -106,7 +106,8 @@ function Header() {
       ]
     },
     {
-      title: "Promotion information",
+      title: "" +
+          "Promotion information",
     },
     {
       title: "Technology news",

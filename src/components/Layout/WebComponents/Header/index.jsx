@@ -191,7 +191,7 @@ function Header() {
                 tất cả danh mục
                 <div className={clsx(Styles.item_category)}>
                   {categorys.map((category, index) => (
-                    <span>{category.name}</span>
+                    <span key={index}>{category.name}</span>
                   ))}
                 </div>
               </div>

@@ -197,7 +197,7 @@ export default function Home(props) {
 
   ];
 
-  
+
 
   const products = [
     {
@@ -465,13 +465,13 @@ export default function Home(props) {
                 <div>
                   <div className={clsx(Styles.title_product)} >Promotions</div>
                   <div className={clsx(Styles.title_promotion_product)}>{product.Promotion}</div>
-                  <ul key={index} className={clsx(Styles.promotions_product)}>
+                  <ul className={clsx(Styles.promotions_product)}>
                     {product.Promotions.map((Promotions, index) => (
-                      <li >+ {Promotions.Promotion}
-                        <div key={index} className={clsx(Styles.promotion_package_product)}>
+                      <li key={index}>+ {Promotions.Promotion}
+                        <div className={clsx(Styles.promotion_package_product)}>
 
                           {Promotions.promotionPackage.map((Promotions, index) => (
-                            <div>{Promotions.promotion}</div>
+                            <div key={index}>{Promotions.promotion}</div>
                           ))}
 
                         </div>
@@ -605,14 +605,14 @@ export default function Home(props) {
             </div>
 
             {datas.map((data, index) => (
-              <div className={clsx(Styles.flex , Styles.category_product )}>
+              <div key={index} className={clsx(Styles.flex, Styles.category_product)}>
                 <div className={clsx(Styles.category)}>
                   <div className={clsx(Styles.title_category)}>
                     <div className={clsx(Styles.category_name)}>{data.name}</div>
                     <ul className={clsx(Styles.group_item_category)}>
 
                       {data.generalGenre.slice(0, 3).map((generalGenre, index) => (
-                        <li> {generalGenre.title}</li>
+                        <li key={index}> {generalGenre.title}</li>
                       ))}
 
                       <li>see more</li>

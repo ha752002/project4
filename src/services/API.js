@@ -3,6 +3,7 @@ import { apiConfig } from "../configs/apiConfig.js";
 const { SERVER_AUTH_API } = apiConfig;
 import axios from "axios";
 import queryString from 'query-string';
+import Cookies from "universal-cookie";
 
 
 const axiosClient = axios.create(
@@ -19,9 +20,11 @@ const axiosClient = axios.create(
 );
 
 axiosClient.interceptors.request.use(function (config) {
-    const token = localStorage.getItem('access_Token');
+    const cookies = new Cookies();
+    const token = cookies.get('token');
+    console.log(token)
     // console.log(token);
-    config.headers['Authorization'] = token;
+    config.headers['Authorization'] = "Bearer " +  token;
 
     return config;
 });
@@ -35,60 +38,35 @@ function buildUrl(baseUrl, params) {
 
 export const apiClient = {
     get: async (url, requestParam = null) => {
-
-        try {
-            if (requestParam) {
-                url = buildUrl(url, requestParam);
-            }
-            console.log(url);
-            const response = await axiosClient.get(url);
-            // console.log(response);
-            return response.data;
-        } catch (error) {
-            // console.log(error)
-            throw Error(error.response.data.errors);
+        if (requestParam) {
+            url = buildUrl(url, requestParam);
         }
+        // console.log(url);
+        const response = await axiosClient.get(url);
+        return response.data;
     },
 
     post: async (url, body = {}) => {
-        try {
-            console.log(body);
-
-            const response = await axiosClient.post(url, body);
-            console.log(response);
-            return response.data;
-        } catch (error) {
-            console.log(error);
-            throw Error(error.response.data.errors);
-        }
+        const response = await axiosClient.post(url, body);
+        // console.log(response);
+        // console.log(response.data);
+        return response.data;
     },
 
 
     patch: async (url, body = {}) => {
-        try {
-            const response = await axiosClient.patch(url, body);
-            return response.data;
-        } catch (error) {
-            throw Error(error.response.data.errors);
-        }
+        const response = await axiosClient.patch(url, body);
+        return response.data;
     },
 
 
     put: async (url, body = {}) => {
-        try {
-            const response = await axiosClient.put(url, body);
-            return response.data;
-        } catch (error) {
-            throw Error(error.response.data.errors);
-        }
+        const response = await axiosClient.put(url, body);
+        return response.data;
     },
 
     delete: async (url) => {
-        try {
-            const response = await axiosClient.delete(url);
-            return response.data;
-        } catch (error) {
-            throw Error(error.response.data.errors);
-        }
+        const response = await axiosClient.delete(url);
+        return response.data;
     }
 };

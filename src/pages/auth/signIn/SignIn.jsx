@@ -1,44 +1,54 @@
-import React, { useReducer } from "react";
 import { Row, Col, Image, Form, Button, ListGroup } from "react-bootstrap";
+import { facebook, google, instagram, linkedin, auth1 } from "@/assets/images";
+import {authLogin, authRegister, authSlice, getUserInfo} from "../../../redux/slice/authSlice.js";
+import {FULFILLED, REJECTED} from "../../../constants/apiStatus.js";
+import "@/../node_modules/bootstrap/dist/css/bootstrap.css";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "@/components/Card";
-import "@/../node_modules/bootstrap/dist/css/bootstrap.css";
-import { facebook, google, instagram, linkedin, auth1 } from "@/assets/images";
-import { handleLogin } from "../../../helpers/authHelpers";
 import Cookies from "universal-cookie";
-import { reduce } from "./reducer";
 import { toast } from "react-toastify";
-
+import {useForm} from "react-hook-form";
+import {ROLE_ADMIN, ROLE_USER} from "../../../constants/role.js";
+const {resetStatus} = authSlice.actions
 export const SignIn = () => {
-  const [signInState, signInDispatch] = useReducer(reduce, {
-    form: {
-      email: "",
-      password: "",
-    },
-
-    errors: {},
-  });
   const cookies = new Cookies();
   const navigate = useNavigate();
-  const handleOnchange = (e) => {
-    e.preventDefault();
-    signInDispatch({
-      type: "form/change",
-      payload: { name: e.target.name, value: e.target.value },
-    });
-  };
+  const dispatch = useDispatch();
+  const {status, error, userInfo} = useSelector(state => state.auth);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await handleLogin(signInState.form);
-      let expires = new Date(response.data.expiresIn);
-      cookies.set("jwtToken", response.data.jwtToken, { path: "/", expires });
-      toast.success(response.message);
-      // console.log(response);
-    } catch (errors) {
-      toast.warn(errors.message);
+  const {
+    handleSubmit, register, formState: {errors, dirtyFields}
+  } = useForm({
+    mode: "onChange",
+    defaultValues: { email: "", password: ""},
+    criteriaMode: "all"
+  });
+
+  useEffect(() => {
+    if (status === REJECTED && error && error.code === 401) {
+      toast(error.message)
+    } else if (status === FULFILLED) {
+      toast("Đăng nhập thành công")
+      dispatch(resetStatus())
+     if(userInfo){
+       if(userInfo.roles?.find(role => role.name === ROLE_ADMIN) ){
+         navigate("/admin")
+       } else if(userInfo.roles?.find(role => role.name === ROLE_USER)){
+         navigate("/user")
+       }
+     }
     }
+  }, [status]);
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    console.log(data);
+    dispatch(authLogin(data)).then(resolve => {
+      if(resolve.type === "auth/login/fulfilled"){
+        dispatch(getUserInfo())
+      }
+    });
   };
 
   return (
@@ -102,8 +112,11 @@ export const SignIn = () => {
                     </Link>
                     <h2 className="mb-2 text-center">Sign In</h2>
                     <p className="text-center">Login to stay connected.</p>
-                    <Form action="" onSubmit={handleSubmit}>
+
+                    {/*form*/}
+                    <Form action="" onSubmit={handleSubmit(onSubmit)}>
                       <Row>
+                        {/*Email*/}
                         <Col lg="12">
                           <Form.Group className="form-group">
                             <Form.Label htmlFor="email" className="">
@@ -112,15 +125,21 @@ export const SignIn = () => {
                             <Form.Control
                               type="email"
                               name="email"
+                              {...register("email", {
+                                required: "Please enter your email address", pattern: {
+                                  value: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                  message: "Invalid email address"
+                                }
+                              })}
                               id="email"
-                              value={signInState.form.email}
-                              onChange={handleOnchange}
                               aria-describedby="email"
                               placeholder=" "
                             />
-                            {/* {errors.email && <span>{errors.email}</span>} */}
+                            <span>{errors.email?.message}</span>
                           </Form.Group>
                         </Col>
+
+                        {/*Password*/}
                         <Col lg="12" className="">
                           <Form.Group className="form-group">
                             <Form.Label htmlFor="password" className="">
@@ -130,14 +149,15 @@ export const SignIn = () => {
                               type="password"
                               name="password"
                               id="password"
-                              value={signInState.form.password}
-                              onChange={handleOnchange}
+                              {...register("password")}
                               aria-describedby="password"
                               placeholder=" "
                             />
-                            {/* {errors.password && <span>{errors.password}</span>} */}
+                            <span>{errors.password?.message}</span>
                           </Form.Group>
                         </Col>
+
+                        {/*checkbox*/}
                         <Col lg="12" className="d-flex justify-content-between">
                           <Form.Check className="form-check mb-3">
                             <Form.Check.Input
@@ -151,6 +171,8 @@ export const SignIn = () => {
                           <Link to="/user/recoverpw">Forgot Password?</Link>
                         </Col>
                       </Row>
+
+                      {/*Button*/}
                       <div className="d-flex justify-content-center">
                         <Button
                           className="login_lockscreen "
@@ -160,6 +182,8 @@ export const SignIn = () => {
                           Sign in
                         </Button>
                       </div>
+
+                      {/*social*/}
                       <p className="text-center my-3">
                         or sign in with other accounts?
                       </p>
@@ -201,54 +225,7 @@ export const SignIn = () => {
                 </Card>
               </Col>
             </Row>
-            {/* <div className="sign-bg sign-bg-right">
-              <svg
-                width="280"
-                height="230"
-                viewBox="0 0 431 398"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g opacity="0.05">
-                  <rect
-                    x="-157.085"
-                    y="193.773"
-                    width="543"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(-45 -157.085 193.773)"
-                    fill="#3B8AFF"
-                  />
-                  <rect
-                    x="7.46875"
-                    y="358.327"
-                    width="543"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(-45 7.46875 358.327)"
-                    fill="#3B8AFF"
-                  />
-                  <rect
-                    x="61.9355"
-                    y="138.545"
-                    width="310.286"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(45 61.9355 138.545)"
-                    fill="#3B8AFF"
-                  />
-                  <rect
-                    x="62.3154"
-                    y="-190.173"
-                    width="543"
-                    height="77.5714"
-                    rx="38.7857"
-                    transform="rotate(45 62.3154 -190.173)"
-                    fill="#3B8AFF"
-                  />
-                </g>
-              </svg>
-            </div> */}
+
           </Col>
           <Col
             md="6"

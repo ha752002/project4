@@ -577,20 +577,16 @@ export default function Home(props) {
                   </ul>
                 </div>
                 <div>
-                  <div className={clsx(Styles.title_product)}>Promotions</div>
-                  <div className={clsx(Styles.title_promotion_product)}>
-                    {product.Promotion}
-                  </div>
-                  <ul className={clsx(Styles.promotions_product)}>
+                  <div className={clsx(Styles.title_product)} >Promotions</div>
+                  <div className={clsx(Styles.title_promotion_product)}>{product.Promotion}</div>
+                  <ul key={index} className={clsx(Styles.promotions_product)}>
                     {product.Promotions.map((Promotions, index) => (
-                      <li key={index}>
-                        + {Promotions.Promotion}
-                        <div className={clsx(Styles.promotion_package_product)}>
-                          {Promotions.promotionPackage.map(
-                            (Promotions, index) => (
-                              <div>{Promotions.promotion}</div>
-                            )
-                          )}
+                      <li >+ {Promotions.Promotion}
+                        <div key={index} className={clsx(Styles.promotion_package_product)}>
+
+                          {Promotions.promotionPackage.map((Promotions, index) => (
+                            <div>{Promotions.promotion}</div>
+                          ))}
                         </div>
                       </li>
                     ))}

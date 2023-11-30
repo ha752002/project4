@@ -352,11 +352,21 @@ export default function Home(props) {
         { Promotion: "Bàn phím cơ TOMATO S220 + Chuột máy tính Galax Slider - 04 Black + Phần mềm diệt virus BKAV Pro + Tai nghe TOMATO SK29 Jack 7.1", promotionPackage: [] },
         { Promotion: "Bàn di chuột MINH AN 3mm (Kích thước 30x80)", promotionPackage: [] },
         { Promotion: "Gói bảo hành Vàng 6 tháng", promotionPackage: [] },
+<<<<<<< HEAD
+        {
+          Promotion: "Gói vệ sinh máy miễn phí (Trọn đời máy)",
+          promotionPackage: [],
+        },
+      ],
+    }
+  ] 
+=======
         { Promotion: "Gói vệ sinh máy miễn phí (Trọn đời máy)", promotionPackage: [] },
       ]
     },
   ]
 
+>>>>>>> 5c64fff895ea9918d18f0d1004932eadbda7bf55
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedSubItems, setSelectedSubItems] = useState(null);
 

@@ -47,7 +47,7 @@ const publicRoutes = [
       { path: "lockscreen", element: <LockScreen /> },
       { path: "confirmmail", element: <ConfirmMail /> },
       { path: "home", element: <Home /> },
-      { path: "promotion", element: <PromotionPage /> },
+      { path: "promotionPage", element: <PromotionPage /> },
       { path: "product-detail/:id", element: <ProductDetail /> },
     ],
   },

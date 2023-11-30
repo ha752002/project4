@@ -86,7 +86,6 @@ ul {
   transition: bottom 0.2s ease;
   z-index: 10;
 }
-
 .subMenu {
   position: absolute;
   visibility: hidden;
@@ -235,9 +234,20 @@ ul {
 }
 
 .icon_search {
-  padding: 5px;
-  border-radius: 50%;
-  background-color: red;
+  align-items:
+  flex-start;
+  background-color:
+  #eb1f27;
+  background-position:
+  3px -23px;
+  line-height:
+  21px;
+  padding:
+  6px 6px;
+  text-align:
+  center;
+  color: #d0cbcb;
+  border-radius: 30px;
 }
 
 .group_other {

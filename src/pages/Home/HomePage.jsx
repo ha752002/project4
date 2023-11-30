@@ -15,6 +15,7 @@ import qk008 from "@/assets/home/qk008.png";
 import lap001 from "@/assets/home/product/lap001.jpg";
 import lap002 from "@/assets/home/product/lap002.jpg";
 
+import cart from "../../assets/icon_svg/cart.svg";
 
 export default function Home(props) {
 
@@ -532,6 +533,7 @@ export default function Home(props) {
               </div>
             </div>
             <div className={clsx(Styles.discount_product)}>{product.discount}%</div>
+            <div className={clsx(Styles.cart)}><img src={cart} alt="" /></div>
           </div>
         ))}
       </div>

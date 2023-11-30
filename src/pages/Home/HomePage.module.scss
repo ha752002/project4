@@ -448,6 +448,19 @@
 
 }
 
+.cart{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: #8a92a6;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.cart:hover{
+    background-color: #b31c2b;
+}
+
 // ___________________________________________________________________
 
 .product_portfolio{

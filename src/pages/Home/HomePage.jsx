@@ -458,8 +458,8 @@ export default function Home(props) {
           promotionPackage: [],
         },
       ],
-    },
-
+    }
+  ] 
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedSubItems, setSelectedSubItems] = useState(null);
 

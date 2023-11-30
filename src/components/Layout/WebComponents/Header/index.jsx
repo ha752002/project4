@@ -2,20 +2,18 @@ import classNames from "classnames/bind";
 import Styles from "./Header.module.scss";
 
 import clsx from "clsx";
-import lock from "../../../../assets/icon_svg/lock.svg"
-import unlock from "../../../../assets/icon_svg/unlock.svg"
-import search from "../../../../assets/icon_svg/search.svg"
-import pc from "../../../../assets/icon_svg/pc.svg"
-import telephone from "../../../../assets/icon_svg/telephone.svg"
-import cart from "../../../../assets/icon_svg/cart.svg"
-import logo from "../../../../assets/logo/logo.png"
-
+import lock from "../../../../assets/icon_svg/lock.svg";
+import unlock from "../../../../assets/icon_svg/unlock.svg";
+import search from "../../../../assets/icon_svg/search.svg";
+import pc from "../../../../assets/icon_svg/pc.svg";
+import telephone from "../../../../assets/icon_svg/telephone.svg";
+import cart from "../../../../assets/icon_svg/cart.svg";
+import logo from "../../../../assets/logo/logo.png";
 
 function Header() {
-
   const menu = [
     {
-      title: "individual customers",
+      title: "Khách hàng cá nhân",
       content: [
         {
           title: " KHÁCH HÀNG CÁ NHÂN (Miền Bắc)",
@@ -24,21 +22,21 @@ function Header() {
               phone: "0897654321",
               staff: "Mr.Hoang",
               position: "bảo hành Hà Nội",
-              zalo: true
+              zalo: true,
             },
             {
               phone: "0937588888",
               staff: "Mr.Hoang",
               // position: "bảo hành Hà Nội",
-              zalo: true
+              zalo: true,
             },
             {
               phone: "0937588888",
               staff: "Mr.Hoang",
               // position: "bảo hành Hà Nội",
-              zalo: true
-            }
-          ]
+              zalo: true,
+            },
+          ],
         },
         {
           title: " KHÁCH HÀNG CÁ NHÂN (Miền Nam)",
@@ -47,14 +45,14 @@ function Header() {
               phone: "0937588888",
               staff: "Mr.Hoang",
               position: "bảo hành Hà Nội",
-              zalo: true
-            }
-          ]
-        }
-      ]
+              zalo: true,
+            },
+          ],
+        },
+      ],
     },
     {
-      title: "corporate customers, net games",
+      title: "Khách hàng doanh nghiệp,game net",
       content: [
         {
           title: " KHÁCH HÀNG GAME NET - ICAFE",
@@ -63,9 +61,9 @@ function Header() {
               phone: "0897654321",
               staff: "Mr.Hoang",
               position: "bảo hành Hà Nội",
-              zalo: true
-            }
-          ]
+              zalo: true,
+            },
+          ],
         },
         {
           title: "KHÁCH HÀNG ĐẠI LÝ (BÁN BUÔN)",
@@ -74,60 +72,57 @@ function Header() {
               phone: "0897654321",
               staff: "Mr.Hoang",
               position: "bảo hành Hà Nội",
-              zalo: true
+              zalo: true,
             },
             {
               phone: "0897654321",
               staff: "Mr.Hoang",
               position: "bảo hành Hà Nội",
-              zalo: true
+              zalo: true,
             },
             {
               phone: "0897654321",
               staff: "Mr.Hoang",
               position: "bảo hành Hà Nội",
-              zalo: true
+              zalo: true,
             },
             {
               phone: "0897654321",
               staff: "Mr.Hoang",
               position: "bảo hành Hà Nội",
-              zalo: true
+              zalo: true,
             },
             {
               phone: "0897654321",
               staff: "Mr.Hoang",
               position: "bảo hành Hà Nội",
-              zalo: true
-            }
-
-          ]
-        }
-      ]
+              zalo: true,
+            },
+          ],
+        },
+      ],
     },
     {
-      title: "" +
-          "Promotion information",
+      title: "" + "Tin khuyến mãi",
     },
     {
-      title: "Technology news",
+      title: "Tin tức công nghệ",
     },
     {
-      title: "Recruitment",
-    }
+      title: "Tuyển dụng",
+    },
   ];
 
   const categorys = [
-    { name: " Laptop - Máy Tính Xách Tay 1", },
-    { name: " Laptop - Máy Tính Xách Tay 2", },
-    { name: " Laptop - Máy Tính Xách Tay 3", },
-    { name: " Laptop - Máy Tính Xách Tay 4", },
-    { name: " Laptop - Máy Tính Xách Tay 5", },
-    { name: " Laptop - Máy Tính Xách Tay 6", },
-    { name: " Laptop - Máy Tính Xách Tay 7", },
-    { name: " Laptop - Máy Tính Xách Tay 8", },
-
-  ]
+    { name: " Laptop - Máy Tính Xách Tay 1" },
+    { name: " Laptop - Máy Tính Xách Tay 2" },
+    { name: " Laptop - Máy Tính Xách Tay 3" },
+    { name: " Laptop - Máy Tính Xách Tay 4" },
+    { name: " Laptop - Máy Tính Xách Tay 5" },
+    { name: " Laptop - Máy Tính Xách Tay 6" },
+    { name: " Laptop - Máy Tính Xách Tay 7" },
+    { name: " Laptop - Máy Tính Xách Tay 8" },
+  ];
   return (
     <header className={clsx(Styles.header, Styles.text)}>
       <div className={clsx(Styles.header_menu)}>
@@ -150,9 +145,17 @@ function Header() {
                           {subMenuItem.item && (
                             <ul className={clsx(Styles.subMenuItem)}>
                               {subMenuItem.item.map((item, itemIndex) => (
-                                <li key={itemIndex} className={clsx(Styles.newSubMenuItemClass)}>
-                                  <span className={clsx(Styles.phone)}>{item.phone}</span>
-                                  <span className={clsx(Styles.staff)}> {item.staff}</span>
+                                <li
+                                  key={itemIndex}
+                                  className={clsx(Styles.newSubMenuItemClass)}
+                                >
+                                  <span className={clsx(Styles.phone)}>
+                                    {item.phone}
+                                  </span>
+                                  <span className={clsx(Styles.staff)}>
+                                    {" "}
+                                    {item.staff}
+                                  </span>
                                   {/* Add other item properties as needed */}
                                 </li>
                               ))}
@@ -167,16 +170,21 @@ function Header() {
             </ul>
           </nav>
           <ul className={clsx(Styles.register_login)}>
-            <li> <img src={unlock} alt="" /> đăng nhập</li>
-            <li> <img src={lock} alt="" /> đăng kí</li>
+            <li>
+              {" "}
+              <img src={unlock} alt="" /> Đăng nhập
+            </li>
+            <li>
+              {" "}
+              <img src={lock} alt="" /> Đăng kí
+            </li>
           </ul>
         </div>
-
       </div>
       <div className={clsx(Styles.header_2)}>
         <div className={clsx(Styles.group_header_2)}>
           <img src={logo} alt="" />
-          <div >
+          <div>
             <ul className={clsx(Styles.item_hot)}>
               <li>Ghế gaming</li>
               <li>Màn hình máy tính</li>
@@ -187,7 +195,7 @@ function Header() {
             </ul>
             <div className={clsx(Styles.group_search)}>
               <div className={clsx(Styles.search_by_category)}>
-                tất cả danh mục
+                Tất cả danh mục
                 <div className={clsx(Styles.item_category)}>
                   {categorys.map((category, index) => (
                     <span>{category.name}</span>
@@ -195,7 +203,7 @@ function Header() {
                 </div>
               </div>
               <div className={clsx(Styles.search)}>
-                <input type="text" placeholder="Search" />
+                <input type="text" placeholder="Nhập từ khóa tìm kiếm..." />
               </div>
               <div className={clsx(Styles.icon_search)}>
                 <img src={search} alt="" />
@@ -215,7 +223,7 @@ function Header() {
             <div className={clsx(Styles.flex)}>
               <div>
                 <div className={clsx(Styles.title)}> Xây dựng </div>
-                <div className={clsx(Styles.content)}> Cấu hình pc </div>
+                <div className={clsx(Styles.content)}> Cấu hình PC </div>
               </div>
               <div className={clsx(Styles.img)}>
                 <img src={pc} alt="" />
@@ -224,7 +232,7 @@ function Header() {
             <div className={clsx(Styles.flex)}>
               <div>
                 {/* <div className={clsx(Styles.title)}> Hotline </div> */}
-                <div className={clsx(Styles.content)}> giỏ hàng </div>
+                <div className={clsx(Styles.content)}> Giỏ hàng </div>
               </div>
               <div className={clsx(Styles.img)}>
                 <img src={cart} alt="" />

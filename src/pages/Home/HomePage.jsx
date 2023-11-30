@@ -18,7 +18,7 @@ import lap002 from "@/assets/home/product/lap002.jpg";
 export default function Home(props) {
   const datas = [
     {
-      name: " Laptop - Máy Tính Xách Tay aaaaaaaaaaaaaaaaa",
+      name: " Laptop - Máy Tính Xách Tay",
       img: "",
       generalGenre: [
         {
@@ -577,16 +577,23 @@ export default function Home(props) {
                   </ul>
                 </div>
                 <div>
-                  <div className={clsx(Styles.title_product)} >Promotions</div>
-                  <div className={clsx(Styles.title_promotion_product)}>{product.Promotion}</div>
+                  <div className={clsx(Styles.title_product)}>Promotions</div>
+                  <div className={clsx(Styles.title_promotion_product)}>
+                    {product.Promotion}
+                  </div>
                   <ul key={index} className={clsx(Styles.promotions_product)}>
                     {product.Promotions.map((Promotions, index) => (
-                      <li >+ {Promotions.Promotion}
-                        <div key={index} className={clsx(Styles.promotion_package_product)}>
-
-                          {Promotions.promotionPackage.map((Promotions, index) => (
-                            <div>{Promotions.promotion}</div>
-                          ))}
+                      <li>
+                        + {Promotions.Promotion}
+                        <div
+                          key={index}
+                          className={clsx(Styles.promotion_package_product)}
+                        >
+                          {Promotions.promotionPackage.map(
+                            (Promotions, index) => (
+                              <div>{Promotions.promotion}</div>
+                            )
+                          )}
                         </div>
                       </li>
                     ))}

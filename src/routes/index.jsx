@@ -28,6 +28,7 @@ import {
   Schedule,
 } from "../admin";
 import ProductDetail from "../pages/product/productDetail.jsx";
+import {PromotionPage} from "../pages/index.jsx";
 
 // user
 const publicRoutes = [
@@ -46,6 +47,7 @@ const publicRoutes = [
       { path: "lockscreen", element: <LockScreen /> },
       { path: "confirmmail", element: <ConfirmMail /> },
       { path: "home", element: <Home /> },
+      { path: "promotion", element: <PromotionPage /> },
       { path: "product-detail/:id", element: <ProductDetail /> },
     ],
   },

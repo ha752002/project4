@@ -1,0 +1,35 @@
+.star {
+  color: gold;
+}
+.star-rank {
+  margin-bottom: 10px;
+  width: 100%;
+  float: left;
+  display: flex;
+  gap: 5px;
+  font-size: 1.7rem;
+}
+.star-rank-text {
+  margin-left: 10px;
+  position: relative;
+  background: #e20505;
+  color: #fff;
+  padding: 2px 8px 3px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+.star-rank-text::after {
+  right: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(82, 184, 88, 0);
+  border-right-color: #e20505;
+  border-width: 6px;
+  margin-top: -6px;
+}

@@ -7,11 +7,15 @@
 }
 .global {
   margin: 20px auto;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .global__menu {
   width: 215px;
-  position: relative;
-  float: left;
+  position: absolute;
+  left: 0;
 }
 .global__menu-title {
   margin: 0;
@@ -36,7 +40,7 @@
   display: none;
   z-index: 1;
   width: 100%;
-  position: relative;
+  // position: relative;
 }
 .global__menu-item {
   padding: 5px 0;
@@ -65,7 +69,7 @@
   flex-wrap: wrap;
 }
 .sub__menu-list {
-  position: absolute;
+  // position: absolute;
   top: 0;
   left: 215px;
   width: calc(1200px - 215px);
@@ -108,7 +112,7 @@
 
 .product__info {
   padding: 0 10px;
-  position: absolute;
+  // position: absolute;
   z-index: 0;
   max-width: 100% !important;
   width: 1220px;
@@ -173,7 +177,7 @@
   font-size: 1.4rem;
 }
 .price__new-num {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-left: 20px;
   margin-right: 10px;
@@ -208,7 +212,7 @@ li.summary__item {
   background: #0d699e;
   color: #fff;
   padding: 10px 20px;
-  position: relative;
+  // position: relative;
   border-radius: 0 0 17px 0;
   display: flex;
   align-items: center;
@@ -311,7 +315,7 @@ li.summary__item {
   float: left;
   overflow: hidden;
   padding-right: 15px;
-  position: relative;
+  // position: relative;
 }
 .support__form {
   display: flex;
@@ -340,7 +344,7 @@ li.summary__item {
   color: #fff;
   font-size: 1.2rem;
   border-radius: 50px;
-  position: relative;
+  // position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -429,7 +433,7 @@ li.summary__item {
 .box-hidden {
   max-height: 527px;
   overflow: hidden;
-  position: relative;
+  // position: relative;
 }
 .box-desc {
   font-size: 1.5rem;
@@ -493,7 +497,7 @@ li.summary__item {
   padding: 13px;
   border: solid 1px #acacac;
   border-radius: 10px;
-  position: relative;
+  // position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;

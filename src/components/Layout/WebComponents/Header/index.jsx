@@ -183,7 +183,9 @@ function Header() {
       </div>
       <div className={clsx(Styles.header_2)}>
         <div className={clsx(Styles.group_header_2)}>
-          <img src={logo} alt="" />
+          <a src="">
+            <img src={logo} alt="" />
+          </a>
           <div>
             <ul className={clsx(Styles.item_hot)}>
               <li>Ghế gaming</li>
@@ -198,7 +200,7 @@ function Header() {
                 Tất cả danh mục
                 <div className={clsx(Styles.item_category)}>
                   {categorys.map((category, index) => (
-                    <span>{category.name}</span>
+                    <span key={index}>{category.name}</span>
                   ))}
                 </div>
               </div>

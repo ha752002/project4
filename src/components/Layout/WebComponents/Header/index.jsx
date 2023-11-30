@@ -150,9 +150,11 @@ function Header() {
                           {subMenuItem.item && (
                             <ul className={clsx(Styles.subMenuItem)}>
                               {subMenuItem.item.map((item, itemIndex) => (
-                                <li key={itemIndex} className={clsx(Styles.newSubMenuItemClass)}>
-                                  <span className={clsx(Styles.phone)}>{item.phone}</span>
-                                  <span className={clsx(Styles.staff)}> {item.staff}</span>
+                                <li key={itemIndex} className={clsx()}>
+                                  <span className={clsx(Styles.staff)}> {item.position} </span>
+
+                                  <span className={clsx(Styles.phone)}> {item.phone} </span>
+                                  <span className={clsx(Styles.staff)}> {item.staff} </span>
                                   {/* Add other item properties as needed */}
                                 </li>
                               ))}
@@ -190,7 +192,7 @@ function Header() {
                 tất cả danh mục
                 <div className={clsx(Styles.item_category)}>
                   {categorys.map((category, index) => (
-                    <span>{category.name}</span>
+                    <span key={index}>{category.name}</span>
                   ))}
                 </div>
               </div>

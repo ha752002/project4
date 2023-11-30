@@ -14,7 +14,7 @@ import qk007 from "@/assets/home/qk007.jpg";
 import qk008 from "@/assets/home/qk008.png";
 import lap001 from "@/assets/home/product/lap001.jpg";
 import lap002 from "@/assets/home/product/lap002.jpg";
-
+import cart from "../../assets/icon_svg/cart.svg";
 export default function Home(props) {
   const datas = [
     {
@@ -459,7 +459,9 @@ export default function Home(props) {
         },
       ],
     },
-  ];
+
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedSubItems, setSelectedSubItems] = useState(null);
 
   let [productPromotion, setProductPromotion] = useState([
     {
@@ -537,6 +539,39 @@ export default function Home(props) {
     };
   };
 
+  const handleItemClick = (category, genre, content) => {
+    const selectedItemInfo = {
+      category: category,
+      genre: genre,
+      content: content,
+    };
+    setSelectedItem(selectedItemInfo);
+    const subItems = content.items || null;
+
+    setSelectedSubItems(subItems);
+    console.log("Selected Item:", selectedItemInfo);
+  };
+
+  const renderSelectedItemPath = () => {
+    if (selectedItem) {
+      if (selectedItem.content != "") {
+        return (
+          <div className={Styles.selectedItemPath}>
+            {selectedItem.category} / {selectedItem.genre} / {selectedItem.content}
+          </div>
+        );
+      }
+      return (
+        <div className={Styles.selectedItemPath}>
+          {selectedItem.category} / {selectedItem.genre}
+        </div>
+      );
+    }
+    return null;
+  };
+
+
+
   const renderProduct = () => {
     return (
       <div className={clsx(Styles.group_product, Styles.flex)}>
@@ -579,13 +614,13 @@ export default function Home(props) {
                 <div>
                   <div className={clsx(Styles.title_product)} >Promotions</div>
                   <div className={clsx(Styles.title_promotion_product)}>{product.Promotion}</div>
-                  <ul key={index} className={clsx(Styles.promotions_product)}>
+                  <ul className={clsx(Styles.promotions_product)}>
                     {product.Promotions.map((Promotions, index) => (
-                      <li >+ {Promotions.Promotion}
-                        <div key={index} className={clsx(Styles.promotion_package_product)}>
+                      <li key={index}>+ {Promotions.Promotion}
+                        <div className={clsx(Styles.promotion_package_product)}>
 
                           {Promotions.promotionPackage.map((Promotions, index) => (
-                            <div>{Promotions.promotion}</div>
+                            <div key={index}>{Promotions.promotion}</div>
                           ))}
                         </div>
                       </li>
@@ -616,63 +651,105 @@ export default function Home(props) {
                 )}
               </div>
             </div>
-            <div className={clsx(Styles.discount_product)}>
-              {product.discount}%
-            </div>
+            <div className={clsx(Styles.discount_product)}>{product.discount}%</div>
+            <div className={clsx(Styles.cart)}><img src={cart} alt="" /></div>
           </div>
         ))}
       </div>
     );
   };
+  const renderProductByCategory = () => {
+    return (
+      <div>
+        {datas.map((data, index) => (
+          <div key={index} className={clsx(Styles.flex, Styles.category_product)}>
+            <div className={clsx(Styles.category)}>
+              <div className={clsx(Styles.title_category)}>
+                <div className={clsx(Styles.category_name)}>{data.name}</div>
+                <ul className={clsx(Styles.group_item_category)}>
 
-  return (
-    <>
-      <div
-        className={clsx(Styles.home, Styles.text, Styles.flex, Styles.center)}
-      >
-        <div className={clsx(Styles.flex, Styles.center, Styles.layout)}>
-          <div className={clsx(Styles.flex)}>
-            <div className={clsx(Styles.list_menu)}>
-              <ul className={clsx(Styles.generalGenre)}>
-                {datas.map((data, index) => (
-                  <li key={index}>
-                    <div className={clsx(Styles.name)}>{data.name}</div>
-                    <div className={clsx(Styles.content)}>
-                      <ul className={clsx(Styles.genre, Styles.text_16)}>
-                        {data.generalGenre.map((genre, genreIndex) => (
-                          <li key={genreIndex}>
-                            <div className={clsx(Styles.title)}>
-                              {genre.title}{" "}
+                  {data.generalGenre.slice(0, 3).map((generalGenre, index) => (
+                    <li key={index}> {generalGenre.title}</li>
+                  ))}
+
+                  <li>see more</li>
+                </ul>
+              </div>
+              <div>{renderProduct()}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  const renderMenuCategory = () => {
+    return (
+      <div>
+        {/* {renderSelectedItemPath()} */}
+        <ul className={clsx(Styles.generalGenre)}>
+          {datas.map((data, index) => (
+            <li key={index}>
+              <div className={clsx(Styles.name)}>{data.name}</div>
+              <div className={clsx(Styles.content)}>
+                <ul className={clsx(Styles.genre, Styles.text_16)}>
+                  {data.generalGenre.map((genre, genreIndex) => (
+                    <li key={genreIndex}>
+                      <div
+                        className={clsx(Styles.title)}
+                        onClick={() =>
+                          handleItemClick(data.name, genre.title, genre.content)
+                        }
+                      >
+                        {genre.title}
+                      </div>
+                      <ul>
+                        {genre.content.map((content, contentIndex) => (
+                          <li key={contentIndex} className={clsx(Styles.showItem)}>
+                            <div className={clsx(Styles.flex)}>
+                              <div
+                                onClick={() =>
+                                  handleItemClick(
+                                    data.name,
+                                    genre.title,
+                                    content.category
+                                  )
+                                }
+                              >
+                                {content.category}
+                              </div>
+                              {content.items.length > 0 && <img src={dropdown} alt="" />}
                             </div>
-                            <ul>
-                              {genre.content.map((content, contentIndex) => (
-                                <li
-                                  key={contentIndex}
-                                  className={clsx(Styles.showItem)}
-                                >
-                                  <div className={clsx(Styles.flex)}>
-                                    {content.category}
-                                    {content.items.length > 0 && (
-                                      <img src={dropdown} alt="" />
-                                    )}
-                                  </div>
-                                  <ul className={clsx(Styles.items)}>
-                                    {content.items.map((item, itemIndex) => (
-                                      <li key={itemIndex}>
-                                        <p>{item.category}</p>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </li>
-                              ))}
+                            <ul className={clsx(Styles.items)}>
+                              {content.items.map((item, itemIndex) => (
+                                <li key={itemIndex}>
+                                  <p>{item.category}</p>
+  
                             </ul>
                           </li>
                         ))}
                       </ul>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+
+
+
+  }
+
+  const home = () => {
+    if (!selectedItem) {
+      return (
+        <div>
+          <div className={clsx(Styles.flex)}>
+            <div className={clsx(Styles.list_menu)}>
+              {renderMenuCategory()}
             </div>
             <div>
               <div className={clsx(Styles.group_advertisement)}>
@@ -754,32 +831,32 @@ export default function Home(props) {
             <div className={clsx(Styles.background, Styles.flex)}>
               {renderProduct()}
             </div>
-
-            {datas.map((data, index) => (
-              <div className={clsx(Styles.flex, Styles.category_product)}>
-                <div className={clsx(Styles.category)}>
-                  <div className={clsx(Styles.title_category)}>
-                    <div className={clsx(Styles.category_name)}>
-                      {data.name}
-                    </div>
-                    <ul className={clsx(Styles.group_item_category)}>
-                      {data.generalGenre
-                        .slice(0, 3)
-                        .map((generalGenre, index) => (
-                          <li> {generalGenre.title}</li>
-                        ))}
-
-                      <li>see more</li>
-                    </ul>
-                  </div>
-                  <div>{renderProduct()}</div>
-                </div>
-              </div>
-            ))}
-
-            <div className={clsx(Styles.flex)}></div>
+            {renderProductByCategory()}
           </div>
         </div>
+      )
+    } else {
+      renderSelectedItemPath()
+    }
+  }
+  return (
+    <>
+      <div className={clsx(Styles.home, Styles.text, Styles.flex, Styles.center)}>
+        <div className={clsx(Styles.flex, Styles.center, Styles.layout)}>
+          {home()}
+          <div>
+            <div className={clsx(Styles.flex ,  Styles.center)}>
+              <div className={clsx(Styles.product_portfolio)}>
+                Danh mục sản phẩm 
+                <div className={clsx(Styles.menu_Category)}>{renderMenuCategory()}</div> </div>
+              <div>
+                {renderSelectedItemPath()}
+              </div>
+            </div>
+            <div></div>
+          </div>
+        </div>
+
       </div>
     </>
   );

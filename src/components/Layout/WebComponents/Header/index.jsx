@@ -2,12 +2,18 @@ import classNames from "classnames/bind";
 import Styles from "./Header.module.scss";
 import clsx from "clsx";
 import "bootstrap/dist/css/bootstrap.min.css";
+import lock from "../../../../assets/icon_svg/lock.svg";
+import unlock from "../../../../assets/icon_svg/unlock.svg";
+import search from "../../../../assets/icon_svg/search.svg";
+import pc from "../../../../assets/icon_svg/pc.svg";
+import telephone from "../../../../assets/icon_svg/telephone.svg";
+import cart from "../../../../assets/icon_svg/cart.svg";
 import logo from "../../../../assets/logo/logo.png";
 
 function Header() {
   const menu = [
     {
-      title: "individual customers",
+      title: "Khách hàng cá nhân",
       content: [
         {
           title: " KHÁCH HÀNG CÁ NHÂN (Miền Bắc)",
@@ -46,7 +52,7 @@ function Header() {
       ],
     },
     {
-      title: "corporate customers, net games",
+      title: "Khách hàng doanh nghiệp,game net",
       content: [
         {
           title: " KHÁCH HÀNG GAME NET - ICAFE",
@@ -96,11 +102,10 @@ function Header() {
         },
       ],
     },
-    {
-      title: "" + "Promotion information",
+    {      title: "" + "Promotion information",
     },
     {
-      title: "Technology news",
+      title: "Tin tức công nghệ",
     },
     {
       title: "Recruitment",
@@ -214,7 +219,7 @@ function Header() {
             </ul>
             <div className={clsx(Styles.group_search)}>
               <div className={clsx(Styles.search_by_category)}>
-                tất cả danh mục
+                Tất cả danh mục
                 <div className={clsx(Styles.item_category)}>
                   {categorys.map((category, index) => (
                     <span key={index}>{category.name}</span>
@@ -222,7 +227,7 @@ function Header() {
                 </div>
               </div>
               <div className={clsx(Styles.search)}>
-                <input type="text" placeholder="Search" />
+                <input type="text" placeholder="Nhập từ khóa tìm kiếm..." />
               </div>
               <div className={clsx(Styles.icon_search)}>
                 <svg
@@ -260,7 +265,7 @@ function Header() {
             <div className={clsx(Styles.flex)}>
               <div>
                 <div className={clsx(Styles.title)}> Xây dựng </div>
-                <div className={clsx(Styles.content)}> Cấu hình pc </div>
+                <div className={clsx(Styles.content)}> Cấu hình PC </div>
               </div>
               <div className={clsx(Styles.img)}>
                 <svg

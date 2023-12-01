@@ -2,13 +2,6 @@ import classNames from "classnames/bind";
 import Styles from "./Header.module.scss";
 import clsx from "clsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import lock from "../../../../assets/icon_svg/lock.svg";
-import unlock from "../../../../assets/icon_svg/unlock.svg";
-import search from "../../../../assets/icon_svg/search.svg";
-import pc from "../../../../assets/icon_svg/pc.svg";
-import telephone from "../../../../assets/icon_svg/telephone.svg";
-import cart from "../../../../assets/icon_svg/cart.svg";
 import logo from "../../../../assets/logo/logo.png";
 
 function Header() {

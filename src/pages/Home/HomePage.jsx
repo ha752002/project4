@@ -366,6 +366,7 @@ export default function Home(props) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedSubItems, setSelectedSubItems] = useState(null);
   const [eventVisible, setEventVisible] = useState(true);
+  const [viewType, setViewType] = useState(false);
 
   let [productPromotion, setProductPromotion] = useState([
     {
@@ -457,7 +458,14 @@ export default function Home(props) {
   };
 
   const handleEventClick = () => {
-    setEventVisible(!eventVisible); // Đảo ngược trạng thái
+    setEventVisible(!eventVisible);
+  };
+
+  const handleViewTypeClick = (ViewType) => {
+    // if(ViewType == true || ViewType == false){
+    //   setViewType(ViewType); 
+
+    // }
   };
 
   const renderSelectedItemPath = () => {
@@ -640,7 +648,7 @@ export default function Home(props) {
           <div className={clsx(Styles.flex, Styles.center, Styles.tile_list_product)}>
             <div className={clsx(Styles.product_portfolio)}>
               <div className={clsx(Styles.flex, Styles.center)}>
-                <img src={list} alt="" />
+                <img src={list} alt="" className={clsx(Styles.icon_white)} />
                 Danh mục sản phẩm
               </div>
               <div className={clsx(Styles.menu_Category)}>
@@ -655,10 +663,10 @@ export default function Home(props) {
             <div className={clsx(Styles.block_filter)}></div>
             <div className={clsx(Styles.block_list_product)}>
 
-              <div className={clsx(Styles.list_product)}>
+              <div className={clsx(Styles.list_product, viewType && Styles.view_type)}>
                 <div className={clsx(Styles.arrange, Styles.flex)}>
                   <div className={clsx(Styles.flex, Styles.tile_arrange)}>
-                    <img src={sliders} alt="" />
+                    <img src={sliders} alt="" className={clsx(Styles.icon_white)} />
                     SẮP XẾP SẢN PHẨM
                   </div>
                   <div>
@@ -675,8 +683,12 @@ export default function Home(props) {
                           <option value="">Giá giảm dần</option>
                         </select>
                       </li>
-                      <li><img src={grid_3} alt="" /></li>
-                      <li><img src={grid} alt="" /></li>
+                      <li onClick={handleViewTypeClick(false)} className={clsx(!viewType && Styles.viewType)}>
+                        <img className={clsx(Styles.icon_white)} src={grid_3} alt="" />
+                      </li>
+                      <li onClick={handleViewTypeClick(true)} className={clsx(viewType && Styles.viewType)}>
+                        <img className={clsx(Styles.icon_white)} src={grid} alt="" />
+                      </li>
 
                     </ul>
                   </div>

@@ -554,6 +554,7 @@
     justify-content: space-between;
     display: flex;
     align-items: center;
+    flex: 1;
 }
 
 .arrange ul {
@@ -565,6 +566,11 @@
     border: 1px solid #eb1f27;
     border-radius: 100px;
     padding: 3px 15px;
+}
+
+.arrange ul li:hover{
+    background-color: #eb1f27;
+    color: white;
 }
 
 .arrange ul:last-child li:first-child {
@@ -600,6 +606,19 @@
     padding: 20px;
 }
 
+.view_type .product{
+    flex-basis: calc(50% - 10px);
+    display: flex;
+    gap: 10px;
+}
+
+.viewType{
+    background-color: #eb1f27 !important;
+}
+
+// .view_type .product {
+//     flex-basis: calc(50% - 10px);
+// }
 // .arrange img{
 //     width: 100%;
 //     height: auto;

@@ -24,6 +24,7 @@
     position: relative;
     background-color: white;
     border-radius: 8px;
+    flex: auto;
 }
 
 .text {
@@ -177,7 +178,7 @@
     grid-template-columns: 25% repeat(3, 25%);
     grid-template-rows: 150px;
     // background-color: white;
-    max-width: 1090px;
+    max-width: 1150px;
     height: auto;
     background-color: white;
     gap: 10px;
@@ -479,7 +480,7 @@
 }
 
 .block_list_product {
-    width: 80%;
+    max-width: 80%;
 
 }
 
@@ -607,9 +608,11 @@
 }
 
 .view_type .product{
-    flex-basis: calc(50% - 10px);
+    flex-basis: calc(50% ) !important;
     display: flex;
     gap: 10px;
+    // max-width: 400px;
+    max-width: 50% ;
 }
 
 .viewType{
@@ -642,7 +645,7 @@
 }
 
 .close_event {
-    justify-content: end;
+    justify-content: flex-end;
     display: flex;
     width: 100%;
 }

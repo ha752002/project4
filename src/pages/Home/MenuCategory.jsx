@@ -14,8 +14,6 @@ export default function MenuCategory(props) {
     console.log(data);
     return (
       <div>
-        <button>aaaaaa</button>
-        <button>aaaaaa</button>
         {/* {renderSelectedItemPath()} */}
         <ul className={clsx(Styles.generalGenre)}>
           {data.data.map((data, index) => (

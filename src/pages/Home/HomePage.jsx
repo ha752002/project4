@@ -17,13 +17,14 @@ import lap002 from "@/assets/home/product/lap002.jpg";
 
 import event from "../../assets/images/event/event.png";
 
-
 import cart from "../../assets/icon_svg/cart.svg";
 import list from "../../assets/icon_svg/list-ul.svg";
 import grid_3 from "../../assets/icon_svg/grid-3x3-gap.svg";
 import grid from "../../assets/icon_svg/grid.svg";
 import sliders from "../../assets/icon_svg/sliders.svg";
 import close from "../../assets/icon_svg/close.svg";
+// import TestComponent from "./TestComponent";
+import MenuCategory from "./MenuCategory";
 
 export default function Home(props) {
 
@@ -463,7 +464,7 @@ export default function Home(props) {
 
   const handleViewTypeClick = (ViewType) => {
     // if(ViewType == true || ViewType == false){
-    //   setViewType(ViewType); 
+    setViewType(ViewType);
 
     // }
   };
@@ -582,65 +583,6 @@ export default function Home(props) {
     )
   }
 
-  const renderMenuCategory = () => {
-    return (
-      <div>
-        {/* {renderSelectedItemPath()} */}
-        <ul className={clsx(Styles.generalGenre)}>
-          {datas.map((data, index) => (
-            <li key={index} >
-              <div className={clsx(Styles.name)} onClick={() => handleItemClick(data.name, "", "")}>{data.name}</div>
-              <div className={clsx(Styles.content)}>
-                <ul className={clsx(Styles.genre, Styles.text_16)}>
-                  {data.generalGenre.map((genre, genreIndex) => (
-                    <li key={genreIndex}>
-                      <div
-                        className={clsx(Styles.title)}
-                        onClick={() => handleItemClick(data.name, genre.title, "")}
-                      >
-                        {genre.title}
-                      </div>
-                      <ul>
-                        {genre.content.map((content, contentIndex) => (
-                          <li key={contentIndex} className={clsx(Styles.showItem)}>
-                            <div className={clsx(Styles.flex)}>
-                              <div
-                                onClick={() =>
-                                  handleItemClick(
-                                    data.name,
-                                    genre.title,
-                                    content.category
-                                  )
-                                }
-                              >
-                                {content.category}
-                              </div>
-                              {content.items.length > 0 && <img src={dropdown} alt="" />}
-                            </div>
-                            <ul className={clsx(Styles.items)}>
-                              {content.items.map((item, itemIndex) => (
-                                <li key={itemIndex}>
-                                  <p>{item.category}</p>
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-
-
-
-  }
-
   const renderListproduct = () => {
     if (selectedItem) {
       return (
@@ -652,7 +594,7 @@ export default function Home(props) {
                 Danh mục sản phẩm
               </div>
               <div className={clsx(Styles.menu_Category)}>
-                {renderMenuCategory()}
+                <MenuCategory></MenuCategory>
               </div>
             </div>
             <div>
@@ -663,7 +605,7 @@ export default function Home(props) {
             <div className={clsx(Styles.block_filter)}></div>
             <div className={clsx(Styles.block_list_product)}>
 
-              <div className={clsx(Styles.list_product, viewType && Styles.view_type)}>
+              <div className={clsx(viewType && Styles.view_type, Styles.list_product,)}>
                 <div className={clsx(Styles.arrange, Styles.flex)}>
                   <div className={clsx(Styles.flex, Styles.tile_arrange)}>
                     <img src={sliders} alt="" className={clsx(Styles.icon_white)} />
@@ -683,10 +625,10 @@ export default function Home(props) {
                           <option value="">Giá giảm dần</option>
                         </select>
                       </li>
-                      <li onClick={handleViewTypeClick(false)} className={clsx(!viewType && Styles.viewType)}>
+                      <li onClick={() => handleViewTypeClick(false)} className={clsx(!viewType && Styles.viewType)}>
                         <img className={clsx(Styles.icon_white)} src={grid_3} alt="" />
                       </li>
-                      <li onClick={handleViewTypeClick(true)} className={clsx(viewType && Styles.viewType)}>
+                      <li onClick={() => handleViewTypeClick(true)} className={clsx(viewType && Styles.viewType)}>
                         <img className={clsx(Styles.icon_white)} src={grid} alt="" />
                       </li>
 
@@ -729,7 +671,8 @@ export default function Home(props) {
         <div>
           <div className={clsx(Styles.flex)}>
             <div className={clsx(Styles.list_menu)}>
-              {renderMenuCategory()}
+              <MenuCategory></MenuCategory>
+
             </div>
             <div>
               <div className={clsx(Styles.group_advertisement,)} >
@@ -797,6 +740,7 @@ export default function Home(props) {
 
   return (
     <>
+      {/* <TestComponent></TestComponent> */}
       <div className={clsx(Styles.home, Styles.text, Styles.flex, Styles.center)}>
         <div className={clsx(Styles.flex, Styles.center, Styles.layout)}>
           {home()}

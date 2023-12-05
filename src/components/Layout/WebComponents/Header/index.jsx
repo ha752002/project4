@@ -1,14 +1,10 @@
-import classNames from "classnames/bind";
 import Styles from "./Header.module.scss";
 import clsx from "clsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-import lock from "../../../../assets/icon_svg/lock.svg";
-import unlock from "../../../../assets/icon_svg/unlock.svg";
-import search from "../../../../assets/icon_svg/search.svg";
-import pc from "../../../../assets/icon_svg/pc.svg";
-import telephone from "../../../../assets/icon_svg/telephone.svg";
-import cart from "../../../../assets/icon_svg/cart.svg";
 import logo from "../../../../assets/logo/logo.png";
+import ButtonLogin from "../../../Button/ButtonLogin.jsx";
+import {useNavigate} from "react-router-dom";
+import ButtonRegister from "../../../Button/ButtonRegister.jsx";
 
 function Header() {
   const menu = [
@@ -150,6 +146,16 @@ function Header() {
     { name: " Laptop - Máy Tính Xách Tay 7" },
     { name: " Laptop - Máy Tính Xách Tay 8" },
   ];
+  const navigate = useNavigate();
+  const  handleCLickLogin = () => {
+    navigate('/signIn')
+  }
+
+  const  handleCLickRegister = () => {
+    navigate('/signUp')
+  }
+
+
   return (
     <header className={clsx(Styles.header, Styles.text)}>
       <div className={clsx(Styles.header_menu)}>
@@ -200,36 +206,8 @@ function Header() {
             </ul>
           </nav>
           <ul className={clsx(Styles.register_login)}>
-            <li className={clsx(Styles["register_login-item"])}>
-              <a href="#">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  fill="currentColor"
-                  class="bi bi-unlock"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2M3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1z" />
-                </svg>
-                <span>Đăng nhập</span>
-              </a>
-            </li>
-            <li className={clsx(Styles["register_login-item"])}>
-              <a href="#">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  fill="currentColor"
-                  class="bi bi-lock"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
-                </svg>
-                <span>Đăng kí</span>
-              </a>
-            </li>
+            <ButtonLogin onclick={handleCLickLogin} />
+            <ButtonRegister onclick={handleCLickRegister}/>
           </ul>
         </div>
       </div>

@@ -16,9 +16,10 @@ import lap001 from "@/assets/home/product/lap001.jpg";
 import lap002 from "@/assets/home/product/lap002.jpg";
 
 import cart from "../../assets/icon_svg/cart.svg";
+import {HomeSlide} from "../../components/carousel/HomeSlide.jsx";
 
 export default function Home(props) {
-
+  // return <HomeSlide></HomeSlide>
   const datas = [
     {
       name: " Laptop - Máy Tính Xách Tay aaaaaaaaaaaaaaaaa",
@@ -636,8 +637,8 @@ export default function Home(props) {
               </div>
               <div>
                 <div className={clsx(Styles.group_advertisement,)} >
-                  <div className={clsx(Styles.advertisement_big_item, Styles.advertisement_item)} style={{ display: "flex", overflow: "hidden" }}>
-                    <div>1</div>
+                  <div className={clsx(Styles.advertisement_big_item, Styles.advertisement_item)} >
+                   <HomeSlide></HomeSlide>
                   </div>
                   <div className={clsx(Styles.advertisement_item)}>
                     <div>

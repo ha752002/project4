@@ -167,6 +167,7 @@ ul {
 .group_header_2 > img {
   max-width: 150px;
   height: 40px;
+ 
 }
 
 .item_hot {
@@ -309,4 +310,26 @@ ul {
 
 .title {
   font-size: 10px;
+}
+.cart_count{ 
+  // text-align: right;
+  // color: white;
+  // background-color: red;
+  // border-radius: 50%;
+  // padding: 0 5px;
+  // position: relative;
+  // top: -5px;
+  // font-size: 10px;
+  font-size: 10px;
+    background: #970c19;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-weight: 500;
+    position: absolute;
+    top: 39px;
+    right: 1px;
+    color: white;
 }

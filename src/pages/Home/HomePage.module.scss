@@ -24,6 +24,7 @@
     position: relative;
     background-color: white;
     border-radius: 8px;
+    flex: auto;
 }
 
 .text {
@@ -79,7 +80,7 @@
     position: absolute;
     right: -920px;
     top: 0;
-    // padding: 20px;
+    // padding: 20px 0px 0px 20px;
     gap: 20px;
     border-radius: 8px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -159,6 +160,10 @@
     flex-wrap: wrap;
 }
 
+.genre>li {
+    margin: 20px;
+}
+
 
 .group_advertisement {
     display: grid;
@@ -177,7 +182,7 @@
     grid-template-columns: 25% repeat(3, 25%);
     grid-template-rows: 150px;
     // background-color: white;
-    max-width: 1090px;
+    max-width: 1150px;
     height: auto;
     background-color: white;
     gap: 10px;
@@ -480,7 +485,7 @@
 }
 
 .block_list_product {
-    width: 80%;
+    max-width: 80%;
 
 }
 
@@ -569,7 +574,7 @@
     padding: 3px 15px;
 }
 
-.arrange ul li:hover{
+.arrange ul li:hover {
     background-color: #eb1f27;
     color: white;
 }
@@ -607,13 +612,15 @@
     padding: 20px;
 }
 
-.view_type .product{
-    flex-basis: calc(50% - 10px);
+.view_type .product {
+    flex-basis: calc(50%) !important;
     display: flex;
     gap: 10px;
+    // max-width: 400px;
+    max-width: 50%;
 }
 
-.viewType{
+.viewType {
     background-color: #eb1f27 !important;
 }
 
@@ -643,12 +650,12 @@
 }
 
 .close_event {
-    justify-content: end;
+    justify-content: flex-end;
     display: flex;
     width: 100%;
 }
 
-.close_event img{
+.close_event img {
     margin: 0px;
     width: 30px;
     height: auto;

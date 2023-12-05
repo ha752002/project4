@@ -23,6 +23,8 @@ import grid_3 from "../../assets/icon_svg/grid-3x3-gap.svg";
 import grid from "../../assets/icon_svg/grid.svg";
 import sliders from "../../assets/icon_svg/sliders.svg";
 import close from "../../assets/icon_svg/close.svg";
+// import TestComponent from "./TestComponent";
+import MenuCategory from "./MenuCategory";
 
 export default function Home(props) {
   const datas = [
@@ -731,7 +733,6 @@ export default function Home(props) {
       </div>
     );
   };
-
   const renderMenuCategory = () => {
     return (
       <div>
@@ -799,7 +800,6 @@ export default function Home(props) {
       </div>
     );
   };
-
   const renderListproduct = () => {
     if (selectedItem) {
       return (
@@ -817,7 +817,7 @@ export default function Home(props) {
                 Danh mục sản phẩm
               </div>
               <div className={clsx(Styles.menu_Category)}>
-                {renderMenuCategory()}
+                <MenuCategory></MenuCategory>
               </div>
             </div>
             <div>{renderSelectedItemPath()}</div>

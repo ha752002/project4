@@ -26,6 +26,7 @@ import close from "../../assets/icon_svg/close.svg";
 // import TestComponent from "./TestComponent";
 import MenuCategory from "./MenuCategory";
 import {HomeSlide} from "../../components/carousel/HomeSlide.jsx";
+import ListProduct from "./ListProduct.jsx";
 
 export default function Home(props) {
   const datas = [
@@ -992,7 +993,8 @@ export default function Home(props) {
               </ul>
 
               <div className={clsx(Styles.background, Styles.flex)}>
-                {renderProduct()}
+              <ListProduct></ListProduct>
+
               </div>
               {renderProductByCategory()}
             </div>

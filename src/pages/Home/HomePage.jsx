@@ -912,7 +912,8 @@ export default function Home(props) {
       return (
           <div>
             <div className={clsx(Styles.flex)}>
-              <div className={clsx(Styles.list_menu)}>{renderMenuCategory()}</div>
+              <div className={clsx(Styles.list_menu)}>                  <MenuCategory></MenuCategory>
+</div>
               <div>
                 <div className={clsx(Styles.group_advertisement)}>
                   <div

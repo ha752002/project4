@@ -24,4 +24,5 @@ export default function AdminRole({ children }) {
 
   if (roles?.find(role => role.name  === ROLE_ADMIN)) return <>{children}</>;
   return <NotFoundPage/>
+  // return <>{children}</>;
 }

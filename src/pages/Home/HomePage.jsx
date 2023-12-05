@@ -18,6 +18,7 @@ import lap002 from "@/assets/home/product/lap002.jpg";
 import event from "../../assets/images/event/event.png";
 
 import cart from "../../assets/icon_svg/cart.svg";
+import {HomeSlide} from "../../components/carousel/HomeSlide.jsx";
 import list from "../../assets/icon_svg/list-ul.svg";
 import grid_3 from "../../assets/icon_svg/grid-3x3-gap.svg";
 import grid from "../../assets/icon_svg/grid.svg";
@@ -909,23 +910,20 @@ export default function Home(props) {
   const home = () => {
     if (!selectedItem) {
       return (
-        <div>
-          <div className={clsx(Styles.flex)}>
-            <div className={clsx(Styles.list_menu)}>{renderMenuCategory()}</div>
-            <div>
-              <div className={clsx(Styles.group_advertisement)}>
-                <div
-                  className={clsx(
-                    Styles.advertisement_big_item,
-                    Styles.advertisement_item
-                  )}
-                  style={{ display: "flex", overflow: "hidden" }}
-                >
-                  <div>1</div>
-                </div>
-                <div className={clsx(Styles.advertisement_item)}>
-                  <div>
-                    <img src={hqdefault} />
+          <div>
+            <div className={clsx(Styles.flex)}>
+              <div className={clsx(Styles.list_menu)}>
+                {renderMenuCategory()}
+              </div>
+              <div>
+                <div className={clsx(Styles.group_advertisement,)} >
+                  <div className={clsx(Styles.advertisement_big_item, Styles.advertisement_item)} >
+                   <HomeSlide></HomeSlide>
+                  </div>
+                  <div className={clsx(Styles.advertisement_item)}>
+                    <div>
+                      <img src={hqdefault} />
+                    </div>
                   </div>
                 </div>
                 <div className={clsx(Styles.advertisement_item)}>

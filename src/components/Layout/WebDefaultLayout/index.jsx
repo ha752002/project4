@@ -6,11 +6,11 @@ import Footer from "../WebComponents/Footer";
 function WebDefaultLayout({ children }) {
   return (
     <div>
-      <Header/>
+      <Header />
       <div>
         <div>{children}</div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

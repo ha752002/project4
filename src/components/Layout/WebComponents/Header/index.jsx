@@ -19,20 +19,20 @@ function Header() {
           title: " KHÁCH HÀNG CÁ NHÂN (Miền Bắc)",
           item: [
             {
-              phone: "0897654321",
-              staff: "Mr.Hoang",
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
               position: "bảo hành Hà Nội",
               zalo: true,
             },
             {
-              phone: "0937588888",
-              staff: "Mr.Hoang",
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
               // position: "bảo hành Hà Nội",
               zalo: true,
             },
             {
-              phone: "0937588888",
-              staff: "Mr.Hoang",
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
               // position: "bảo hành Hà Nội",
               zalo: true,
             },
@@ -42,9 +42,38 @@ function Header() {
           title: " KHÁCH HÀNG CÁ NHÂN (Miền Nam)",
           item: [
             {
-              phone: "0937588888",
-              staff: "Mr.Hoang",
-              position: "bảo hành Hà Nội",
+              phone: "18006321",
+              staff: "",
+              position: "Tổng đài miễn phí:",
+              zalo: true,
+            },
+            {
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
+              position: "Zalo",
+              zalo: true,
+            },
+          ],
+        },
+        {
+          title: " TƯ VẤN CAMERA, THIẾT BỊ VĂN PHÒNG",
+          item: [
+            {
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
+              position: "",
+              zalo: true,
+            },
+            {
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
+              // position: "bảo hành Hà Nội",
+              zalo: true,
+            },
+            {
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
+              // position: "bảo hành Hà Nội",
               zalo: true,
             },
           ],
@@ -58,8 +87,8 @@ function Header() {
           title: " KHÁCH HÀNG GAME NET - ICAFE",
           item: [
             {
-              phone: "0897654321",
-              staff: "Mr.Hoang",
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
               position: "bảo hành Hà Nội",
               zalo: true,
             },
@@ -69,32 +98,32 @@ function Header() {
           title: "KHÁCH HÀNG ĐẠI LÝ (BÁN BUÔN)",
           item: [
             {
-              phone: "0897654321",
-              staff: "Mr.Hoang",
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
               position: "bảo hành Hà Nội",
               zalo: true,
             },
             {
-              phone: "0897654321",
-              staff: "Mr.Hoang",
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
               position: "bảo hành Hà Nội",
               zalo: true,
             },
             {
-              phone: "0897654321",
-              staff: "Mr.Hoang",
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
               position: "bảo hành Hà Nội",
               zalo: true,
             },
             {
-              phone: "0897654321",
-              staff: "Mr.Hoang",
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
               position: "bảo hành Hà Nội",
               zalo: true,
             },
             {
-              phone: "0897654321",
-              staff: "Mr.Hoang",
+              phone: "0836668336",
+              staff: "Mr.Tuấn Anh",
               position: "bảo hành Hà Nội",
               zalo: true,
             },
@@ -102,8 +131,7 @@ function Header() {
         },
       ],
     },
-    {      title: "" + "Promotion information",
-    },
+    { title: "" + "Promotion information" },
     {
       title: "Tin tức công nghệ",
     },
@@ -207,7 +235,9 @@ function Header() {
       </div>
       <div className={clsx(Styles.header_2)}>
         <div className={clsx(Styles.group_header_2)}>
-          <img src={logo} alt="" />
+          <a src="">
+            <img src={logo} alt="" />
+          </a>
           <div>
             <ul className={clsx(Styles.item_hot)}>
               <li>Ghế gaming</li>
@@ -298,6 +328,7 @@ function Header() {
                     d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"
                   />
                 </svg>
+                <span className={clsx(Styles.cart_count)}>02</span>
               </div>
             </div>
           </div>

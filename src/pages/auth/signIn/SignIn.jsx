@@ -13,7 +13,6 @@ import {useForm} from "react-hook-form";
 import {ROLE_ADMIN, ROLE_USER} from "../../../constants/role.js";
 const {resetStatus} = authSlice.actions
 export const SignIn = () => {
-  const cookies = new Cookies();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {status, error, userInfo} = useSelector(state => state.auth);
@@ -31,6 +30,7 @@ export const SignIn = () => {
       toast(error.message)
     } else if (status === FULFILLED) {
       toast("Đăng nhập thành công")
+      console.log(userInfo)
       dispatch(resetStatus())
      if(userInfo){
        if(userInfo.roles?.find(role => role.name === ROLE_ADMIN) ){

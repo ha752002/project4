@@ -18,9 +18,10 @@ const axiosClient = axios.create(
         }
     })()
 );
+
 axiosClient.interceptors.request.use(function (config) {
     const cookies = new Cookies();
-    const token = cookies.get('jwtToken');
+    const token = cookies.get('token');
     console.log(token)
     // console.log(token);
     config.headers['Authorization'] = "Bearer " +  token;
@@ -46,7 +47,7 @@ export const apiClient = {
     },
 
     post: async (url, body = {}) => {
-        const response = await axiosClient.post(url, body,  { withCredentials: true });
+        const response = await axiosClient.post(url, body);
         // console.log(response);
         // console.log(response.data);
         return response.data;

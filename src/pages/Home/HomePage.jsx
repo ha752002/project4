@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import clsx from "clsx";
 import Styles from "./HomePage.module.scss";
-
 import dropdown from "@/assets/images/sidebar/ic_Chevron.svg";
 import hqdefault from "@/assets/home/hqdefault.jpg";
 import qk001 from "@/assets/home/qk001.jpg";
@@ -14,21 +13,23 @@ import qk007 from "@/assets/home/qk007.jpg";
 import qk008 from "@/assets/home/qk008.png";
 import lap001 from "@/assets/home/product/lap001.jpg";
 import lap002 from "@/assets/home/product/lap002.jpg";
-
 import event from "../../assets/images/event/event.png";
-
 import cart from "../../assets/icon_svg/cart.svg";
 import list from "../../assets/icon_svg/list-ul.svg";
 import grid_3 from "../../assets/icon_svg/grid-3x3-gap.svg";
 import grid from "../../assets/icon_svg/grid.svg";
 import sliders from "../../assets/icon_svg/sliders.svg";
 import close from "../../assets/icon_svg/close.svg";
-// import TestComponent from "./TestComponent";
 import MenuCategory from "./MenuCategory";
-import { HomeSlide } from "../../components/carousel/HomeSlide.jsx";
+import {HomeSlide} from "../../components/carousel/HomeSlide.jsx";
+import CKeditor from "../../components/CKeditor/CKeditor.jsx";
 import ListProduct from "./ListProduct.jsx";
+import {useDispatch} from "react-redux";
+import {cartSlice} from "../../redux/slice/cartSlice.js";
+
 
 export default function Home(props) {
+  // return <CKeditor />
   const datas = [
     {
       name: " Laptop - Máy Tính Xách Tay ",
@@ -205,9 +206,9 @@ export default function Home(props) {
       ],
     },
   ];
-
   const products = [
     {
+      id: 1,
       name: " PC Gaming Intel Core i5-12400F | RTX 3060 Ti | RAM 16GB ",
       img: lap001,
       price: 21456000,
@@ -255,6 +256,7 @@ export default function Home(props) {
       ],
     },
     {
+      id: 2,
       name: " Bộ PC Intel Core i7-13700 | RTX 4070Ti | RAM 64GB ",
       img: lap002,
       price: 55508000,
@@ -317,6 +319,7 @@ export default function Home(props) {
       ],
     },
     {
+      id: 3,
       name: " PC Gaming Intel Core i5-12400F | RTX 3060 Ti | RAM 16GB ",
       img: lap001,
       price: 21456000,
@@ -364,6 +367,7 @@ export default function Home(props) {
       ],
     },
     {
+      id: 4,
       name: " Bộ PC Intel Core i7-13700 | RTX 4070Ti | RAM 64GB ",
       img: lap002,
       price: 55508000,
@@ -426,6 +430,7 @@ export default function Home(props) {
       ],
     },
     {
+      id: 5,
       name: " PC Gaming Intel Core i5-12400F | RTX 3060 Ti | RAM 16GB ",
       img: lap001,
       price: 21456000,
@@ -473,12 +478,12 @@ export default function Home(props) {
       ],
     },
   ];
-
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedSubItems, setSelectedSubItems] = useState(null);
+  const  dispatch = useDispatch();
+  const {addCart} =  cartSlice.actions;
   const [eventVisible, setEventVisible] = useState(true);
   const [viewType, setViewType] = useState(false);
-
   let [productPromotion, setProductPromotion] = useState([
     {
       title: "TOP PC GAMING HOT",
@@ -577,19 +582,11 @@ export default function Home(props) {
     //   setViewType(ViewType);
     // }
   };
-  const [carts, setCarts] = useState([]);
 
   const onAddtoCartHandler = (product) => {
-    if (carts.indexOf(product) !== -1) return null;
-    const arr = [...carts];
-    product.amount = 1;
-    arr.push(product);
-    setCarts([...arr]);
+    dispatch(addCart(product))
   };
-  carts;
-  useEffect(() => {
-    console.log(carts);
-  });
+
   const renderSelectedItemPath = () => {
     if (selectedItem) {
       if (selectedItem.content != "") {
@@ -608,6 +605,7 @@ export default function Home(props) {
     }
     return null;
   };
+
 
   const renderProduct = () => {
     return (
@@ -697,7 +695,7 @@ export default function Home(props) {
             </div>
             <div className={clsx(Styles.cart)}>
               <img
-                onClick={() => onAddtoCartHandler(products)}
+                onClick={() => onAddtoCartHandler(product)}
                 src={cart}
                 alt=""
                 className={clsx(Styles.icon_white)}

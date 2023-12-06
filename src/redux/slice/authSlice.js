@@ -16,8 +16,6 @@ export const authLogin = createAsyncThunk("auth/login", async (body, thunkApi) =
         const response = await apiClient.post("auth/login", body);
         const jwtToken = response.data.jwtToken;
         console.log(response)
-
-
         if (jwtToken) {
             const cookies = new Cookies();
             cookies.set("token", jwtToken, {expires: new Date(response.data.expiresIn),  path: '/'})
@@ -70,6 +68,11 @@ export const authSlice = createSlice(
         reducers: {
             resetStatus: (state)=> {
                 state.status = IDLE
+            },
+            logout : () =>{
+                console.log(11111111111111111)
+                const cookies = new Cookies();
+                cookies.remove("token");
             }
         },
         extraReducers: (builder) => {
@@ -79,6 +82,7 @@ export const authSlice = createSlice(
                 })
                 .addCase(authLogin.fulfilled, (state, action) => {
                     state.status = FULFILLED;
+                    console.log(action.payload)
                     state.userToken = action.payload;
                     // console.log(current(state.userInfo));
                     state.error = null;

@@ -23,11 +23,12 @@ import grid_3 from "../../assets/icon_svg/grid-3x3-gap.svg";
 import grid from "../../assets/icon_svg/grid.svg";
 import sliders from "../../assets/icon_svg/sliders.svg";
 import close from "../../assets/icon_svg/close.svg";
-// import TestComponent from "./TestComponent";
 import MenuCategory from "./MenuCategory";
 import {HomeSlide} from "../../components/carousel/HomeSlide.jsx";
+import CKeditor from "../../components/CKeditor/CKeditor.jsx";
 
 export default function Home(props) {
+  return <CKeditor />
   const datas = [
     {
       name: " Laptop - Máy Tính Xách Tay ",
@@ -522,37 +523,6 @@ export default function Home(props) {
     currency: "VND",
   });
 
-  const ConveyorBelt = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [autoScroll, setAutoScroll] = useState(true);
-    const data = ["Item 1", "Item 2", "Item 3", "Item 4"];
-
-    useEffect(() => {
-      const interval = setInterval(() => {
-        if (autoScroll) {
-          setCurrentIndex((prevIndex) =>
-              prevIndex === data.length - 1 ? 0 : prevIndex + 1
-          );
-        }
-      }, 2000);
-
-      return () => clearInterval(interval);
-    }, [autoScroll, data.length]);
-
-    const handlePrev = () => {
-      setCurrentIndex((prevIndex) =>
-          prevIndex === 0 ? data.length - 1 : prevIndex - 1
-      );
-      setAutoScroll(false);
-    };
-
-    const handleNext = () => {
-      setCurrentIndex((prevIndex) =>
-          prevIndex === data.length - 1 ? 0 : prevIndex + 1
-      );
-      setAutoScroll(false);
-    };
-  };
 
   const handleItemClick = (category, genre, content) => {
     const selectedItemInfo = {
@@ -585,7 +555,7 @@ export default function Home(props) {
     arr.push(product);
     setCarts([...arr]);
   };
-  carts;
+
   useEffect(() => {
     console.log(carts);
   });
@@ -607,6 +577,7 @@ export default function Home(props) {
     }
     return null;
   };
+
 
   const renderProduct = () => {
     return (

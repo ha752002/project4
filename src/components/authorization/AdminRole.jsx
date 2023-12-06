@@ -10,10 +10,12 @@ import {loadingSlice} from "../../redux/slice/loadingSlice.js";
 const {turnOn, turnOff} = loadingSlice.actions
 export default function AdminRole({ children }) {
   const dispatch = useDispatch()
-  const {userInfo: {roles}, status} = useSelector(state => state.auth);
-
+  const {userInfo, status} = useSelector(state => {
+    console.log(state)
+    return state.auth
+  });
   useEffect(() => {
-    if(!roles){
+    if(!userInfo.roles){
       dispatch(getUserInfo())
     }
   }, []);
@@ -22,7 +24,7 @@ export default function AdminRole({ children }) {
     dispatch(status === PENDING ? turnOn() : turnOff())
   }, [status]);
 
-  if (roles?.find(role => role.name  === ROLE_ADMIN)) return <>{children}</>;
+  if (userInfo?.roles && userInfo.roles?.find(role => role.name  === ROLE_ADMIN)) return <>{children}</>;
   return <NotFoundPage/>
   // return <>{children}</>;
 }

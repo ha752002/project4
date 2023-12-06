@@ -3,7 +3,7 @@ import Header from "@/components/Layout/components/Header";
 function HeaderOnly({ children }) {
   return (
     <div>
-      <Header />
+      <Header soluong={carts.length} />
       <div className="container">
         <div className="content">{children}</div>
       </div>

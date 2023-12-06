@@ -28,7 +28,7 @@ import {
   Schedule,
 } from "../admin";
 import ProductDetail from "../pages/product/productDetail.jsx";
-import {PromotionPage} from "../pages/index.jsx";
+import { PromotionPage } from "../pages/index.jsx";
 
 // user
 const publicRoutes = [
@@ -40,7 +40,7 @@ const publicRoutes = [
       </PublicRole>
     ),
     children: [
-      { path: "", element: <Home />},
+      { path: "", element: <Home /> },
       { path: "signup", element: <SignUp /> },
       { path: "signin", element: <SignIn /> },
       { path: "recoverpw", element: <Recoverpw /> },
@@ -63,7 +63,7 @@ const privateRoutes = [
       </AdminRole>
     ),
     children: [
-      { path: "", element: <Dashboard/> },
+      { path: "", element: <Dashboard /> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "users-profile", element: <UsersProfile /> },
       { path: "list-users", element: <UsersList /> },

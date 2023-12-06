@@ -11,7 +11,7 @@ export default function MenuCategory(props) {
     return <div>...loading</div>
   }
   if (data) {
-    console.log(data);
+    // console.log(data);
     return (
       <div>
         {/* {renderSelectedItemPath()} */}

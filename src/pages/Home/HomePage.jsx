@@ -804,7 +804,7 @@ export default function Home(props) {
   // };
   
   const renderListproduct = () => {
-    if (!selectedItem) {
+    if (selectedItem) {
       return (
         <div>
           <div
@@ -912,7 +912,7 @@ export default function Home(props) {
   };
 
   const home = () => {
-    if (selectedItem) {
+    if (!selectedItem) {
       return (
         <div>
           <div className={clsx(Styles.flex)}>

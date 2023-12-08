@@ -26,6 +26,7 @@ import CKeditor from "../../components/CKeditor/CKeditor.jsx";
 import ListProduct from "./ListProduct.jsx";
 import {useDispatch} from "react-redux";
 import {cartSlice} from "../../redux/slice/cartSlice.js";
+import MenuFilter from "./MenuFilter.jsx";
 
 
 export default function Home(props) {
@@ -484,6 +485,7 @@ export default function Home(props) {
   const {addCart} =  cartSlice.actions;
   const [eventVisible, setEventVisible] = useState(true);
   const [viewType, setViewType] = useState(false);
+
   let [productPromotion, setProductPromotion] = useState([
     {
       title: "TOP PC GAMING HOT",
@@ -733,75 +735,76 @@ export default function Home(props) {
       </div>
     );
   };
-  const renderMenuCategory = () => {
-    return (
-      <div>
-        {/* {renderSelectedItemPath()} */}
-        <ul className={clsx(Styles.generalGenre)}>
-          {datas.map((data, index) => (
-            <li key={index}>
-              <div
-                className={clsx(Styles.name)}
-                onClick={() => handleItemClick(data.name, "", "")}
-              >
-                {data.name}
-              </div>
-              <div className={clsx(Styles.content)}>
-                <ul className={clsx(Styles.genre, Styles.text_16)}>
-                  {data.generalGenre.map((genre, genreIndex) => (
-                    <li key={genreIndex}>
-                      <div
-                        className={clsx(Styles.title)}
-                        onClick={() =>
-                          handleItemClick(data.name, genre.title, "")
-                        }
-                      >
-                        {genre.title}
-                      </div>
-                      <ul>
-                        {genre.content.map((content, contentIndex) => (
-                          <li
-                            key={contentIndex}
-                            className={clsx(Styles.showItem)}
-                          >
-                            <div className={clsx(Styles.flex)}>
-                              <div
-                                onClick={() =>
-                                  handleItemClick(
-                                    data.name,
-                                    genre.title,
-                                    content.category
-                                  )
-                                }
-                              >
-                                {content.category}
-                              </div>
-                              {content.items.length > 0 && (
-                                <img src={dropdown} alt="" />
-                              )}
-                            </div>
-                            <ul className={clsx(Styles.items)}>
-                              {content.items.map((item, itemIndex) => (
-                                <li key={itemIndex}>
-                                  <p>{item.category}</p>
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  };
+  // const renderMenuCategory = () => {
+  //   return (
+  //     <div>
+  //       {/* {renderSelectedItemPath()} */}
+  //       <ul className={clsx(Styles.generalGenre)}>
+  //         {datas.map((data, index) => (
+  //           <li key={index}>
+  //             <div
+  //               className={clsx(Styles.name)}
+  //               onClick={() => handleItemClick(data.name, "", "")}
+  //             >
+  //               {data.name}
+  //             </div>
+  //             <div className={clsx(Styles.content)}>
+  //               <ul className={clsx(Styles.genre, Styles.text_16)}>
+  //                 {data.generalGenre.map((genre, genreIndex) => (
+  //                   <li key={genreIndex}>
+  //                     <div
+  //                       className={clsx(Styles.title)}
+  //                       onClick={() =>
+  //                         handleItemClick(data.name, genre.title, "")
+  //                       }
+  //                     >
+  //                       {genre.title}
+  //                     </div>
+  //                     <ul>
+  //                       {genre.content.map((content, contentIndex) => (
+  //                         <li
+  //                           key={contentIndex}
+  //                           className={clsx(Styles.showItem)}
+  //                         >
+  //                           <div className={clsx(Styles.flex)}>
+  //                             <div
+  //                               onClick={() =>
+  //                                 handleItemClick(
+  //                                   data.name,
+  //                                   genre.title,
+  //                                   content.category
+  //                                 )
+  //                               }
+  //                             >
+  //                               {content.category}
+  //                             </div>
+  //                             {content.items.length > 0 && (
+  //                               <img src={dropdown} alt="" />
+  //                             )}
+  //                           </div>
+  //                           <ul className={clsx(Styles.items)}>
+  //                             {content.items.map((item, itemIndex) => (
+  //                               <li key={itemIndex}>
+  //                                 <p>{item.category}</p>
+  //                               </li>
+  //                             ))}
+  //                           </ul>
+  //                         </li>
+  //                       ))}
+  //                     </ul>
+  //                   </li>
+  //                 ))}
+  //               </ul>
+  //             </div>
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     </div>
+  //   );
+  // };
+  
   const renderListproduct = () => {
-    if (selectedItem) {
+    if (!selectedItem) {
       return (
         <div>
           <div
@@ -822,8 +825,10 @@ export default function Home(props) {
             </div>
             <div>{renderSelectedItemPath()}</div>
           </div>
-          <div className={clsx(Styles.flex)}>
-            <div className={clsx(Styles.block_filter)}></div>
+          <div className={clsx(Styles.flex , Styles.main_list_product)}>
+            <div className={clsx(Styles.block_filter)}>
+              <MenuFilter></MenuFilter>
+            </div>
             <div className={clsx(Styles.block_list_product)}>
               <div
                 className={clsx(
@@ -907,7 +912,7 @@ export default function Home(props) {
   };
 
   const home = () => {
-    if (!selectedItem) {
+    if (selectedItem) {
       return (
         <div>
           <div className={clsx(Styles.flex)}>

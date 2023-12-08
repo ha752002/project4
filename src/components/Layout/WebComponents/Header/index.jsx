@@ -76,6 +76,7 @@ function Header({soluong}) {
                     ],
                 },
             ],
+            path: '#'
         },
         {
             title: "Khách hàng doanh nghiệp,game net",
@@ -127,13 +128,15 @@ function Header({soluong}) {
                     ],
                 },
             ],
+            path: '#'
         },
-        {title: "" + "Promotion information"},
+        {
+            title: "" + "Thông tin khuyến mãi",
+            path: '/promotionPage'
+        },
         {
             title: "Tin tức công nghệ",
-        },
-        {
-            title: "Recruitment",
+            path: '#'
         },
     ];
 
@@ -156,6 +159,10 @@ function Header({soluong}) {
         navigate("/signUp");
     };
 
+    const handleEventNavigate = (menuItem) => {
+        navigate(menuItem.path);
+    }
+
     return (
         <header className={clsx(Styles.header, Styles.text)}>
             <div className={clsx(Styles.header_menu)}>
@@ -164,7 +171,9 @@ function Header({soluong}) {
                         <ul className={clsx(Styles.menu)}>
                             {menu.map((menuItem, index) => (
                                 <li key={index} className={clsx(Styles.menuItem)}>
-                                    <div>{menuItem.title}</div>
+                                    <div onClick={() => {
+                                        handleEventNavigate(menuItem)
+                                    }}>{menuItem.title}</div>
                                     {menuItem.content && (
                                         <ul className={clsx(Styles.subMenu)}>
                                             {menuItem.content.map((subMenuItem, subIndex) => (

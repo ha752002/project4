@@ -2,7 +2,9 @@ import React from "react";
 import Styles from "./PromotionPage.module.scss";
 import clsx from "clsx";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {useNavigate} from "react-router-dom";
 const PromotionPage = () => {
+  const navigate  = useNavigate();
   return (
     <section className={clsx(Styles.promotion)}>
       <div className={clsx(Styles.container)}>

@@ -13,67 +13,129 @@ function Header() {
       title: "Khách hàng cá nhân",
       content: [
         {
-          title: " KHÁCH HÀNG CÁ NHÂN (Miền Bắc)",
-          item: [
-            {
-              phone: "0836668336",
-              staff: "Mr.Tuấn Anh",
-              position: "bảo hành Hà Nội",
-              zalo: true,
-            },
-            {
-              phone: "0836668336",
-              staff: "Mr.Tuấn Anh",
-              // position: "bảo hành Hà Nội",
-              zalo: true,
-            },
-            {
-              phone: "0836668336",
-              staff: "Mr.Tuấn Anh",
-              // position: "bảo hành Hà Nội",
-              zalo: true,
-            },
-          ],
+          title: "Khách hàng cá nhân",
+            content: [
+                {
+                    title: " KHÁCH HÀNG CÁ NHÂN (Miền Bắc)",
+                    item: [
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            // position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            // position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                    ],
+                },
+                {
+                    title: " KHÁCH HÀNG CÁ NHÂN (Miền Nam)",
+                    item: [
+                        {
+                            phone: "18006321",
+                            staff: "",
+                            position: "Tổng đài miễn phí:",
+                            zalo: true,
+                        },
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            position: "Zalo",
+                            zalo: true,
+                        },
+                    ],
+                },
+                {
+                    title: " TƯ VẤN CAMERA, THIẾT BỊ VĂN PHÒNG",
+                    item: [
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            position: "",
+                            zalo: true,
+                        },
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            // position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            // position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                    ],
+                },
+            ],
+            path: '#'
         },
         {
-          title: " KHÁCH HÀNG CÁ NHÂN (Miền Nam)",
-          item: [
-            {
-              phone: "18006321",
-              staff: "",
-              position: "Tổng đài miễn phí:",
-              zalo: true,
-            },
-            {
-              phone: "0836668336",
-              staff: "Mr.Tuấn Anh",
-              position: "Zalo",
-              zalo: true,
-            },
-          ],
+            title: "Khách hàng doanh nghiệp,game net",
+            content: [
+                {
+                    title: " KHÁCH HÀNG GAME NET - ICAFE",
+                    item: [
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                    ],
+                },
+                {
+                    title: "KHÁCH HÀNG ĐẠI LÝ (BÁN BUÔN)",
+                    item: [
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                        {
+                            phone: "0836668336",
+                            staff: "Mr.Tuấn Anh",
+                            position: "bảo hành Hà Nội",
+                            zalo: true,
+                        },
+                    ],
+                },
+            ],
+            path: '#'
         },
         {
-          title: " TƯ VẤN CAMERA, THIẾT BỊ VĂN PHÒNG",
-          item: [
-            {
-              phone: "0836668336",
-              staff: "Mr.Tuấn Anh",
-              position: "",
-              zalo: true,
-            },
-            {
-              phone: "0836668336",
-              staff: "Mr.Tuấn Anh",
-              // position: "bảo hành Hà Nội",
-              zalo: true,
-            },
-            {
-              phone: "0836668336",
-              staff: "Mr.Tuấn Anh",
-              // position: "bảo hành Hà Nội",
-              zalo: true,
-            },
-          ],
+            title: "" + "Thông tin khuyến mãi",
+            path: '/promotionPage'
         },
       ],
     },
@@ -90,6 +152,9 @@ function Header() {
               zalo: true,
             },
           ],
+        },{
+            title: "Tin tức công nghệ",
+            path: '#'
         },
         {
           title: "KHÁCH HÀNG ĐẠI LÝ (BÁN BUÔN)",
@@ -155,30 +220,35 @@ function Header() {
   const handleCLickRegister = () => {
     navigate("/signUp");
   };
+    const handleEventNavigate = (menuItem) => {
+        navigate(menuItem.path);
+    }
 
-  return (
-    <header className={clsx(Styles.header, Styles.text)}>
-      <div className={clsx(Styles.header_menu)}>
-        <div className={clsx(Styles.flex)}>
-          <nav>
-            <ul className={clsx(Styles.menu)}>
-              {menu.map((menuItem, index) => (
-                <li key={index} className={clsx(Styles.menuItem)}>
-                  <div>{menuItem.title}</div>
-                  {menuItem.content && (
-                    <ul className={clsx(Styles.subMenu)}>
-                      {menuItem.content.map((subMenuItem, subIndex) => (
-                        <li key={subIndex} className={clsx()}>
-                          <div>
-                            <div className={clsx(Styles.item_number)}>
-                              0{subIndex + 1}
-                            </div>
-                            {subMenuItem.title}
-                          </div>
-                          {subMenuItem.item && (
-                            <ul className={clsx(Styles.subMenuItem)}>
-                              {subMenuItem.item.map((item, itemIndex) => (
-                                <li key={itemIndex} className={clsx()}>
+    return (
+        <header className={clsx(Styles.header, Styles.text)}>
+            <div className={clsx(Styles.header_menu)}>
+                <div className={clsx(Styles.flex)}>
+                    <nav>
+                        <ul className={clsx(Styles.menu)}>
+                            {menu.map((menuItem, index) => (
+                                <li key={index} className={clsx(Styles.menuItem)}>
+                                    <div onClick={() => {
+                                        handleEventNavigate(menuItem)
+                                    }}>{menuItem.title}</div>
+                                    {menuItem.content && (
+                                        <ul className={clsx(Styles.subMenu)}>
+                                            {menuItem.content.map((subMenuItem, subIndex) => (
+                                                <li key={subIndex} className={clsx()}>
+                                                    <div>
+                                                        <div className={clsx(Styles.item_number)}>
+                                                            0{subIndex + 1}
+                                                        </div>
+                                                        {subMenuItem.title}
+                                                    </div>
+                                                    {subMenuItem.item && (
+                                                        <ul className={clsx(Styles.subMenuItem)}>
+                                                            {subMenuItem.item.map((item, itemIndex) => (
+                                                                <li key={itemIndex} className={clsx()}>
                                   <span className={clsx(Styles.staff)}>
                                     {" "}
                                     {item.position}{" "}

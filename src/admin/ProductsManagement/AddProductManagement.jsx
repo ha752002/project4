@@ -1,113 +1,94 @@
 import React, { useState } from "react";
 
 const AddProductManagement = () => {
-  const [productData, setProductData] = useState({
-    title: "",
-    productCode: "",
-    warrantyPeriod: "",
-    cost: 0,
-    promotional: 0,
-    video: "",
-    specifications: [
-      { name: "Ram", content: "" },
-      { name: "CPU", content: "" },
-    ],
-    categories: [{ id: "" }],
-  });
+  const [todos, setTodos] = useState([]);
+  const [todo, setTodo] = useState("");
+  const [editedTodo, setEditedTodo] = useState("");
+  const [editIndex, setEditIndex] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setProductData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const handleAddTodo = () => {
+    if (todo) {
+      setTodos([...todos, todo]);
+      setTodo("");
+    }
   };
 
-  const handleSpecificationChange = (index, e) => {
-    const { name, value } = e.target;
-
-    setProductData((prevData) => {
-      const updatedSpecifications = [...prevData.specifications];
-      updatedSpecifications[index] = {
-        ...updatedSpecifications[index],
-        [name]: value,
-      };
-
-      return {
-        ...prevData,
-        specifications: updatedSpecifications,
-      };
-    });
+  const handleEditTodo = (index) => {
+    setEditIndex(index);
+    setEditedTodo(todos[index]);
   };
 
-  const handleCategoryChange = (e) => {
-    const { name, value } = e.target;
-
-    setProductData((prevData) => ({
-      ...prevData,
-      categories: [{ id: value }],
-    }));
+  const handleSaveEdit = () => {
+    const newTodos = [...todos];
+    newTodos[editIndex] = editedTodo;
+    setTodos(newTodos);
+    setEditIndex(null);
+    setEditedTodo("");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Đưa dữ liệu tạo sản phẩm về server hoặc thực hiện các tác vụ cần thiết
-    console.log("Submitted Product Data:", productData);
+  const handleDeleteTodo = (index) => {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
   };
 
   return (
     <div className="container mt-5">
-      <form onSubmit={handleSubmit}>
-        {/* Các trường nhập liệu cho sản phẩm */}
-        <div>
-          <label>Title:</label>
-          <input
-            type="text"
-            name="title"
-            value={productData.title}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div>
-          <label>Product Code:</label>
-          <input
-            type="text"
-            name="productCode"
-            value={productData.productCode}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* ...Thêm các trường khác tương tự */}
-
-        {/* Trường nhập liệu cho Specifications */}
-        {productData.specifications.map((specification, index) => (
-          <div key={index}>
-            <label>{specification.name}:</label>
-            <input
-              type="text"
-              name={specification.name}
-              value={specification.content}
-              onChange={(e) => handleSpecificationChange(index, e)}
-            />
-          </div>
+      <h1>Todo List</h1>
+      <div className="input-group mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Add todo..."
+          value={todo}
+          onChange={(e) => setTodo(e.target.value)}
+        />
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleAddTodo}
+        >
+          Add
+        </button>
+      </div>
+      <ul className="list-group">
+        {todos.map((item, index) => (
+          <li
+            key={index}
+            className="list-group-item d-flex justify-content-between align-items-center"
+          >
+            {index === editIndex ? (
+              <input
+                type="text"
+                className="form-control"
+                value={editedTodo}
+                onChange={(e) => setEditedTodo(e.target.value)}
+              />
+            ) : (
+              item
+            )}
+            <div>
+              {index === editIndex ? (
+                <button className="btn btn-success" onClick={handleSaveEdit}>
+                  Save
+                </button>
+              ) : (
+                <button
+                  className="btn btn-warning"
+                  onClick={() => handleEditTodo(index)}
+                >
+                  Edit
+                </button>
+              )}
+              <button
+                className="btn btn-danger"
+                onClick={() => handleDeleteTodo(index)}
+              >
+                Delete
+              </button>
+            </div>
+          </li>
         ))}
-
-        {/* Trường nhập liệu cho Categories */}
-        <div>
-          <label>Category:</label>
-          <input
-            type="text"
-            name="category"
-            value={productData.categories[0].id}
-            onChange={handleCategoryChange}
-          />
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
+      </ul>
     </div>
   );
 };

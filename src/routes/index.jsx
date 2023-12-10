@@ -32,6 +32,7 @@ import ProductDetail from "../pages/product/productDetail.jsx";
 import { PromotionPage } from "../pages/index.jsx";
 
 // user
+import Cart from "../pages/Cart/cart.jsx";
 const publicRoutes = [
   {
     path: "",
@@ -50,6 +51,7 @@ const publicRoutes = [
       { path: "home", element: <Home /> },
       { path: "promotionPage", element: <PromotionPage /> },
       { path: "product-detail/:id", element: <ProductDetail /> },
+      { path: "cart", element: <Cart /> },
     ],
   },
 ];

@@ -18,9 +18,33 @@ export const cartSlice = createSlice(
                     })
                     existsProduct ? (existsProduct.amount++) : (state.productList.push({...action.payload, amount : 1}))
                 }
-                console.log(current(state.productList))
             },
-
+            amountIncrement: (state, action) => {
+                if(action.payload){
+                    const existsProduct =  state.productList.find((product)=>{
+                        return product.id === action.payload.id;
+                    })
+                    if(existsProduct){
+                        (existsProduct.amount++)
+                    }
+                }
+            },
+            amountDecrement: (state, action) => {
+                if(action.payload){
+                    let existsProductIndex = -1;
+                    const existsProduct =  state.productList.find((product, index)=>{
+                        existsProductIndex = index;
+                        return product.id === action.payload.id;
+                    })
+                    if(existsProduct){
+                        if(existsProduct.amount === 1){
+                            state.productList.splice(existsProductIndex, 1)
+                        } else{
+                            existsProduct.amount--
+                        }
+                    }
+                }
+            },
         },
 
 

@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 
 const AddProductManagement = () => {
-  const [todos, setTodos] = useState([]);
-  const [todo, setTodo] = useState("");
-  const [editedTodo, setEditedTodo] = useState("");
-  const [editIndex, setEditIndex] = useState(null);
+  const [productData, setProductData] = useState({
+    title: "",
+    productCode: "",
+    warrantyPeriod: "",
+    cost: 0,
+    promotional: 0,
+    video: "",
+    specifications: [],
+    categories: [{ id: "" }],
+  });
 
-  const handleAddTodo = () => {
-    if (todo) {
-      setTodos([...todos, todo]);
-      setTodo("");
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setProductData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleEditTodo = (index) => {
@@ -33,60 +41,49 @@ const AddProductManagement = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Todo List</h1>
-      <div className="input-group mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Add todo..."
-          value={todo}
-          onChange={(e) => setTodo(e.target.value)}
-        />
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={handleAddTodo}
-        >
-          Add
-        </button>
-      </div>
-      <ul className="list-group">
-        {todos.map((item, index) => (
-          <li
-            key={index}
-            className="list-group-item d-flex justify-content-between align-items-center"
-          >
-            {index === editIndex ? (
-              <input
-                type="text"
-                className="form-control"
-                value={editedTodo}
-                onChange={(e) => setEditedTodo(e.target.value)}
-              />
-            ) : (
-              item
-            )}
-            <div>
-              {index === editIndex ? (
-                <button className="btn btn-success" onClick={handleSaveEdit}>
-                  Save
-                </button>
-              ) : (
-                <button
-                  className="btn btn-warning"
-                  onClick={() => handleEditTodo(index)}
-                >
-                  Edit
-                </button>
-              )}
-              <button
-                className="btn btn-danger"
-                onClick={() => handleDeleteTodo(index)}
-              >
-                Delete
-              </button>
-            </div>
-          </li>
+      <form onSubmit={handleSubmit}>
+        {/* Các trường nhập liệu cho sản phẩm */}
+        <div>
+          <label>Title:</label>
+          <input
+            type="text"
+            name="title"
+            value={productData.title}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <label>Product Code:</label>
+          <input
+            type="text"
+            name="productCode"
+            value={productData.productCode}
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* ...Thêm các trường khác tương tự */}
+
+        {/* Trường nhập liệu cho Specifications */}
+        {productData.specifications.map((specification, index) => (
+          <div key={index}>
+            <label>{`Specification ${index + 1} Name:`}</label>
+            <input
+              type="text"
+              name={`specifications[${index}].name`}
+              value={specification.name}
+              onChange={(e) => handleSpecificationChange(index, e)}
+            />
+
+            <label>{`Specification ${index + 1} Content:`}</label>
+            <input
+              type="text"
+              name={`specifications[${index}].content`}
+              value={specification.content}
+              onChange={(e) => handleSpecificationChange(index, e)}
+            />
+          </div>
         ))}
       </ul>
     </div>

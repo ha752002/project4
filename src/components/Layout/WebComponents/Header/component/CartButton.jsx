@@ -13,7 +13,7 @@ const CartButton = () => {
   };
 
   return (
-    <Link to="cart">
+    <Link to="/cart">
       <div className={clsx(Styles.flex)}>
         <div>
           <div className={clsx(Styles.content)}> Giỏ hàng</div>

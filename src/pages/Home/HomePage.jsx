@@ -3,6 +3,7 @@ import clsx from "clsx";
 import Styles from "./HomePage.module.scss";
 import dropdown from "@/assets/images/sidebar/ic_Chevron.svg";
 import hqdefault from "@/assets/home/hqdefault.jpg";
+import { Link } from "react-router-dom";
 import qk001 from "@/assets/home/qk001.jpg";
 import qk002 from "@/assets/home/qk002.jpg";
 import qk003 from "@/assets/home/qk003.png";
@@ -21,13 +22,12 @@ import grid from "../../assets/icon_svg/grid.svg";
 import sliders from "../../assets/icon_svg/sliders.svg";
 import close from "../../assets/icon_svg/close.svg";
 import MenuCategory from "./MenuCategory";
-import {HomeSlide} from "../../components/carousel/HomeSlide.jsx";
+import { HomeSlide } from "../../components/carousel/HomeSlide.jsx";
 import CKeditor from "../../components/CKeditor/CKeditor.jsx";
 import ListProduct from "./ListProduct.jsx";
-import {useDispatch} from "react-redux";
-import {cartSlice} from "../../redux/slice/cartSlice.js";
+import { useDispatch } from "react-redux";
+import { cartSlice } from "../../redux/slice/cartSlice.js";
 import MenuFilter from "./MenuFilter.jsx";
-
 
 export default function Home(props) {
   // return <CKeditor />
@@ -481,8 +481,8 @@ export default function Home(props) {
   ];
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedSubItems, setSelectedSubItems] = useState(null);
-  const  dispatch = useDispatch();
-  const {addCart} =  cartSlice.actions;
+  const dispatch = useDispatch();
+  const { addCart } = cartSlice.actions;
   const [eventVisible, setEventVisible] = useState(true);
   const [viewType, setViewType] = useState(false);
 
@@ -586,7 +586,7 @@ export default function Home(props) {
   };
 
   const onAddtoCartHandler = (product) => {
-    dispatch(addCart(product))
+    dispatch(addCart(product));
   };
 
   const renderSelectedItemPath = () => {
@@ -608,14 +608,15 @@ export default function Home(props) {
     return null;
   };
 
-
   const renderProduct = () => {
     return (
       <div className={clsx(Styles.group_product, Styles.flex)}>
         {products.map((product, index) => (
           <div key={index} className={clsx(Styles.product)}>
             <div className={clsx(Styles.hover_detail)}>
-              <img src={product.img} alt="" />
+              <Link to={"product-detail/1"}>
+                <img src={product.img} alt="" />
+              </Link>
               <div className={clsx(Styles.detail_product)}>
                 <div className={clsx(Styles.name_product)}>{product.name}</div>
                 <ul>
@@ -802,7 +803,7 @@ export default function Home(props) {
   //     </div>
   //   );
   // };
-  
+
   const renderListproduct = () => {
     if (selectedItem) {
       return (
@@ -825,7 +826,7 @@ export default function Home(props) {
             </div>
             <div>{renderSelectedItemPath()}</div>
           </div>
-          <div className={clsx(Styles.flex , Styles.main_list_product)}>
+          <div className={clsx(Styles.flex, Styles.main_list_product)}>
             <div className={clsx(Styles.block_filter)}>
               <MenuFilter></MenuFilter>
             </div>
@@ -931,30 +932,31 @@ export default function Home(props) {
                 >
                   <HomeSlide></HomeSlide>
                 </div>
+
                 <div className={clsx(Styles.advertisement_item)}>
-                  <div>
+                  <Link to={"promotionPage"}>
                     <img src={hqdefault} />
-                  </div>
+                  </Link>
                 </div>
                 <div className={clsx(Styles.advertisement_item)}>
-                  <div>
+                  <Link to={"promotionPage"}>
                     <img src={qk001} alt="" />
-                  </div>
+                  </Link>
                 </div>
                 <div className={clsx(Styles.advertisement_item)}>
-                  <div>
+                  <Link to={"promotionPage"}>
                     <img src={qk002} alt="" />
-                  </div>
+                  </Link>
                 </div>
                 <div className={clsx(Styles.advertisement_item)}>
-                  <div>
+                  <Link to={"promotionPage"}>
                     <img src={qk003} alt="" />
-                  </div>
+                  </Link>
                 </div>
                 <div className={clsx(Styles.advertisement_item)}>
-                  <div>
+                  <Link to={"promotionPage"}>
                     <img src={qk004} alt="" />
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>

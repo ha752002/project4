@@ -21,36 +21,22 @@ const AddProductManagement = () => {
     }));
   };
 
-  const handleSpecificationChange = (index, e) => {
-    const { name, value } = e.target;
-
-    setProductData((prevData) => {
-      const updatedSpecifications = [...prevData.specifications];
-      updatedSpecifications[index] = {
-        ...updatedSpecifications[index],
-        [name]: value,
-      };
-
-      return {
-        ...prevData,
-        specifications: updatedSpecifications,
-      };
-    });
+  const handleEditTodo = (index) => {
+    setEditIndex(index);
+    setEditedTodo(todos[index]);
   };
 
-  const handleCategoryChange = (e) => {
-    const { name, value } = e.target;
-
-    setProductData((prevData) => ({
-      ...prevData,
-      categories: [{ id: value }],
-    }));
+  const handleSaveEdit = () => {
+    const newTodos = [...todos];
+    newTodos[editIndex] = editedTodo;
+    setTodos(newTodos);
+    setEditIndex(null);
+    setEditedTodo("");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Đưa dữ liệu tạo sản phẩm về server hoặc thực hiện các tác vụ cần thiết
-    console.log("Submitted Product Data:", productData);
+  const handleDeleteTodo = (index) => {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
   };
 
   return (
@@ -99,20 +85,7 @@ const AddProductManagement = () => {
             />
           </div>
         ))}
-
-        {/* Trường nhập liệu cho Categories */}
-        <div>
-          <label>Category:</label>
-          <input
-            type="text"
-            name="category"
-            value={productData.categories[0].id}
-            onChange={handleCategoryChange}
-          />
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
+      </ul>
     </div>
   );
 };

@@ -3,77 +3,139 @@ import clsx from "clsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../../../assets/logo/logo.png";
 import ButtonLogin from "../../../Button/ButtonLogin.jsx";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import ButtonRegister from "../../../Button/ButtonRegister.jsx";
 import CartButton from "./component/CartButton.jsx";
 
-function Header({soluong}) {
+function Header() {
     const menu = [
         {
             title: "Khách hàng cá nhân",
             content: [
                 {
-                    title: " KHÁCH HÀNG CÁ NHÂN (Miền Bắc)",
-                    item: [
+                    title: "Khách hàng cá nhân",
+                    content: [
                         {
-                            phone: "0836668336",
-                            staff: "Mr.Tuấn Anh",
-                            position: "bảo hành Hà Nội",
-                            zalo: true,
+                            title: " KHÁCH HÀNG CÁ NHÂN (Miền Bắc)",
+                            item: [
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    // position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    // position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                            ],
                         },
                         {
-                            phone: "0836668336",
-                            staff: "Mr.Tuấn Anh",
-                            // position: "bảo hành Hà Nội",
-                            zalo: true,
+                            title: " KHÁCH HÀNG CÁ NHÂN (Miền Nam)",
+                            item: [
+                                {
+                                    phone: "18006321",
+                                    staff: "",
+                                    position: "Tổng đài miễn phí:",
+                                    zalo: true,
+                                },
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    position: "Zalo",
+                                    zalo: true,
+                                },
+                            ],
                         },
                         {
-                            phone: "0836668336",
-                            staff: "Mr.Tuấn Anh",
-                            // position: "bảo hành Hà Nội",
-                            zalo: true,
+                            title: " TƯ VẤN CAMERA, THIẾT BỊ VĂN PHÒNG",
+                            item: [
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    position: "",
+                                    zalo: true,
+                                },
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    // position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    // position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                            ],
                         },
                     ],
+                    path: '#'
                 },
                 {
-                    title: " KHÁCH HÀNG CÁ NHÂN (Miền Nam)",
-                    item: [
+                    title: "Khách hàng doanh nghiệp,game net",
+                    content: [
                         {
-                            phone: "18006321",
-                            staff: "",
-                            position: "Tổng đài miễn phí:",
-                            zalo: true,
+                            title: " KHÁCH HÀNG GAME NET - ICAFE",
+                            item: [
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                            ],
                         },
                         {
-                            phone: "0836668336",
-                            staff: "Mr.Tuấn Anh",
-                            position: "Zalo",
-                            zalo: true,
+                            title: "KHÁCH HÀNG ĐẠI LÝ (BÁN BUÔN)",
+                            item: [
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                                {
+                                    phone: "0836668336",
+                                    staff: "Mr.Tuấn Anh",
+                                    position: "bảo hành Hà Nội",
+                                    zalo: true,
+                                },
+                            ],
                         },
                     ],
+                    path: '#'
                 },
                 {
-                    title: " TƯ VẤN CAMERA, THIẾT BỊ VĂN PHÒNG",
-                    item: [
-                        {
-                            phone: "0836668336",
-                            staff: "Mr.Tuấn Anh",
-                            position: "",
-                            zalo: true,
-                        },
-                        {
-                            phone: "0836668336",
-                            staff: "Mr.Tuấn Anh",
-                            // position: "bảo hành Hà Nội",
-                            zalo: true,
-                        },
-                        {
-                            phone: "0836668336",
-                            staff: "Mr.Tuấn Anh",
-                            // position: "bảo hành Hà Nội",
-                            zalo: true,
-                        },
-                    ],
+                    title: "" + "Thông tin khuyến mãi",
+                    path: '/promotionPage'
                 },
             ],
             path: '#'
@@ -91,6 +153,9 @@ function Header({soluong}) {
                             zalo: true,
                         },
                     ],
+                }, {
+                    title: "Tin tức công nghệ",
+                    path: '#'
                 },
                 {
                     title: "KHÁCH HÀNG ĐẠI LÝ (BÁN BUÔN)",
@@ -131,11 +196,14 @@ function Header({soluong}) {
             path: '#'
         },
         {
-            title: "" + "Thông tin khuyến mãi",
+            title: "Home",
+            path: '/'
+        },  {
+            title: "Promotion information",
             path: '/promotionPage'
         },
         {
-            title: "Tin tức công nghệ",
+            title: "Recruitment",
             path: '#'
         },
     ];
@@ -158,8 +226,8 @@ function Header({soluong}) {
     const handleCLickRegister = () => {
         navigate("/signUp");
     };
-
     const handleEventNavigate = (menuItem) => {
+        console.log(menuItem)
         navigate(menuItem.path);
     }
 
@@ -222,9 +290,9 @@ function Header({soluong}) {
             </div>
             <div className={clsx(Styles.header_2)}>
                 <div className={clsx(Styles.group_header_2)}>
-                    <a src="">
+                    <Link to="/home">
                         <img src={logo} alt=""/>
-                    </a>
+                    </Link>
                     <div>
                         <ul className={clsx(Styles.item_hot)}>
                             <li>Ghế gaming</li>
@@ -254,6 +322,7 @@ function Header({soluong}) {
                                     fill="currentColor"
                                     class="bi bi-search"
                                     viewBox="0 0 16 16"
+                                    c
                                 >
                                     <path
                                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>

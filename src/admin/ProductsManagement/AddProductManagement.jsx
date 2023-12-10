@@ -8,10 +8,7 @@ const AddProductManagement = () => {
     cost: 0,
     promotional: 0,
     video: "",
-    specifications: [
-      { name: "Ram", content: "" },
-      { name: "CPU", content: "" },
-    ],
+    specifications: [],
     categories: [{ id: "" }],
   });
 
@@ -85,10 +82,18 @@ const AddProductManagement = () => {
         {/* Trường nhập liệu cho Specifications */}
         {productData.specifications.map((specification, index) => (
           <div key={index}>
-            <label>{specification.name}:</label>
+            <label>{`Specification ${index + 1} Name:`}</label>
             <input
               type="text"
-              name={specification.name}
+              name={`specifications[${index}].name`}
+              value={specification.name}
+              onChange={(e) => handleSpecificationChange(index, e)}
+            />
+
+            <label>{`Specification ${index + 1} Content:`}</label>
+            <input
+              type="text"
+              name={`specifications[${index}].content`}
               value={specification.content}
               onChange={(e) => handleSpecificationChange(index, e)}
             />

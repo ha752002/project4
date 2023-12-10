@@ -196,12 +196,11 @@ function Header() {
             path: '#'
         },
         {
+            title: "Home",
+            path: '/'
+        },  {
             title: "Promotion information",
             path: '/promotionPage'
-        },
-        {
-            title: "Tin tức công nghệ",
-            path: '#'
         },
         {
             title: "Recruitment",

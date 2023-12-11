@@ -610,61 +610,33 @@ export default function Home(props) {
 
   const renderProduct = () => {
     return (
-      <div className={clsx(Styles.group_product, Styles.flex)}>
-        {products.map((product, index) => (
-          <div key={index} className={clsx(Styles.product)}>
-            <div className={clsx(Styles.hover_detail)}>
-              <Link to={"product-detail/1"}>
-                <img src={product.img} alt="" />
-              </Link>
-              <div className={clsx(Styles.detail_product)}>
-                <div className={clsx(Styles.name_product)}>{product.name}</div>
-                <ul>
-                  <li className={clsx(Styles.price_product)}>
-                    price :{" "}
-                    {formattedPrice.format(
-                      product.price - (product.price * product.discount) / 100
-                    )}
-                  </li>
-                  <li>
-                    cost : <del>{formattedPrice.format(product.price)}</del>
-                  </li>
-                  <li>guarantee : {product.guarantee}</li>
-                  <li>
-                    status :{" "}
-                    {product.status ? (
-                      <span style={{ color: "green" }}>In Stock</span>
-                    ) : (
-                      <span style={{ color: "red" }}>Out of Stock</span>
-                    )}
-                  </li>
-                </ul>
-                <div>
-                  <div className={clsx(Styles.title_product)}>
-                    product parameters
-                  </div>
-                  <ul className={clsx(Styles.parameter_product)}>
-                    {product.productParameters.map((Parameter, index) => (
-                      <li key={index}>+ {Parameter.parameters}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <div className={clsx(Styles.title_product)}>Promotions</div>
-                  <div className={clsx(Styles.title_promotion_product)}>
-                    {product.Promotion}
-                  </div>
-                  <ul className={clsx(Styles.promotions_product)}>
-                    {product.Promotions.map((Promotions, index) => (
-                      <li key={index}>
-                        + {Promotions.Promotion}
-                        <div className={clsx(Styles.promotion_package_product)}>
-                          {Promotions.promotionPackage.map(
-                            (Promotions, index) => (
-                              <div key={index}>{Promotions.promotion}</div>
-                            )
-                          )}
-                        </div>
+        <div className={clsx(Styles.group_product, Styles.flex)}>
+          {products.map((product, index) => (
+              <div key={index} className={clsx(Styles.product)}>
+                <div className={clsx(Styles.hover_detail)}>
+                  <Link to={"product-detail/1"}>
+                    <img src={product.img} alt="" />
+                  </Link>
+                  <div className={clsx(Styles.detail_product)}>
+                    <div className={clsx(Styles.name_product)}>{product.name}</div>
+                    <ul>
+                      <li className={clsx(Styles.price_product)}>
+                        price :{" "}
+                        {formattedPrice.format(
+                            product.price - (product.price * product.discount) / 100
+                        )}
+                      </li>
+                      <li>
+                        cost : <del>{formattedPrice.format(product.price)}</del>
+                      </li>
+                      <li>guarantee : {product.guarantee}</li>
+                      <li>
+                        status :{" "}
+                        {product.status ? (
+                            <span style={{ color: "green" }}>In Stock</span>
+                        ) : (
+                            <span style={{ color: "red" }}>Out of Stock</span>
+                        )}
                       </li>
                     </ul>
                     <div>
@@ -835,31 +807,8 @@ export default function Home(props) {
   const renderListproduct = () => {
     if (selectedItem) {
       return (
-        <div>
-          <div
-            className={clsx(
-              Styles.flex,
-              Styles.center,
-              Styles.tile_list_product
-            )}
-          >
-            <div className={clsx(Styles.product_portfolio)}>
-              <div className={clsx(Styles.flex, Styles.center)}>
-                <img src={list} alt="" className={clsx(Styles.icon_white)} />
-                Danh mục sản phẩm
-              </div>
-              <div className={clsx(Styles.menu_Category)}>
-                <MenuCategory></MenuCategory>
-              </div>
-            </div>
-            <div>{renderSelectedItemPath()}</div>
-          </div>
-          <div className={clsx(Styles.flex, Styles.main_list_product)}>
-            <div className={clsx(Styles.block_filter)}>
-              <MenuFilter></MenuFilter>
-            </div>
-            <div className={clsx(Styles.block_list_product)}>
-              <div
+          <div>
+            <div
                 className={clsx(
                     Styles.flex,
                     Styles.center,
@@ -877,7 +826,7 @@ export default function Home(props) {
               </div>
               <div>{renderSelectedItemPath()}</div>
             </div>
-            <div className={clsx(Styles.flex , Styles.main_list_product)}>
+            <div className={clsx(Styles.flex, Styles.main_list_product)}>
               <div className={clsx(Styles.block_filter)}>
                 <MenuFilter></MenuFilter>
               </div>
@@ -966,52 +915,73 @@ export default function Home(props) {
   const home = () => {
     if (!selectedItem) {
       return (
-        <div>
-          <div className={clsx(Styles.flex)}>
-            <div className={clsx(Styles.list_menu)}>
-              {" "}
-              <MenuCategory></MenuCategory>
-            </div>
-            <div>
-              <div className={clsx(Styles.group_advertisement)}>
-                <div
-                  className={clsx(
-                    Styles.advertisement_big_item,
-                    Styles.advertisement_item
-                  )}
-                  style={{ display: "flex", overflow: "hidden" }}
-                >
-                  <HomeSlide></HomeSlide>
-                </div>
+          <div>
+            <div className={clsx(Styles.flex)}>
+              <div className={clsx(Styles.list_menu)}>
+                {" "}
+                <MenuCategory></MenuCategory>
+              </div>
+              <div>
+                <div className={clsx(Styles.group_advertisement)}>
+                  <div
+                      className={clsx(
+                          Styles.advertisement_big_item,
+                          Styles.advertisement_item
+                      )}
+                      style={{ display: "flex", overflow: "hidden" }}
+                  >
+                    <HomeSlide></HomeSlide>
+                  </div>
 
-                <div className={clsx(Styles.advertisement_item)}>
-                  <Link to={"promotionPage"}>
-                    <img src={hqdefault} />
-                  </Link>
+                  <div className={clsx(Styles.advertisement_item)}>
+                    <Link to={"promotionPage"}>
+                      <img src={hqdefault} />
+                    </Link>
+                  </div>
+                  <div className={clsx(Styles.advertisement_item)}>
+                    <Link to={"promotionPage"}>
+                      <img src={qk001} alt="" />
+                    </Link>
+                  </div>
+                  <div className={clsx(Styles.advertisement_item)}>
+                    <Link to={"promotionPage"}>
+                      <img src={qk002} alt="" />
+                    </Link>
+                  </div>
+                  <div className={clsx(Styles.advertisement_item)}>
+                    <Link to={"promotionPage"}>
+                      <img src={qk003} alt="" />
+                    </Link>
+                  </div>
+                  <div className={clsx(Styles.advertisement_item)}>
+                    <Link to={"promotionPage"}>
+                      <img src={qk004} alt="" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
             <div className={clsx(Styles.flex)}>
               <div className={clsx(Styles.group_advertisement_02)}>
                 <div className={clsx(Styles.advertisement_item)}>
-                  <Link to={"promotionPage"}>
-                    <img src={qk001} alt="" />
-                  </Link>
+                  <div>
+                    <img src={qk005} alt="" />
+                  </div>
                 </div>
                 <div className={clsx(Styles.advertisement_item)}>
-                  <Link to={"promotionPage"}>
-                    <img src={qk002} alt="" />
-                  </Link>
+                  <div>
+                    <img src={qk006} alt="" />
+                  </div>
                 </div>
                 <div className={clsx(Styles.advertisement_item)}>
-                  <Link to={"promotionPage"}>
-                    <img src={qk003} alt="" />
-                  </Link>
+                  <div>
+                    <img src={qk007} alt="" />
+                  </div>
                 </div>
                 <div className={clsx(Styles.advertisement_item)}>
-                  <Link to={"promotionPage"}>
-                    <img src={qk004} alt="" />
-                  </Link>
+                  <div>
+                    <img src={qk008} alt="" />
+                  </div>
                 </div>
               </div>
             </div>

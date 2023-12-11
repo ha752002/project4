@@ -8,10 +8,7 @@ const AddProductManagement = () => {
     cost: 0,
     promotional: 0,
     video: "",
-    specifications: [
-      { name: "Ram", content: "" },
-      { name: "CPU", content: "" },
-    ],
+    specifications: [],
     categories: [{ id: "" }],
   });
 
@@ -57,58 +54,66 @@ const AddProductManagement = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <form onSubmit={handleSubmit}>
-        {/* Các trường nhập liệu cho sản phẩm */}
-        <div>
-          <label>Title:</label>
-          <input
-            type="text"
-            name="title"
-            value={productData.title}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div>
-          <label>Product Code:</label>
-          <input
-            type="text"
-            name="productCode"
-            value={productData.productCode}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* ...Thêm các trường khác tương tự */}
-
-        {/* Trường nhập liệu cho Specifications */}
-        {productData.specifications.map((specification, index) => (
-          <div key={index}>
-            <label>{specification.name}:</label>
+      <div className="container mt-5">
+        <form onSubmit={handleSubmit}>
+          {/* Các trường nhập liệu cho sản phẩm */}
+          <div>
+            <label>Title:</label>
             <input
-              type="text"
-              name={specification.name}
-              value={specification.content}
-              onChange={(e) => handleSpecificationChange(index, e)}
+                type="text"
+                name="title"
+                value={productData.title}
+                onChange={handleChange}
             />
           </div>
-        ))}
 
-        {/* Trường nhập liệu cho Categories */}
-        <div>
-          <label>Category:</label>
-          <input
-            type="text"
-            name="category"
-            value={productData.categories[0].id}
-            onChange={handleCategoryChange}
-          />
-        </div>
+          <div>
+            <label>Product Code:</label>
+            <input
+                type="text"
+                name="productCode"
+                value={productData.productCode}
+                onChange={handleChange}
+            />
+          </div>
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+          {/* ...Thêm các trường khác tương tự */}
+
+          {/* Trường nhập liệu cho Specifications */}
+          {productData.specifications.map((specification, index) => (
+              <div key={index}>
+                <label>{`Specification ${index + 1} Name:`}</label>
+                <input
+                    type="text"
+                    name={`specifications[${index}].name`}
+                    value={specification.name}
+                    onChange={(e) => handleSpecificationChange(index, e)}
+                />
+
+                <label>{`Specification ${index + 1} Content:`}</label>
+                <input
+                    type="text"
+                    name={`specifications[${index}].content`}
+                    value={specification.content}
+                    onChange={(e) => handleSpecificationChange(index, e)}
+                />
+              </div>
+          ))}
+
+          {/* Trường nhập liệu cho Categories */}
+          <div>
+            <label>Category:</label>
+            <input
+                type="text"
+                name="category"
+                value={productData.categories[0].id}
+                onChange={handleCategoryChange}
+            />
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
   );
 };
 

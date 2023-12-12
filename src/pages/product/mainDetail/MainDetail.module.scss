@@ -106,6 +106,10 @@
   color: #737373;
   font-weight: 400;
 }
+.global__path-title {
+  display: flex;
+  align-items: center;
+}
 .global__path-title .path__icon {
   margin: 0 5px;
 }
@@ -147,9 +151,13 @@
   font-size: 1.3rem;
   font-weight: 600;
 }
-
+.evaluate__text {
+  display: flex;
+  align-items: center;
+}
 .evaluate__star {
   color: #bcbcbc;
+  display: flex;
 }
 .price {
   width: 100%;

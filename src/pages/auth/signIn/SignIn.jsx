@@ -69,7 +69,7 @@ export const SignIn = () => {
               <Card className="card-transparent shadow-none d-flex justify-content-center mb-0 auth-card border-0">
                 <Card.Body>
                   <Link
-                    to="/admin"
+                    to="/"
                     className="navbar-brand d-flex align-items-center mb-3"
                   >
                     <svg

@@ -9,15 +9,18 @@ import "react-toastify/dist/ReactToastify.css";
 import NotFoundPage from "./pages/common/NotFoundPage";
 import {useDispatch} from "react-redux";
 import {getUserInfo} from "./redux/slice/authSlice.js";
-import {Home} from "./pages/index.jsx";
+import {Home, SignIn, SignUp} from "./pages/index.jsx";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path="*" exact={true} element={<NotFoundPage />} />
+        <Route path="*" exact={true} element={<NotFoundPage />} />
+        <Route path="signup" exact={true} element={<SignUp/>} />
+        <Route path="signin" exact={true} element={<SignIn/>} />
           {/* web minh an computer */}
+
           {publicRoutes.map((route, index) => {
             const { path, element, children } = route;
             return (

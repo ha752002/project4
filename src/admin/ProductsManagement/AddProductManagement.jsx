@@ -50,15 +50,15 @@ const AddProductManagement = () => {
     });
   };
 
-  const handleCategoryToggle = (categoryId  , categoryName) => {
+  const handleCategoryToggle = (categoryId, categoryName) => {
     if (productData.categories.find((category) => category.id === categoryId)) {
       setProductData((prevProductData) => ({
         ...prevProductData,
         categories: prevProductData.categories.filter((category) => category.id !== categoryId),
       }));
       setSelectedCategories((prevSelectedCategories) =>
-      prevSelectedCategories.filter((category) => category.id !== categoryId)
-    );
+        prevSelectedCategories.filter((category) => category.id !== categoryId)
+      );
     } else {
       setProductData((prevProductData) => ({
         ...prevProductData,
@@ -70,15 +70,99 @@ const AddProductManagement = () => {
       ]);
     }
   };
+
+  // const handlespecifications = (categoryId, categoryName) => {
+  //   if (productData.categories.find((category) => category.id === categoryId)) {
+  //     setProductData((prevProductData) => ({
+  //       ...prevProductData,
+  //       categories: prevProductData.categories.filter((category) => category.id !== categoryId),
+  //     }));
+      
+  //   } else {
+  //     setProductData((prevProductData) => ({
+  //       ...prevProductData,
+  //       categories: [...prevProductData.categories, { id: categoryId }],
+  //     }))
+  //   }
+  // };
+
+  const addSpecifications = () => {
+
+  }
+
   console.log(productData.categories);
-
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitted Product Data:", productData);
   };
+
+  const renderFormCategory = () => {
+    if (isLoading) {
+      return (<div className={clsx(Styles.other_information)}>
+        .....Loading
+      </div>)
+    } else {
+      return (
+        <div className={clsx(Styles.other_information)}>
+          <ul>
+            {data.data.map((item) => (
+              <li key={item.id}>
+                {item.name && (
+                  <>
+                    <input
+                      type="checkbox"
+                      checked={productData.categories.find((selectedCategory) => selectedCategory.id === item.id)}
+                      onChange={() => handleCategoryToggle(item.id, item.name)}
+                    /> {item.name}
+                  </>
+                )}
+                {item.categories && item.categories.length > 0 && (
+                  <>
+                    <ul>
+                      {item.categories.map((category) => (
+                        <li key={category.id}>
+                          <input
+                            type="checkbox"
+                            checked={productData.categories.find((selectedCategory) => selectedCategory.id === category.id)}
+                            onChange={() => handleCategoryToggle(category.id, category.name)}
+                          /> {category.name}
+
+                          {category.categories && category.categories.length > 0 && (
+                            <>
+                              <ul>
+                                {category.categories.map((category, index) => (
+                                  <li key={index}>
+                                    <input
+                                      type="checkbox"
+                                      checked={productData.categories.find((selectedCategory) => selectedCategory.id === category.id)}
+                                      onChange={() => handleCategoryToggle(category.id, category.name)}
+                                    /> {category.name}
+
+                                  </li>
+                                ))}
+                              </ul>
+                            </>
+                          )}
+
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+
+              </li>
+            ))}
+          </ul>
+          <ul>
+            {selectedCategories.map((category, index) => (
+              <li key={index}>{category.name}</li>
+            ))}
+          </ul>
+        </div>)
+    }
+
+  }
 
   return (
     <div className={clsx(Styles.add_product, Styles.text)}>
@@ -171,66 +255,7 @@ const AddProductManagement = () => {
 
 
           {/* Trường nhập liệu cho Categories */}
-          <div className={clsx(Styles.other_information)}>
-
-            <ul>
-              {data.data.map((item) => (
-                <li key={item.id}>
-                  {item.name && (
-                    <>
-                      <input
-                        type="checkbox"
-                        checked={productData.categories.find((selectedCategory) => selectedCategory.id === item.id)}
-                        onChange={() => handleCategoryToggle(item.id , item.name)}
-                      /> {item.name}
-                    </>
-                  )}
-
-
-
-                  {item.categories && item.categories.length > 0 && (
-                    <>
-                      <ul>
-                        {item.categories.map((category) => (
-                          <li key={category.id}>
-                            <input
-                              type="checkbox"
-                              checked={productData.categories.find((selectedCategory) => selectedCategory.id === category.id)}
-                              onChange={() => handleCategoryToggle(category.id, category.name)}
-                            /> {category.name}
-
-                            {category.categories && category.categories.length > 0 && (
-                              <>
-                                <ul>
-                                  {category.categories.map((category ,index) => (
-                                    <li key={index}>
-                                      <input
-                                        type="checkbox"
-                                        checked={productData.categories.find((selectedCategory) => selectedCategory.id === category.id)}
-                                        onChange={() => handleCategoryToggle(category.id , category.name)}
-                                      /> {category.name}
-
-                                    </li>
-                                  ))}
-                                </ul>
-                              </>
-                            )}
-
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-
-                </li>
-              ))}
-            </ul>
-            <ul>
-              {selectedCategories.map((category , index) => (
-                <li key={index}>{category.name}</li>
-              ))}
-            </ul>
-          </div>
+          {renderFormCategory()}
           <button type="submit">Submit</button>
         </div>
 

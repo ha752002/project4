@@ -241,7 +241,7 @@ const AddProductManagement = () => {
           <div className={clsx(Styles.input)}>
             <label>warranty period:</label>
             <input
-              type="number"
+              type="text"
               name="warrantyPeriod"
               value={productData.warrantyPeriod}
               onChange={handleChange}

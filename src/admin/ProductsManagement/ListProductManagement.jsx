@@ -1,102 +1,53 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import Styles from "./List.module.scss";
+import useSwr from "swr";
+import { apiClient } from "../../services/API";
 
 const ListProductManagement = () => {
-  const [todos, setTodos] = useState([]);
-  const [todo, setTodo] = useState("");
-  const [editedTodo, setEditedTodo] = useState("");
-  const [editIndex, setEditIndex] = useState(null);
-
-  const handleAddTodo = () => {
-    if (todo) {
-      setTodos([...todos, todo]);
-      setTodo("");
-    }
-  };
-
-  const handleEditTodo = (index) => {
-    setEditIndex(index);
-    setEditedTodo(todos[index]);
-  };
-
-  const handleSaveEdit = () => {
-    const newTodos = [...todos];
-    newTodos[editIndex] = editedTodo;
-    setTodos(newTodos);
-    setEditIndex(null);
-    setEditedTodo("");
-  };
-
-  const handleDeleteTodo = (index) => {
-    const newTodos = todos.filter((_, i) => i !== index);
-    setTodos(newTodos);
-  };
-
-  return (
-    <div className="container mt-5">
-      <h1>Todo List</h1>
-      <div className="input-group mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Add todo..."
-          value={todo}
-          onChange={(e) => setTodo(e.target.value)}
-        />
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={handleAddTodo}
-        >
-          Add
-        </button>
-      </div>
-      <ul className="list-group">
-        {todos.map((item, index) => (
-          <li
-            key={index}
-            className="list-group-item d-flex justify-content-between align-items-center"
-          >
-            {index === editIndex ? (
-              <input
-                type="text"
-                className="form-control"
-                value={editedTodo}
-                onChange={(e) => setEditedTodo(e.target.value)}
-              />
-            ) : (
-              item
-            )}
-            <div>
-              {index === editIndex ? (
-                <button className="btn btn-success" onClick={handleSaveEdit}>
-                  Save
-                </button>
-              ) : (
-                <button
-                  // className="btn btn-warning"
-                  className={(`btn btn-warning`, clsx(Styles.button_edit))}
-                  onClick={() => handleEditTodo(index)}
-                >
-                  Edit
-                </button>
-              )}
-              <button
-                // className={(`btn btn-danger`, clsx(Styles.button_delete))}
-                className="btn btn-danger pl-5"
-                onClick={() => handleDeleteTodo(index)}
-              >
-                Delete
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+  const { data, isLoading, error } = useSwr("/product/getAll", (endpoint) =>
+    apiClient.get(endpoint).then((data) => data)
   );
+
+  if (isLoading) {
+    return <div>...loading</div>;
+  }
+
+  if (data) {
+    console.log(data);
+    return (
+      <div className={clsx(Styles.list_product, Styles.flex)}>
+        <table>
+          <thead>
+            <tr>
+              <th>Stt</th>
+              <th>Title</th>
+              <th>Warranty Period</th>
+              <th>Cost</th>
+              <th>Promotional</th>
+              <th>Video</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.data.map((product, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{product.title}</td>
+                <td>{product.warrantyPeriod}</td>
+                <td>{product.cost}</td>
+                <td>{product.promotional}</td>
+                <td>{product.video}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
+  // return <div className="container mt-5">Loading...</div>;
 };
 
 export default ListProductManagement;

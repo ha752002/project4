@@ -35,17 +35,17 @@ form>div:last-child {
     border-radius: 12px;
 }
 
-.title_form{
+.title_form {
     font-size: 14px;
     font-weight: 500;
     color: #000;
 }
 
-.basic_information>div:not(:first-child) {
+.input{
     margin-top: 10px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    // justify-content: flex-end;
     gap: 15px;
 }
 
@@ -56,20 +56,51 @@ form>div:last-child {
     flex: 1;
 }
 
-.basic_information label{
+.basic_information label {
     min-width: 120px;
     text-align: end;
 }
 
 
 
-.other_information:not(:first-child){
+.other_information:not(:first-child) {
     margin-top: 20px;
 }
 
-.add_product ul{
+
+
+
+.add_product table {
+    height: auto;
+    text-align: center;
+    width: 100%;
+}
+
+.add_product table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.selected_type {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.selected_type li {
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: rgb(71, 188, 71);
+}
+
+.demo {
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
     flex-direction: column;
-    margin-left:10px ;
-    // flex-direction: row;
-    // flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: baseline;
+
 }

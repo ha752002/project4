@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
 import Styles from "./AddProduct.module.scss";
 import clsx from "clsx";
 
@@ -113,51 +112,56 @@ const AddProductManagement = () => {
         <div className={clsx(Styles.other_information)}>
           <ul>
             {data.data.map((item) => (
-              <li key={item.id}>
-                {item.name && (
-                  <>
-                    <input
-                      type="checkbox"
-                      checked={productData.categories.find((selectedCategory) => selectedCategory.id === item.id)}
-                      onChange={() => handleCategoryToggle(item.id, item.name)}
-                    /> {item.name}
-                  </>
-                )}
-                {item.categories && item.categories.length > 0 && (
-                  <>
-                    <ul>
-                      {item.categories.map((category) => (
-                        <li key={category.id}>
-                          <input
-                            type="checkbox"
-                            checked={productData.categories.find((selectedCategory) => selectedCategory.id === category.id)}
-                            onChange={() => handleCategoryToggle(category.id, category.name)}
-                          /> {category.name}
-
-                          {category.categories && category.categories.length > 0 && (
+            <>
+              {
+                item.name !== '' && item.name && (
+                      <li key={item.id}>
+                        {item.name !== '' && item.name && (
+                            <>
+                              <input
+                                  type="checkbox"
+                                  checked={productData.categories.find((selectedCategory) => selectedCategory.id === item.id)}
+                                  onChange={() => handleCategoryToggle(item.id, item.name)}
+                              /> {item.name}
+                            </>
+                        )}
+                        {item.categories && item.categories.length > 0 && (
                             <>
                               <ul>
-                                {category.categories.map((category, index) => (
-                                  <li key={index}>
-                                    <input
-                                      type="checkbox"
-                                      checked={productData.categories.find((selectedCategory) => selectedCategory.id === category.id)}
-                                      onChange={() => handleCategoryToggle(category.id, category.name)}
-                                    /> {category.name}
+                                {item.categories.map((category) => (
+                                    <li key={category.id}>
+                                      <input
+                                          type="checkbox"
+                                          checked={productData.categories.find((selectedCategory) => selectedCategory.id === category.id)}
+                                          onChange={() => handleCategoryToggle(category.id, category.name)}
+                                      /> {category.name}
 
-                                  </li>
+                                      {category.categories && category.categories.length > 0 && (
+                                          <>
+                                            <ul>
+                                              {category.categories.map((category, index) => (
+                                                  <li key={index}>
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={productData.categories.find((selectedCategory) => selectedCategory.id === category.id)}
+                                                        onChange={() => handleCategoryToggle(category.id, category.name)}
+                                                    /> {category.name}
+
+                                                  </li>
+                                              ))}
+                                            </ul>
+                                          </>
+                                      )}
+
+                                    </li>
                                 ))}
                               </ul>
                             </>
-                          )}
-
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-
-              </li>
+                        )}
+                      </li>
+                  )
+              }
+            </>
             ))}
           </ul>
 

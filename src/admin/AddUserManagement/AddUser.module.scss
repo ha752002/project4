@@ -90,14 +90,43 @@
 }
 
 
-.group_other_information {
-    min-width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.other_information{
+    padding: 20px;
+    font-family: Arial, sans-serif;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+
+    /* Style for the top-level checkboxes */
+    li input[type="checkbox"] + label {
+        font-weight: bold;
+    }
+
+    /* Style for nested lists */
+    ul ul {
+        margin-top: 5px;
+        margin-left: 20px;
+    }
+
+    /* Style for nested checkboxes */
+    ul li input[type="checkbox"] + label {
+        font-style: italic;
+    }
 }
 
-.group_other_information div {}
 
 .group_basic_information {
     flex: 1;

@@ -1,5 +1,4 @@
 import React from "react";
-import { Row, Col, Image } from "react-bootstrap";
 import {NavLink} from "react-router-dom";import clsx from "clsx";
 import Styles from "./List.module.scss";
 import useSwr from "swr";
@@ -33,7 +32,6 @@ const ListProductManagement = () => {
           </thead>
           <tbody>
             {data.data.map((product, index) => (
-              
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{product.title}</td>

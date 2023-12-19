@@ -1,7 +1,6 @@
 import React from "react";
 import { Row, Col, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import clsx from "clsx";
+import {NavLink} from "react-router-dom";import clsx from "clsx";
 import Styles from "./List.module.scss";
 import useSwr from "swr";
 import { apiClient } from "../../services/API";
@@ -28,10 +27,13 @@ const ListProductManagement = () => {
               <th>Cost</th>
               <th>Promotional</th>
               <th>Video</th>
+              <th>edit</th>
+              <th>delete</th>
             </tr>
           </thead>
           <tbody>
             {data.data.map((product, index) => (
+              
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{product.title}</td>
@@ -39,7 +41,10 @@ const ListProductManagement = () => {
                 <td>{product.cost}</td>
                 <td>{product.promotional}</td>
                 <td>{product.video}</td>
+                <td><NavLink to="/admin/edit-products">edit</NavLink></td>
+                <td><NavLink to="/admin/delete-products">delete</NavLink></td>
               </tr>
+              
             ))}
           </tbody>
         </table>

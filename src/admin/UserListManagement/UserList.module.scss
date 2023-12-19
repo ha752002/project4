@@ -1,16 +1,28 @@
-.user_list {
-    font-size: 16px;
+
+.list_user {
+    padding: 40px;
 }
-.ligth {
-color:#8a92a6;
-font-size: 17px;
+
+.list_user table {
+    width: 100%;
+    text-align: center;
+    background-color: white;
 }
-.card_title {
-    font-size: 25px;
+
+.list_user table th,
+.list_user table td:first-child {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    text-align: center;
+
 }
-.image {
-    width: 50px;
-    height: 50px;
-    border-radius: 99px;
-    background-color: hsl(222, 24%, 86%);
+
+.list_user table td {
+    text-align: left;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+.list_user table tr:hover {
+    background-color: #ccc;
 }

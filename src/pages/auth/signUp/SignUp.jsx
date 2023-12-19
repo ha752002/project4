@@ -52,7 +52,7 @@ export const SignUp = () => {
       toast(error.message);
     } else if (status === FULFILLED) {
       toast("Đăng Kí thành công");
-      navigate("/user/signin");
+      navigate("/signin");
     }
   }, [status]);
 

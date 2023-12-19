@@ -157,6 +157,7 @@ export const SignUp = () => {
                                   message: "Invalid email address",
                                 },
                               })}
+                              style={{ fontSize: "15px" }}
                             />
                             <span>{errors.email?.message}</span>
                           </Form.Group>
@@ -178,6 +179,7 @@ export const SignUp = () => {
                               {...register("fullName")}
                               id="full-name"
                               placeholder=" "
+                              style={{ fontSize: "15px" }}
                             />
                             <span>{errors.fullName?.message}</span>
                           </Form.Group>
@@ -199,6 +201,7 @@ export const SignUp = () => {
                               name="phone"
                               id="phone"
                               placeholder=" "
+                              style={{ fontSize: "15px" }}
                             />
                             <span>{errors.phone?.message}</span>
                           </Form.Group>
@@ -220,6 +223,7 @@ export const SignUp = () => {
                               id="password"
                               {...register("password")}
                               placeholder=" "
+                              style={{ fontSize: "15px" }}
                             />
                             <span>{errors.password?.message}</span>
                           </Form.Group>
@@ -241,6 +245,7 @@ export const SignUp = () => {
                               name="reEnterPassword"
                               id="confirm-password"
                               placeholder=" "
+                              style={{ fontSize: "15px" }}
                             />
                             <span>{errors.reEnterPassword?.message}</span>
                           </Form.Group>

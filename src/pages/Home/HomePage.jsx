@@ -16,10 +16,6 @@ import lap001 from "@/assets/home/product/lap001.jpg";
 import lap002 from "@/assets/home/product/lap002.jpg";
 import event from "../../assets/images/event/event.png";
 import cart from "../../assets/icon_svg/cart.svg";
-import list from "../../assets/icon_svg/list-ul.svg";
-import grid_3 from "../../assets/icon_svg/grid-3x3-gap.svg";
-import grid from "../../assets/icon_svg/grid.svg";
-import sliders from "../../assets/icon_svg/sliders.svg";
 import close from "../../assets/icon_svg/close.svg";
 import MenuCategory from "./MenuCategory";
 import { HomeSlide } from "../../components/carousel/HomeSlide.jsx";
@@ -486,7 +482,7 @@ export default function Home(props) {
   const [eventVisible, setEventVisible] = useState(true);
   const [viewType, setViewType] = useState(false);
 
-  let [productPromotion, setProductPromotion] = useState([
+   let [productPromotion, setProductPromotion] = useState([
     {
       title: "TOP PC GAMING HOT",
       select: true,
@@ -804,93 +800,6 @@ export default function Home(props) {
   //   );
   // };
 
-  const renderListproduct = () => {
-    if (selectedItem) {
-      return (
-          <div>
-            <div
-                className={clsx(
-                    Styles.flex,
-                    Styles.center,
-                    Styles.tile_list_product
-                )}
-            >
-              <div className={clsx(Styles.product_portfolio)}>
-                <div className={clsx(Styles.flex, Styles.center)}>
-                  <img src={list} alt="" className={clsx(Styles.icon_white)} />
-                  Danh mục sản phẩm
-                </div>
-                <div className={clsx(Styles.menu_Category)}>
-                  <MenuCategory></MenuCategory>
-                </div>
-              </div>
-              <div>{renderSelectedItemPath()}</div>
-            </div>
-            <div className={clsx(Styles.flex, Styles.main_list_product)}>
-              <div className={clsx(Styles.block_filter)}>
-                <MenuFilter></MenuFilter>
-              </div>
-              <div className={clsx(Styles.block_list_product)}>
-                <div
-                    className={clsx(
-                        Styles.list_product,
-                        viewType && Styles.view_type
-                    )}
-                >
-                  <div className={clsx(Styles.arrange, Styles.flex)}>
-                    <div className={clsx(Styles.flex, Styles.tile_arrange)}>
-                      <img
-                          src={sliders}
-                          alt=""
-                          className={clsx(Styles.icon_white)}
-                      />
-                      SẮP XẾP SẢN PHẨM
-                    </div>
-                    <div>
-                      <ul>
-                        <li>mới nhất</li>
-                        <li>xem nhiều</li>
-                        <li>Giảm nhiều</li>
-                        <li>còn hàng</li>
-                      </ul>
-                      <ul>
-                        <li>
-                          <select name="price" id="price">
-                            <option value="">Giá tăng dần</option>
-                            <option value="">Giá giảm dần</option>
-                          </select>
-                        </li>
-                        <li
-                            onClick={handleViewTypeClick(false)}
-                            className={clsx(!viewType && Styles.viewType)}
-                        >
-                          <img
-                              className={clsx(Styles.icon_white)}
-                              src={grid_3}
-                              alt=""
-                          />
-                        </li>
-                        <li
-                            onClick={handleViewTypeClick(true)}
-                            className={clsx(viewType && Styles.viewType)}
-                        >
-                          <img
-                              className={clsx(Styles.icon_white)}
-                              src={grid}
-                              alt=""
-                          />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  {renderProduct()}
-                </div>
-              </div>
-            </div>
-          </div>
-      );
-    }
-  };
 
   const renderEvent = () => {
     if (eventVisible == true) {
@@ -1018,7 +927,6 @@ export default function Home(props) {
         >
           <div className={clsx(Styles.flex, Styles.center, Styles.layout)}>
             {home()}
-            {renderListproduct()}
             {renderEvent()}
           </div>
         </div>

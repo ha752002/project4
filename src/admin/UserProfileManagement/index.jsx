@@ -20,7 +20,7 @@ export default function UsersProfile() {
         <div className={clsx(Styles.flex, Styles.detail_user)}>
           <img className={clsx(Styles.avatar_user)} src={avatar} alt="" />
           <div className={clsx(Styles.base_information)}>
-            <span className={clsx(Styles.name)}>Nguyen Thi Hong Ha</span>
+            <span className={clsx(Styles.name)}>Phạm Tuấn Anh</span>
             <span>Admin</span>
           </div>
         </div>
@@ -32,19 +32,19 @@ export default function UsersProfile() {
           <ul>
             <li>
               <img src={facebook} alt="" />
-              <span>HongHa</span>
+              <span>anh.30pt</span>
             </li>
             <li>
               <img src={instagram} alt="" />
-              <span>honggha_02</span>
+              <span>tuananh30</span>
             </li>
             <li>
               <img src={envelope} alt="" />
-              <span>ha@gmail.com</span>
+              <span>phamtuananh2101@gmail.com</span>
             </li>
             <li>
               <img src={pinterest} alt="" />
-              <span>Hongha02</span>
+              <span>anhpham</span>
             </li>
           </ul>
         </div>

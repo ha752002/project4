@@ -190,20 +190,6 @@ export default function Cart() {
                               placeholder="Mã Voucher"
                             />
                           </div>
-                          <div>
-                            {" "}
-                            <button
-                              style={{
-                                width: "100%",
-                                height: "30px",
-                                background: "#db1644",
-                                marginTop: "10px",
-                                color: "white",
-                              }}
-                            >
-                              Nhập mã Voucher
-                            </button>
-                          </div>
                         </div>
                       </div>
 
@@ -216,6 +202,20 @@ export default function Cart() {
                           }, 0)}
                           VND
                         </h5>
+                      </div>
+                      <div>
+                        {" "}
+                        <button
+                          style={{
+                            width: "100%",
+                            height: "30px",
+                            background: "#db1644",
+                            marginTop: "10px",
+                            color: "white",
+                          }}
+                        >
+                          ĐẶT MUA NGAY
+                        </button>
                       </div>
                     </div>
                   </div>

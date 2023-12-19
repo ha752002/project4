@@ -45,7 +45,7 @@ export const SignIn = () => {
         if (userInfo.roles?.find((role) => role.name === ROLE_ADMIN)) {
           navigate("/admin");
         } else if (userInfo.roles?.find((role) => role.name === ROLE_USER)) {
-          navigate("/user");
+          navigate("/");
         }
       }
     }

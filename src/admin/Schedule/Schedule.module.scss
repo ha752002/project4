@@ -40,8 +40,12 @@ li {
     color: #333;
 }
 
-.week td {
+.week  td {
     height: 100px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: rgb(161, 205, 208)
 }
 

@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import {authSlice} from "../../../../redux/slice/authSlice.js";
 import {useNavigate} from "react-router-dom";
 const {logout} = authSlice.actions
+
 export default function Header() {
   const userInfo = {
     /* your user info data here */
@@ -28,6 +29,7 @@ export default function Header() {
           <img src="/src/assets/images/header/mail_2.svg" alt="" />
           <div className={Styles.user}>
             <div className={Styles.avatar} />
+            {/*<ToggleColorMode></ToggleColorMode>*/}
             <div>
               <ButtonLogout onclick={handleLogoutClick}/>
               {/* Uncomment the following lines to use userInfo data */}

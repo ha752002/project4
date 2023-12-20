@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 // import Styles from "./AddUser.module.scss";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Styles from "./AddProduct.module.scss";
 import clsx from "clsx";
@@ -8,19 +8,18 @@ import clsx from "clsx";
 import useSwr from "swr"
 import { apiClient } from "../../services/API"
 export default function EditProductManagement() {
+  const {id }= useParams()
   const { data, isLoading, error } = useSwr('/category/getAll', (endpoint) => apiClient.get(endpoint).then(data => data))
   console.log(data);
+  const { data: productData, isLoading: isLoading2, error: error2 } = useSwr('product/get/' + id, (endpoint) => apiClient.get(endpoint).then(data => data.data))
+  const formRef = useRef(null);
+  
+  if(productData){
+    formRef.current = productData;
+  }
 
-  const [productData, setProductData] = useState({
-    title: "",
-    // productCode: "",
-    warrantyPeriod: 0,
-    cost: 0,
-    promotional: 0,
-    video: "",
-    specifications: [],
-    categories: [],
-  });
+
+
 
   const navigate = useNavigate();
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -28,32 +27,32 @@ export default function EditProductManagement() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProductData((prevData) => ({
-      ...prevData,
+    formRef.current = {
+      ...formRef.current,
       [name]: value,
-    }));
+    };
   };
 
-
   const handleCategoryToggle = (categoryId, categoryName) => {
-    if (productData.categories.find((category) => category.id === categoryId)) {
-      setProductData((prevProductData) => ({
-        ...prevProductData,
-        categories: prevProductData.categories.filter((category) => category.id !== categoryId),
-      }));
-      setSelectedCategories((prevSelectedCategories) =>
-        prevSelectedCategories.filter((category) => category.id !== categoryId)
-      );
+    if (productData?.categories?.some((category) => category.id === categoryId)) {
+      formRef.current = {
+        ...formRef.current,
+        categories: formRef.current.categories.filter((category) => category.id !== categoryId),
+      };
+      // setSelectedCategories((prevSelectedCategories) =>
+      //   prevSelectedCategories.filter((category) => category.id !== categoryId)
+      // );
     } else {
-      setProductData((prevProductData) => ({
-        ...prevProductData,
-        categories: [...prevProductData.categories, { id: categoryId }],
-      }));
-      setSelectedCategories((prevSelectedCategories) => [
-        ...prevSelectedCategories,
-        { id: categoryId, name: categoryName },
-      ]);
+      formRef.current = {
+        ...formRef.current,
+        categories: [...formRef.current.categories, { id: categoryId }],
+      };
+      // setSelectedCategories((prevSelectedCategories) => [
+      //   ...prevSelectedCategories,
+      //   { id: categoryId, name: categoryName },
+      // ]);
     }
+    console.log(productData?.categories);
   };
 
   const handleSpecificationsChange = (index, type, value) => {
@@ -65,10 +64,10 @@ export default function EditProductManagement() {
     };
 
     // Cập nhật state với mảng specifications mới
-    setProductData((prevData) => ({
-      ...prevData,
+    formRef.current = {
+      ...formRef.current,
       specifications: updatedSpecifications,
-    }));
+    };
   };
 
   const addSpecifications = () => {
@@ -78,10 +77,10 @@ export default function EditProductManagement() {
     };
 
     // Cập nhật mảng specifications trong productData
-    setProductData((prevData) => ({
-      ...prevData,
-      specifications: [...prevData.specifications, newSpec],
-    }));
+    formRef.current = {
+      ...formRef.current,
+      specifications: [...formRef.current.specifications, newSpec],
+    };
   };
 
   // console.log(productData.categories);
@@ -89,7 +88,7 @@ export default function EditProductManagement() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await apiClient.post('/product/create', productData);
+      const response = await apiClient.put('/product/update/' + id, formRef.current);
       if (response.ok) {
         console.log('Product created successfully!');
       } else {
@@ -98,8 +97,8 @@ export default function EditProductManagement() {
     } catch (error) {
       console.error('An error occurred:', error);
     }
-    console.log("Submitted Product Data:", productData);
-    navigate('/admin/list-products');
+    console.log("Submitted Product Data:", formRef.current);
+    // navigate('/admin/list-products');
   };
 
   const renderFormCategory = () => {
@@ -111,13 +110,13 @@ export default function EditProductManagement() {
       return (
         <div className={clsx(Styles.other_information)}>
           <ul>
-            {data.data.map((item) => (
+            {data?.data?.map((item) => (
               <li key={item.id}>
                 {item.name && (
                   <>
                     <input
                       type="checkbox"
-                      checked={productData.categories.find((selectedCategory) => selectedCategory.id === item.id)}
+                      checked={productData?.categories?.find((selectedCategory) => selectedCategory?.id === item.id)}
                       onChange={() => handleCategoryToggle(item.id, item.name)}
                     /> {item.name}
                   </>
@@ -125,11 +124,11 @@ export default function EditProductManagement() {
                 {item.categories && item.categories.length > 0 && (
                   <>
                     <ul>
-                      {item.categories.map((category) => (
+                      {item?.categories?.map((category) => (
                         <li key={category.id}>
                           <input
                             type="checkbox"
-                            checked={productData.categories.find((selectedCategory) => selectedCategory.id === category.id)}
+                            checked={productData.categories?.find((selectedCategory) => selectedCategory?.id === category.id)}
                             onChange={() => handleCategoryToggle(category.id, category.name)}
                           /> {category.name}
 
@@ -140,7 +139,7 @@ export default function EditProductManagement() {
                                   <li key={index}>
                                     <input
                                       type="checkbox"
-                                      checked={productData.categories.find((selectedCategory) => selectedCategory.id === category.id)}
+                                      checked={productData.categories?.find((selectedCategory) => selectedCategory?.id === category.id)}
                                       onChange={() => handleCategoryToggle(category.id, category.name)}
                                     /> {category.name}
 
@@ -173,7 +172,7 @@ export default function EditProductManagement() {
             <th>title</th>
             <th>content</th>
           </tr>
-          {productData.specifications.map((specification, index) => (
+          {productData?.specifications?.map((specification, index) => (
             <tr key={index}>
               <td>
                 <input
@@ -232,7 +231,7 @@ export default function EditProductManagement() {
             <input
               type="text"
               name="title"
-              value={productData.title}
+              defaultValue={productData?.title}
               onChange={handleChange}
             />
           </div>
@@ -242,7 +241,7 @@ export default function EditProductManagement() {
             <input
               type="text"
               name="warrantyPeriod"
-              value={productData.warrantyPeriod}
+              defaultValue={productData?.warrantyPeriod}
               onChange={handleChange}
             />
           </div>
@@ -251,7 +250,7 @@ export default function EditProductManagement() {
             <input
               type="number"
               name="cost"
-              value={productData.cost}
+              defaultValue={productData?.cost}
               onChange={handleChange}
             />
           </div>
@@ -260,7 +259,7 @@ export default function EditProductManagement() {
             <input
               type="number"
               name="promotional"
-              value={productData.promotional}
+              defaultValue={productData?.promotional}
               onChange={handleChange}
             />
           </div>
@@ -269,7 +268,7 @@ export default function EditProductManagement() {
             <input
               type="text"
               name="video"
-              value={productData.video}
+              defaultValue={productData?.video}
               onChange={handleChange}
             />
           </div>

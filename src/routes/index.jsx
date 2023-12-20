@@ -58,8 +58,6 @@ const publicRoutes = [
   },
 ];
 
-
-
 // admin
 const privateRoutes = [
   {

@@ -154,6 +154,7 @@ export const SignIn = () => {
                             aria-describedby="email"
                             placeholder=" "
                             className={clsx(Styles.input)}
+                            style={{ fontSize: "15px" }}
                           />
                           <span>{errors.email?.message}</span>
                         </Form.Group>
@@ -173,6 +174,7 @@ export const SignIn = () => {
                             aria-describedby="password"
                             placeholder=" "
                             className={clsx(Styles.input)}
+                            style={{ fontSize: "15px" }}
                           />
                           <span>{errors.password?.message}</span>
                         </Form.Group>

@@ -76,7 +76,7 @@ const privateRoutes = [
       { path: "admin-role", element: <AdminsRole /> },
       { path: "add-products", element: <AddProductManagement /> },
       { path: "delete-products", element: <DeleteProductManagement /> },
-      { path: "edit-products", element: <EditProductManagement /> },
+      { path: "edit-products/:id", element: <EditProductManagement /> },
       { path: "list-products", element: <ListProductManagement /> },
       { path: "map", element: <Map /> },
       { path: "schedule", element: <Schedule /> },

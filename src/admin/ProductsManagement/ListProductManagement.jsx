@@ -9,6 +9,16 @@ const ListProductManagement = () => {
     apiClient.get(endpoint).then((data) => data)
   );
 
+  const handleDelete = async (productId) => {
+    try {
+      
+      await apiClient.patch(`/product/updateDisable/${productId}`);
+     
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+
   if (isLoading) {
     return <div>...loading</div>;
   }
@@ -39,8 +49,8 @@ const ListProductManagement = () => {
                 <td>{product.cost}</td>
                 <td>{product.promotional}</td>
                 <td>{product.video}</td>
-                <td><NavLink to="/admin/edit-products">edit</NavLink></td>
-                <td><NavLink to="/admin/delete-products">delete</NavLink></td>
+                <td><NavLink to={"/admin/edit-products/" + product.id}>edit</NavLink></td>
+                <td onClick={() => handleDelete(product.id)}>delete</td>
               </tr>
               
             ))}

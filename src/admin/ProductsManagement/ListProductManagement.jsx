@@ -39,7 +39,7 @@ const ListProductManagement = () => {
                 <td>{product.cost}</td>
                 <td>{product.promotional}</td>
                 <td>{product.video}</td>
-                <td><NavLink to="/admin/edit-products">edit</NavLink></td>
+                <td><NavLink to={"/admin/edit-products/" + product.id}>edit</NavLink></td>
                 <td><NavLink to="/admin/delete-products">delete</NavLink></td>
               </tr>
               

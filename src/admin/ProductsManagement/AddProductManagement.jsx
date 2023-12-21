@@ -118,11 +118,13 @@ const AddProductManagement = () => {
                       <li key={item.id}>
                         {item.name !== '' && item.name && (
                             <>
+                              <div>
                               <input
                                   type="checkbox"
                                   checked={productData.categories.find((selectedCategory) => selectedCategory.id === item.id)}
                                   onChange={() => handleCategoryToggle(item.id, item.name)}
                               /> {item.name}
+                              </div>
                             </>
                         )}
                         {item.categories && item.categories.length > 0 && (
@@ -294,7 +296,7 @@ const AddProductManagement = () => {
 
           {renderFormSpecifications()}
           {renderFormCategory()}
-          <button type="submit">Submit</button>
+          <button className={clsx(Styles.submit)} type="submit">Submit</button>
         </div>
 
 

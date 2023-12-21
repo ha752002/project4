@@ -86,8 +86,48 @@ form>div:last-child {
     gap: 10px;
     flex-direction: row;
     flex-wrap: wrap;
+    // flex-wrap: wrap;
     color: white;
 }
+
+.other_information > ul{
+    flex-direction: column;
+    display: flex;
+}
+
+.other_information >ul >li{
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    // display: flex;
+    // justify-content: center;
+    // flex-direction: column;
+
+}
+
+.other_information >ul >li > div{
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    color: #000;
+    font-weight: 500;
+    font-size: 14px;
+    gap: 5px;
+    background: #b6b6df;
+}
+
+.other_information ul ul li{
+    gap: 5px;
+  display: flex;
+  align-items: center   ;
+  padding: 5px;
+}
+
+.other_information ul ul{
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
 
 .selected_type li {
     padding: 5px 10px;
@@ -103,4 +143,13 @@ form>div:last-child {
     justify-content: flex-start;
     align-items: baseline;
 
+}
+
+.submit{
+    width: 100%;
+    margin-top: 20px;
+    background-color: green !important;
+    color: rgb(255, 255, 255);
+    border-radius: 12px;
+    padding: 10px;
 }

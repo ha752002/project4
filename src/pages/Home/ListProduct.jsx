@@ -6,20 +6,31 @@ import clsx from "clsx";
 import Styles from "./HomePage.module.scss";
 import cart from "../../assets/icon_svg/cart.svg";
 import lap002 from "@/assets/home/product/lap002.jpg";
-
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { cartSlice } from "../../redux/slice/cartSlice";
 
 export default function ListProduct(props) {
+  const dispatch = useDispatch();
+  const { addCart } = cartSlice.actions;
 
   const { data, isLoading, error } = useSwr('/product/getAll', (endpoint) => apiClient.get(endpoint).then(data => data))
   if (isLoading) {
     return <div>...loading</div>
   }
+
+  const onAddtoCartHandler = (product) => {
+    dispatch(addCart(product));
+  };
+
   if (data) {
     console.log(data);
     return (
-        <div className={clsx(Styles.group_product, Styles.flex)}>
+      <div className={clsx(Styles.group_product, Styles.flex)}>
         {data.data.map((product, index) => (
+          // <Link to={"product-detail/" + product.id}>
             <div key={index} className={clsx(Styles.product)}>
+            <Link to={"product-detail/" + product.id}>
               <div className={clsx(Styles.hover_detail)}>
                 <img src={lap002} alt="" />
                 <div className={clsx(Styles.detail_product)}>
@@ -38,9 +49,9 @@ export default function ListProduct(props) {
                     <li>
                       status :
                       {product.status ? (
-                          <span style={{ color: "green" }}>In Stock</span>
+                        <span style={{ color: "green" }}>In Stock</span>
                       ) : (
-                          <span style={{ color: "red" }}>Out of Stock</span>
+                        <span style={{ color: "red" }}>Out of Stock</span>
                       )}
                     </li>
                   </ul>
@@ -76,25 +87,26 @@ export default function ListProduct(props) {
                   </div> */}
                 </div>
               </div>
+              </Link>
               <div className={clsx(Styles.flex, Styles.information)}>
                 <div className={clsx(Styles.flex, Styles.other_information)}>
                   <span>Evaluate: ?/5 </span>
                   <span className={clsx(Styles.flex)}>
-                Code:<p>{product.productCode}</p>
-              </span>
+                    Code:<p>{product.productCode}</p>
+                  </span>
                 </div>
                 <span className={clsx(Styles.name_product)}>{product.title}</span>
                 <span className={clsx(Styles.price_product)}>{product.promotional}
-              {/* {formattedPrice.format(
+                  {/* {formattedPrice.format(
                   product.price - (product.price * product.discount) / 100
               )} */}
-            </span>
+                </span>
                 <del>{product.cost}</del>
                 <div>
                   {product.status ? (
-                      <span style={{ color: "green" }}>In Stock</span>
+                    <span style={{ color: "green" }}>In Stock</span>
                   ) : (
-                      <span style={{ color: "red" }}>Out of Stock</span>
+                    <span style={{ color: "red" }}>Out of Stock</span>
                   )}
                 </div>
               </div>
@@ -103,17 +115,18 @@ export default function ListProduct(props) {
               </div> */}
               <div className={clsx(Styles.cart)}>
                 <img
-                    onClick={() => onAddtoCartHandler(products)}
-                    src={cart}
-                    alt=""
-                    className={clsx(Styles.icon_white)}
+                  onClick={() => onAddtoCartHandler(product)}
+                  src={cart}
+                  alt=""
+                  className={clsx(Styles.icon_white)}
                 />
               </div>
             </div>
+          // </Link>
         ))}
       </div>
     );
   }
 
-  
+
 } 

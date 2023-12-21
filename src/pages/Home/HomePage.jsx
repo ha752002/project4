@@ -725,7 +725,7 @@ export default function Home(props) {
                       <li>Xem thêm </li>
                     </ul>
                   </div>
-                  <div>{renderProduct()}</div>
+                  <div><ListProduct></ListProduct></div>
                 </div>
               </div>
           ))}

@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import Styles from "./MainDetail.module.scss";
 import clsx from "clsx";
 import ImageSlider from "./sliceImg/ImageSlider";
 import Rating from "./rateStar/Rating";
 
+import useSwr from "swr"
+import { apiClient } from "../../../services/API"
+
 export default function Main() {
+  const { id } = useParams()
+  const { data: productData, isLoading: isLoading2, error: error2 } = useSwr('product/get/' + id, (endpoint) => apiClient.get(endpoint).then(data => data.data))
+  const formRef = useRef(null);
   const [buttonText, setButtonText] = useState("Xem thêm");
   const handleClick = (e) => {
     e.preventDefault();
@@ -24,7 +32,11 @@ export default function Main() {
       setButtonFrom("Gửi đánh giá của bạn");
     }
   };
-
+  if (isLoading2) {
+    return (
+      <div>loading........</div>
+    )
+  }
   return (
     <div className={clsx(Styles.product)}>
       <div className={clsx(Styles.container)}>
@@ -353,17 +365,16 @@ export default function Main() {
         <section className={clsx(Styles.product__info)}>
           <div className={clsx(Styles["product__info-top"])}>
             <h1 className={clsx(Styles["product__info-name"])}>
-              Laptop ASUS TUF Gaming F15 FX507ZU4-LP054W (i7-12700H | RAM 16GB |
-              SSD 512GB | RTX 4050 6GB | 15.6-FHD | 144Hz | Win11 | Gray)
+              {productData.title}
             </h1>
             <ImageSlider />
             <div className={clsx(Styles["product__info-middle"])}>
               <div className={clsx(Styles.clearfix)}>
                 <p className={clsx(Styles["product__info-sku"])}>
                   Mã SP:
-                  <span className={clsx(Styles["text-green"])}>LTLE145</span> |
+                  <span className={clsx(Styles["text-green"])}>{productData.productCode}</span> |
                   Bảo hành:
-                  <span className={clsx(Styles["text-green"])}>24 Tháng </span>|
+                  <span className={clsx(Styles["text-green"])}>{productData.warrantyPeriod}</span>|
                   Tình trạng:
                   <span className={clsx(Styles["text-green"])}>Còn hàng</span>
                 </p>
@@ -430,16 +441,16 @@ export default function Main() {
                 <div className={clsx(Styles.price__old)}>
                   Giá gốc :
                   <span className={clsx(Styles["price__old-grey"])}>
-                    27.590.000 đ
+                    {productData.cost} đ
                   </span>
                 </div>
                 <div className={clsx(Styles.price__new)}>
                   Giá khuyến mại :
                   <span className={clsx(Styles["price__new-num"])}>
-                    10.390.000 đ
+                  {productData.promotional} đ
                   </span>
                   <span className={clsx(Styles["price__new-disc"])}>
-                    (Tiết kiệm: 17.200.000 đ)
+                    (Tiết kiệm: {productData.cost - productData.promotional} đ)
                   </span>
                 </div>
               </div>
@@ -678,400 +689,7 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <div className={clsx(Styles["product__info-box"])}>
-            <div className={clsx(Styles["box-left"])}>
-              <div className={clsx(Styles["box-item"])}>
-                <h2 className={clsx(Styles["box-title"])}>
-                  Thông tin sản phẩm Laptop LENOVO IdeaPad 3 14IAU7 82RJ001CVN
-                  (i3-1215U | 8GD4 | 512GSSD | 14.0FHD | Intel UHD Graphics |
-                  Win 11 | XANH)
-                </h2>
-                <div className={clsx(Styles["box-information"])}>
-                  <div
-                    className={clsx(
-                      Styles[
-                        `box-${buttonText === "Xem thêm" ? "hidden" : "list"}`
-                      ]
-                    )}
-                  >
-                    <p className={clsx(Styles["box-desc"])}>
-                      Với tông màu xanh làm chủ đạo
-                      <span className={clsx(Styles["box-bold"])}>
-                        Laptop LENOVO IdeaPad 3 14IAU7 82RJ001CVN
-                      </span>
-                      mang phong cách tối giản, phù hợp dùng trong công sở,
-                      doanh nghiệp cho đến trường học. Laptop LENOVO IdeaPad 3
-                      14IAU7 82RJ001CVN cũng được trang bị bộ vi xử lý Intel thế
-                      hệ thứ 12, 8GB RAM và 512GB SSD để có đủ sức mạnh giúp bạn
-                      giải quyết mọi vấn đề.
-                    </p>
-                    <h3 className={clsx(Styles["box-name"])}>
-                      Bộ vi xử lý Intel trứ danh thế hệ thứ 12
-                    </h3>
-                    <img
-                      src="https://minhancomputercdn.com/media/product/13701_lenovo_ideapad_3_14iau7_82rj001cvn_01.jpg"
-                      alt="laptop"
-                      className={clsx(Styles["box-image"])}
-                    />
-                    <p className={clsx(Styles["box-desc"])}>
-                      Được ưu ái mang cho mình trang bị CPU trứ danh là bộ vi xử
-                      lý Intel Core i3-1215U này mang nhiều ưu điểm, sở hữu tốc
-                      độ xử lý công việc lí tưởng. Cụ thể là với 6 nhân 8 luồng,
-                      trong đó 2 nhân P có tốc độ lên tới 4.40 GHz, LENOVO
-                      IdeaPad 3 có thể đảm bảo cho IdeaPad vận hành mượt mà các
-                      tác vụ yêu cầu hiệu năng cao, đáp ứng được nhu cầu văn
-                      phòng phổ thông.
-                    </p>
-                    <h3 className={clsx(Styles["box-name"])}>
-                      Nâng cao hiệu suất trong công việc
-                    </h3>
-                    <img
-                      src="https://minhancomputercdn.com/media/lib/19-08-2023/lenovoideapad314iau782rj001cvn-4.jpg"
-                      alt="laptop"
-                      className={clsx(Styles["box-image"])}
-                    />
-                    <p className={clsx(Styles["box-desc"])}>
-                      Bên cạnh vi xử lý xuất sắc, phải kể tới bộ nhớ
-                      <span>
-                        <a
-                          className={clsx(Styles["box-link"])}
-                          href="#"
-                          target="blank"
-                        >
-                          RAM
-                        </a>
-                      </span>
-                      , việc có sẵn 8GB DDR4 và 512GB SSD với tốc độ bus cao
-                      3200MHz, LENOVO IdeaPad 3 có thể chạy đa nhiệm các chương
-                      trình, thoải mái lưu trữ dữ liệu, đồng thời luôn đảm bảo
-                      tốc độ cao trong từng tác vụ. Khi làm việc, người dùng có
-                      thể mở nhiều tab làm việc hay thực hiện các thao tác
-                      chuyển đổi qua lại các phần mềm mà không gặp phải tình
-                      trạng giật lag khó chịu. Bộ nhớ lớn 512GB mang đến không
-                      gian lưu trữ đủ dùng, đáp ứng nhu cầu làm việc và giải
-                      trí, rút ngắn thời gian truy cập ứng dụng và khởi động
-                      máy.
-                    </p>
-                    <h3 className={clsx(Styles["box-name"])}>
-                      Màn hình Full HD
-                    </h3>
-                    <img
-                      src="https://minhancomputercdn.com/media/lib/19-08-2023/lenovoideapad314iau782rj001cvn-6.jpg"
-                      alt="laptop"
-                      className={clsx(Styles["box-image"])}
-                    />
-                    <p className={clsx(Styles["box-desc"])}>
-                      Kích thước màn hình 14 inch, viền màn hình siêu mỏng đem
-                      tới góc nhìn rộng lớn, trải nghiệm chìm đắm trong khung
-                      hình mãn nhãn hơn.
-                    </p>
-                    <p className={clsx(Styles["box-desc"])}>
-                      Màn hình có độ phân giải FHD (1920x1080) còn được tích hợp
-                      với công nghệ chống chói Anti-Glare giúp bạn có thể sử
-                      dụng
-                      <span>
-                        <a
-                          className={clsx(Styles["box-link"])}
-                          href="#"
-                          target="blank"
-                        >
-                          máy tính
-                        </a>
-                      </span>
-                      trong điều kiện ánh sáng mạnh.
-                    </p>
-                    <h3 className={clsx(Styles["box-name"])}>
-                      Dung lượng pin lớn
-                    </h3>
-                    <img
-                      src="https://minhancomputercdn.com/media/lib/19-08-2023/lenovo-ideapad-3-14iau7-2_result.jpg"
-                      alt="laptop"
-                      className={clsx(Styles["box-image"])}
-                    />
-                    <p className={clsx(Styles["box-desc"])}>
-                      <span className={clsx(Styles["box-bold"])}>
-                        Laptop LENOVO IdeaPad 3 14IAU7 82RJ001CVN
-                      </span>
-                      sở hữu dung lượng pin lên đến 45Wh, thời gian sử dụng
-                      laptop khoảng 6 giờ đồng hồ, thời gian xem video Full HD ở
-                      độ sáng 150 nits lên đến 10 giờ. Đem lại thời gian sử dụng
-                      cả ngày mà không cần nguồn sạc bên cạnh, giúp bạn tham gia
-                      những buổi họp kéo dài hay cày các bộ phim bạn thích.
-                    </p>
-                  </div>
-                  <button
-                    className={clsx(Styles["box-btn"])}
-                    onClick={handleClick}
-                  >
-                    {buttonText}
-                    {buttonText === "Xem thêm" ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="11"
-                        height="11"
-                        fill="currentColor"
-                        className={clsx(Styles.bi, Styles["bi-chevron-down"])}
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="11"
-                        height="11"
-                        fill="currentColor"
-                        className={clsx(Styles.bi, Styles["bi-chevron-up"])}
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"
-                        />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <div className={clsx(Styles["box-comment"])}>
-                <div className={clsx(Styles["product-review"])}>
-                  <div className={clsx(Styles["product-title"])}>
-                    Đánh giá, nhận xét sản phẩm
-                  </div>
-                  <div className={clsx(Styles["product-review-content"])}>
-                    <div className={clsx(Styles["review-all-star"])}>
-                      <div className={clsx(Styles["title-all-star"])}>
-                        Sao trung bình
-                      </div>
-                      <div className={clsx(Styles["sum-all-star"])}>
-                        <div className={clsx(Styles["sum-num"])}>0</div>
-                        <div className={clsx(Styles["sum-star"])}>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            fill="currentColor"
-                            className={clsx(
-                              Styles.bi,
-                              Styles.star,
-                              Styles[" bi-star-fill"]
-                            )}
-                            viewBox="0 0 16 16"
-                          >
-                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={clsx(Styles["review-rate-star"])}>
-                      <ul>
-                        <li>
-                          <div className={clsx(Styles["num-star"])}>
-                            5
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="11"
-                              height="11"
-                              fill="currentColor"
-                              className={clsx(
-                                Styles.bi,
-                                Styles.star,
-                                Styles[" bi-star-fill"]
-                              )}
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </div>
-                          <div className={clsx(Styles.line)}></div>
-                          <div className={clsx(Styles["total-review"])}>
-                            0 Đánh giá
-                          </div>
-                        </li>
-                        <li>
-                          <div className={clsx(Styles["num-star"])}>
-                            4
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="11"
-                              height="11"
-                              fill="currentColor"
-                              className={clsx(
-                                Styles.bi,
-                                Styles.star,
-                                Styles[" bi-star-fill"]
-                              )}
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </div>
-                          <div className={clsx(Styles.line)}></div>
-                          <div className={clsx(Styles["total-review"])}>
-                            0 Đánh giá
-                          </div>
-                        </li>
-                        <li>
-                          <div className={clsx(Styles["num-star"])}>
-                            3
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="11"
-                              height="11"
-                              fill="currentColor"
-                              className={clsx(
-                                Styles.bi,
-                                Styles.star,
-                                Styles[" bi-star-fill"]
-                              )}
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </div>
-                          <div className={clsx(Styles.line)}></div>
-                          <div className={clsx(Styles["total-review"])}>
-                            0 Đánh giá
-                          </div>
-                        </li>
-                        <li>
-                          <div className={clsx(Styles["num-star"])}>
-                            2
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="11"
-                              height="11"
-                              fill="currentColor"
-                              className={clsx(
-                                Styles.bi,
-                                Styles.star,
-                                Styles[" bi-star-fill"]
-                              )}
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </div>
-                          <div className={clsx(Styles.line)}></div>
-                          <div className={clsx(Styles["total-review"])}>
-                            0 Đánh giá
-                          </div>
-                        </li>
-                        <li>
-                          <div className={clsx(Styles["num-star"])}>
-                            1
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="11"
-                              height="11"
-                              fill="currentColor"
-                              className={clsx(
-                                Styles.bi,
-                                Styles.star,
-                                Styles[" bi-star-fill"]
-                              )}
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </div>
-                          <div className={clsx(Styles.line)}></div>
-                          <div className={clsx(Styles["total-review"])}>
-                            0 Đánh giá
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className={clsx(Styles["review-customer"])}>
-                      <button
-                        className={clsx(Styles["review-customer-btn"])}
-                        onClick={handleClickForm}
-                      >
-                        {buttonForm}
-                      </button>
-                    </div>
-                    <div
-                      className={clsx(
-                        Styles[
-                          buttonForm === "Đóng lại !"
-                            ? "form-review"
-                            : "form-none"
-                        ]
-                      )}
-                    >
-                      <form action="">
-                        <Rating />
-                        <div className={clsx(Styles["form-review-left"])}>
-                          <textarea
-                            cols="30"
-                            rows="10"
-                            className={clsx(Styles["form-textarea"])}
-                          ></textarea>
-                        </div>
-                        <div className={clsx(Styles["form-review-right"])}>
-                          <input
-                            type="text"
-                            id=""
-                            placeholder="Họ tên*"
-                            className={clsx(Styles["form-control"])}
-                          />
-                          <input
-                            type="text"
-                            id=""
-                            placeholder="Số điện thoại*"
-                            className={clsx(Styles["form-control"])}
-                          />
-                          <input
-                            type="text"
-                            id=""
-                            placeholder="Email*"
-                            className={clsx(Styles["form-control"])}
-                          />
-                          <button
-                            type="submit"
-                            className={clsx(
-                              Styles["form-control"],
-                              Styles["form-btn"]
-                            )}
-                          >
-                            Gửi đánh giá
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <div className={clsx(Styles["product-comment"])}>
-                  <div className={clsx(Styles["product-title"])}>
-                    Hỏi và Đáp ( 0 Bình luận )
-                  </div>
-                  <div className={clsx(Styles["form-comment"])}>
-                    <textarea
-                      name=""
-                      id=""
-                      cols="30"
-                      rows="10"
-                      placeholder="Xin mời để lại câu hỏi, Minh An Computer sẽ trả lời trong 1h từ 8h15 - 21h mỗi ngày."
-                    ></textarea>
-                    <div className={clsx(Styles["send-comment"])}>
-                      <p>Quy định đăng bình luận</p>
-                      <button>Gửi</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={clsx(Styles["box-right"])}>
-              <div className={clsx(Styles["box-right-item"])}>
-                <h2 className={clsx(Styles["box-right-title"])}>
-                  Thông số kỹ thuật
-                </h2>
-              </div>
-            </div>
-          </div>
+          
         </section>
       </div>
     </div>

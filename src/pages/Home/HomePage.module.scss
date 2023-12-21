@@ -25,6 +25,7 @@
     background-color: white;
     border-radius: 8px;
     flex: auto;
+    border:  1px solid #ccc;
 }
 
 .text {
@@ -113,7 +114,10 @@
 }
 
 .generalGenre>li {
-    padding: 5px 10px;
+    padding: 10px 10px;
+    color: black;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .name {
@@ -291,7 +295,7 @@
 
 .group_product {
     // width: 80%;
-    justify-content: end;
+    justify-content: space-around;
     gap: 10px;
 
 }
@@ -304,6 +308,7 @@
     border-radius: 8px;
     flex: 0.25;
     max-width: 220px;
+    height: 100%;
 }
 
 .other_information {
@@ -435,6 +440,7 @@
 }
 
 .title_category {
+    background: #d2d2d2;
     width: 100%;
     padding: 10px 20px;
     display: flex;

@@ -6,7 +6,7 @@ import Styles from "./HomePage.module.scss";
 
 export default function MenuCategory(props) {
 
-  const { data, isLoading, error } = useSwr('/category/getAll', (endpoint) => apiClient.get(endpoint).then(data => data))
+  const { data, isLoading, error } = useSwr('/category/getAll', (endpoint) => apiClient.get(endpoint).then(data => data.data))
   if (isLoading) {
     return <div>...loading</div>
   }
@@ -16,12 +16,15 @@ export default function MenuCategory(props) {
       <div>
         {/* {renderSelectedItemPath()} */}
         <ul className={clsx(Styles.generalGenre)}>
-          {data.data.map((data, index) => (
-            <li key={index} >
+          {data && data !== "" && (data?.map((data, index) => (
+          <>
+          {
+            data.name !== '' && data.name && (
+              <li key={index} >
               <div className={clsx(Styles.name)} >{data.name}</div>
               <div className={clsx(Styles.content)}>
                 <ul className={clsx(Styles.genre, Styles.text_16)}>
-                  {data.categories && data.categories.length > 0 ? (data.categories.map((categorie, categorieIndex) => (
+                  {data.categories!==''&& data.categories && data.categories.length > 0 ? (data.categories.map((categorie, categorieIndex) => (
                     <li key={categorieIndex}>
                       <div
                         className={clsx(Styles.title)}
@@ -64,7 +67,10 @@ export default function MenuCategory(props) {
                 </ul>
               </div>
             </li>
-          ))}
+            )
+          }
+          </>
+          )))}
         </ul>
       </div>
     );

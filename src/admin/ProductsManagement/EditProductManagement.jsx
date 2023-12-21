@@ -111,14 +111,18 @@ export default function EditProductManagement() {
         <div className={clsx(Styles.other_information)}>
           <ul>
             {data?.data?.map((item) => (
-              <li key={item.id}>
+              <>
+              { item.name !== "" && item.name &&(
+                <li key={item.id}>
                 {item.name && (
                   <>
+                    <div>
                     <input
                       type="checkbox"
                       checked={productData?.categories?.find((selectedCategory) => selectedCategory?.id === item.id)}
                       onChange={() => handleCategoryToggle(item.id, item.name)}
                     /> {item.name}
+                    </div>
                   </>
                 )}
                 {item.categories && item.categories.length > 0 && (
@@ -128,7 +132,7 @@ export default function EditProductManagement() {
                         <li key={category.id}>
                           <input
                             type="checkbox"
-                            checked={productData.categories?.find((selectedCategory) => selectedCategory?.id === category.id)}
+                            checked={productData?.categories?.find((selectedCategory) => selectedCategory?.id === category?.id)}
                             onChange={() => handleCategoryToggle(category.id, category.name)}
                           /> {category.name}
 
@@ -156,6 +160,9 @@ export default function EditProductManagement() {
                 )}
 
               </li>
+              )}
+              </>
+              
             ))}
           </ul>
 
